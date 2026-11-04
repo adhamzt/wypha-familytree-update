@@ -1,0 +1,100 @@
+================================================================================
+PANDUAN DEPLOY CEPAT KE CLOUDFLARE PAGES (ANTI-STUCK / ANTI-MACET) — V14.8
+================================================================================
+
+MENGAPA ZIP SEBELUMNYA MACET (STUCK) SAAT DIDEPLOY KE CLOUDFLARE?
+1. Paket ZIP sebelumnya berukuran 53,5 MiB (72,1 MiB setelah diekstrak) dan berisi
+   169 file karena ikut membawa 11 folder DEMO-* lama (~63 MiB termasuk video MP4,
+   puluhan HTML demo 4-5 MB, dan PNG besar) serta 111 file arsip/log versi lama.
+   Padahal Cloudflare Pages Direct Upload (Drag & Drop) memiliki batas ukuran 25 MiB.
+2. File index.html sebelumnya berukuran 8,26 MB karena menyimpan gambar contoh
+   stiker mentah (STICKER_EXAMPLE_DATA) sebesar 4,38 MB dalam satu baris Base64.
+
+APA YANG SUDAH DIPERBAIKI DI PAKET CLOUDFLARE-READY INI?
+1. Hanya berisi 5 file inti aplikasi produksi (index.html, manifest.webmanifest,
+   service-worker.js, icon-192.png, icon-512.png) + panduan ini. Seluruh 164 file
+   sampah/demo/log lama yang tidak dipakai aplikasi telah dibersihkan dari paket deploy.
+2. Aset internal STICKER_EXAMPLE_DATA di dalam index.html telah dikompresi ke RGBA
+   WebP presisi tinggi tanpa mengubah resolusi (1052x1495) maupun fitur sedikit pun.
+   Ukuran index.html turun более dari 47% (dari 8,26 MB menjadi 4,38 MB), dan ukuran
+   total ZIP turun 97% (dari 53,5 MiB menjadi ~1,7 MiB).
+3. Cache key di service-worker.js dan manifest.webmanifest telah diperbarui ke V14.8
+   agar browser otomatis membersihkan cache versi lama setelah deploy selesai.
+4. 100% fitur V1 s/d V14.8 (Silsilah Keluarga Futuristik Jalur Personal, Roda Aksi
+   Melingkar, Filter 2G/3G/4G/Unlimited, Kunci PIN Mini + Master PIN, Unlimited
+   Phone Storage, Perpustakaan Virtual 3D, Kalender Baby, Google Drive Backup, dll.)
+   TETAP UTUH 100% TANPA ADA YANG DIKURANGI.
+
+CARA DEPLOY KE CLOUDFLARE PAGES:
+- Opsi A (Langsung Upload ZIP): Drag & drop file WYPHA-V14.8-CLOUDFLARE-READY.zip
+  ini langsung ke halaman Direct Upload Cloudflare Pages, lalu klik "Save and Deploy".
+- Opsi B (Upload Folder): Ekstrak ZIP ini ke satu folder kosong, lalu drag & drop
+  folder tersebut (yang hanya berisi 6 file ini) ke Cloudflare Pages.
+
+================================================================================
+
+================================================================================
+WYPHA MAGIC QR STUDIO · V14.8 (EDISI SILSILAH KELUARGA FUTURISTIK · JALUR
+GENERASI PERSONAL PER-INDIVIDU + MENU AKSI MELINGKAR + DUA BAHASA ID/EN)
+================================================================================
+
+RINGKASAN PEMBARUAN UTAMA DI VERSI V14.8 (BERANGKAT DARI V14.7 — 100% FITUR
+LAMA TETAP UTUH & TIDAK BERUBAH):
+
+1. JALUR GENERASI PERSONAL PER-INDIVIDU (SETIAP ORANG PUNYA JALUR GENERASI SENDIRI):
+   - Ketika customer atau pengunjung mengetuk salah satu anggota keluarga
+     (misalnya Suami, Istri, Anak, Kakek, Nenek, atau Saudara), lingkaran orang
+     tersebut menyala dengan Cincin Fokus Hologram (Aura Emas/Cyan) dan bagan
+     otomatis beralih menampilkan jalur silsilah khusus milik orang tersebut
+     (orang tua kandungnya ke atas, kakek-nenek & buyut dari garis ayah/ibunya,
+     saudara kandungnya ke samping, serta pasangan, anak, dan cucunya ke bawah).
+   - Anggota yang memiliki cabang leluhur/keturunan tersembunyi ditandai dengan
+     titik indikator di atas/bawah lingkarannya sehingga sangat mudah dikenali.
+
+2. FILTER KEDALAMAN GENERASI DI KIRI ATAS & KIRI BAWAH (PERSIS SEPERTI VIDEO):
+   - Panel Kiri Atas (Generasi Leluhur ke Atas):
+     * [∞ Tak terbatas / Unlimited] — Menampilkan seluruh leluhur ke atas.
+     * [▼ 4G yang lalu / 4G ago] — Menampilkan hingga 4 generasi leluhur ke atas.
+     * [▼ 3G yang lalu / 3G ago] — Menampilkan hingga 3 generasi leluhur ke atas.
+     * [▼ 2G yang lalu / 2G ago] — Menampilkan hingga 2 generasi leluhur ke atas.
+   - Panel Kiri Bawah (Generasi Keturunan ke Bawah):
+     * [☍ Anak / Children] — Menampilkan generasi anak saja.
+     * [⚭ Anak & Pasangan / Children & Spouses] — Menampilkan anak beserta pasangannya.
+     * [❖ Cucu / Grandchildren] — Menampilkan hingga generasi cucu.
+     * [∞ Tak terbatas / Unlimited] — Menampilkan seluruh keturunan ke bawah.
+
+3. MENU AKSI MELINGKAR FUTURISTIK (RADIAL ACTION WHEEL) SAAT MENGETUK FOKUS:
+   - Ketuk sekali lagi pada orang yang sedang fokus (atau tombol "☸ Menu Aksi")
+     untuk membuka Roda Menu Melingkar Futuristik tepat di sekeliling foto/avatar:
+     * [Tambah orangtua / Add parents] — Otomatis menambahkan pasangan Ayah & Ibu
+       di atas orang tersebut.
+     * [Tambah pasangan / Add spouse] — Menambahkan pasangan (Suami/Istri) dengan
+       simbol ikatan pernikahan (⚭).
+     * [Tambah anak / Add child] — Menambahkan anak di bawah jalur pernikahan.
+     * [Hubungkan / Connect] — Menyambungkan dengan anggota lain yang sudah ada
+       di silsilah (sebagai orang tua, pasangan, anak, atau saudara kandung).
+     * [Putuskan / Disconnect] — Memutuskan jalur hubungan atau mengubah status
+       ikatan pasangan menjadi Pisah/Cerai (💔).
+     * [Hapus / Delete] — Menghapus anggota dari silsilah.
+     * [✎ Edit] (di bagian tengah bawah lingkaran) — Membuka jendela biodata
+       lengkap (Upload Foto dari HP, Nama Depan & Belakang, Pria/Wanita, Tanggal
+       Kelahiran Hari/Bulan/Tahun, Status & Tanggal Kematian, Penambahan/Gelar,
+       serta Catatan Keluarga).
+
+4. DESAIN SEDERHANA NAMUN FUTURISTIK & KEREN (2 TEMA KANVAS + PENCARIAN + PNG):
+   - Dilengkapi 2 pilihan tema visual kanvas yang dapat diganti kapan saja:
+     * ❖ Cyber Holo Dark (Futuristik Gelap Neon dengan garis hologram & cincin
+       Cyan untuk Pria / Coral-Amber untuk Wanita).
+     * ☀️ Warm Daylight (Tampilan terang bersih bernuansa hangat seperti video).
+   - Dilengkapi tombol Pencarian Cepat (🔍), Unduh Gambar Silsilah PNG (📷),
+     Mode Layar Penuh (⛶), Zoom (+ / -) & Pusatkan Fokus (⌖).
+
+5. DUKUNGAN PENUH BAHASA INDONESIA & BAHASA INGGRIS + ON/OFF DI STUDIO:
+   - Seluruh tombol, filter (2G/3G/4G/∞, Anak/Cucu), roda aksi melingkar, dan
+     formulir edit mendukung Bahasa Indonesia & English secara instan.
+   - Di Pengaturan Studio (Menu 11 & Menu 13), tersedia kontrol ON/OFF, pilihan
+     produk, tema kanvas bawaan, bahasa bawaan, serta judul kustom ID/EN.
+   - Seluruh data dan foto silsilah tersimpan permanen di memori HP masing-masing
+     customer (IndexedDB + CacheStorage + LocalStorage) serta terhubung dengan
+     Backup JSON & Google Drive.
+================================================================================

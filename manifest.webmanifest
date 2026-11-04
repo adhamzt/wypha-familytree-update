@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "WYPHA Magic QR Studio V14.8 — Futuristic Personal Lineage & Unlimited Storage",
+  "short_name": "WYPHA V14.8",
+  "description": "Kartu fan neon pribadi: dua foto, biodata, durasi hidup, note untuk idol dan ekspor PNG dengan panel paket ON/OFF.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#07101b",
+  "theme_color": "#07101b",
+  "lang": "id-ID",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
