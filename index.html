@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>WYPHA Magic QR Studio — V14.9 • Family Tree Anti-Scroll Jump & Kinship Default Roles (Cloudflare Ready)</title>
+<title>WYPHA Magic QR Studio — V15.0 • Family Tree Reset Core, Full Photo Snapshot & Kinship Roles (Cloudflare Ready)</title>
 <script>
 /* JSZip 3.10.1 — embedded */
 /*!
@@ -14264,7 +14264,8 @@ function v136FamilyTreeDefaults(v = {}) {
     titleId: typeof v.titleId === 'string' && v.titleId.trim() ? v.titleId.slice(0, 120) : 'Silsilah Keluarga Futuristik · Jalur Generasi Personal',
     titleEn: typeof v.titleEn === 'string' && v.titleEn.trim() ? v.titleEn.slice(0, 120) : 'Futuristic Family Tree · Personal Lineage Path',
     subId: typeof v.subId === 'string' && v.subId.trim() ? v.subId.slice(0, 240) : 'Setiap anggota memiliki jalur generasi sendiri. Ketuk siapa saja untuk melihat jalur leluhur & keturunannya, atau ketuk sekali lagi untuk membuka Menu Aksi Melingkar.',
-    subEn: typeof v.subEn === 'string' && v.subEn.trim() ? v.subEn.slice(0, 240) : 'Every family member has their own personal generation path. Tap anyone to focus their lineage, or tap again to open the Radial Action Wheel.'
+    subEn: typeof v.subEn === 'string' && v.subEn.trim() ? v.subEn.slice(0, 240) : 'Every family member has their own personal generation path. Tap anyone to focus their lineage, or tap again to open the Radial Action Wheel.',
+    starterTree: v.starterTree && typeof v.starterTree === 'object' && Array.isArray(v.starterTree.nodes) ? v.starterTree : null
   };
 }
 
@@ -15700,6 +15701,12 @@ function v136CustomerRuntime(C) {
       } catch (e) {}
       try { window.__wyphaMasterVault?.put(ck, data); } catch (e) {}
       try {
+        if (key.startsWith('wypha-family-tree-') && window.parent && window.parent !== window && window.parent.v126State?.holo13?.familyTree) {
+          window.parent.v126State.holo13.familyTree.starterTree = JSON.parse(JSON.stringify(data));
+          window.parent.scheduleSuiteAutosave?.();
+        }
+      } catch (e) {}
+      try {
         const db = await openV136DB();
         if (db) {
           await new Promise(res => {
@@ -15800,63 +15807,105 @@ function v136CustomerRuntime(C) {
       const MONTHS_ID = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
       const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-      const OLD_SAMPLE_PERSON_NAMES = new Set([
-        'Bujuk Tambeh', 'Nyai Tambeh', 'Bujuk Mina', 'Siti Aminah',
-        'Salabung', 'Dinya', 'Saputra', 'Ammah', 'MUNAWI', 'NAHRA',
-        'Khoyun', 'Lamani', 'Ikhsan', 'Fathah', 'Tholib', 'Maziyah',
-        'Lek Bo', 'Pendik', 'Mul', 'Rina', 'Faris', 'Faiz', 'Wahyu',
-        'Nadia', 'Arka', 'Dul', 'Awi', 'Yongga', 'Dio'
-      ]);
+      const LEGACY_NAME_HASHES = new Set([0xb0092a17, 0x83642f1f, 0xc111ac9d, 0x9d9ead3e, 0xbc8cc1b4, 0xd233046e, 0x7acda78b, 0xf025a7eb, 0xce9f4696, 0xc7fea4fd, 0x3239455, 0x2705b991, 0xfdeba473, 0xb307dfe5, 0x564ca369, 0x2535c93c, 0x8383963a, 0xec4dfdec, 0xeb84ed81, 0xfd5b04dd, 0x6bfb8042, 0x85364cb, 0x4994a01d, 0x13880faa, 0x86ec6f86, 0xef311e3a, 0x10682cf8, 0x44b1963e, 0xce628713]);
+      const hashName32 = str => {
+        let h = 0x811c9dc5;
+        const s = String(str || '').trim().toLowerCase();
+        for (let i = 0; i < s.length; i++) {
+          h ^= s.charCodeAt(i);
+          h = Math.imul(h, 0x01000193) >>> 0;
+        }
+        return h >>> 0;
+      };
+      const isLegacySampleName = str => LEGACY_NAME_HASHES.has(hashName32(str));
 
-      const createStarterLineage = () => {
+      const LEGACY_ID_HASH_MAP = {
+        0x46fcf065: ['ft-canggah-pria', 'Canggah Pria', 'Leluhur 4G'],
+        0xfd09cfd: ['ft-canggah-wanita', 'Canggah Wanita', 'Leluhur 4G'],
+        0x4ffbafb3: ['ft-kakek-buyut', 'Kakek Buyut', 'Buyut 3G'],
+        0xa62871b7: ['ft-nenek-buyut', 'Nenek Buyut', 'Buyut 3G'],
+        0xdb8194d3: ['ft-kakek-ayah', 'Kakek (Ayah)', 'Kakek'],
+        0x3c5f6163: ['ft-nenek-ayah', 'Nenek (Ayah)', 'Nenek'],
+        0xb5a97232: ['ft-kakek-ibu', 'Kakek (Ibu)', 'Kakek'],
+        0xbad81835: ['ft-nenek-ibu', 'Nenek (Ibu)', 'Nenek'],
+        0xd911dccd: ['ft-ayah', 'Ayah', 'Orang Tua'],
+        0x519614a0: ['ft-ibu', 'Ibu', 'Orang Tua'],
+        0x1d35d5eb: ['ft-paman', 'Paman', 'Saudara Ayah'],
+        0x23e4c20a: ['ft-bibi', 'Bibi', 'Pasangan Paman'],
+        0x122f92d2: ['ft-kakek-pasangan', 'Kakek (Pasangan)', 'Kakek'],
+        0x3c54f62a: ['ft-nenek-pasangan', 'Nenek (Pasangan)', 'Nenek'],
+        0x4bb18944: ['ft-ayah-mertua', 'Ayah Mertua', 'Mertua'],
+        0xad6e855e: ['ft-ibu-mertua', 'Ibu Mertua', 'Mertua'],
+        0x1ba27c96: ['ft-inti', 'Saya', 'Inti Keluarga'],
+        0x28370135: ['ft-pasangan', 'Pasangan', 'Suami / Istri'],
+        0xcbcc84c1: ['ft-kakak', 'Kakak', 'Saudara Kandung'],
+        0x8813a084: ['ft-ipar', 'Ipar', 'Pasangan Kakak'],
+        0xa8e3c9f: ['ft-adik', 'Adik', 'Saudara Kandung'],
+        0x5dd4a050: ['ft-sepupu-1', 'Sepupu 1', 'Anak Paman & Bibi'],
+        0x60d4a509: ['ft-sepupu-2', 'Sepupu 2', 'Anak Paman & Bibi'],
+        0x99641d40: ['ft-saudara-pasangan', 'Saudara Pasangan', 'Ipar'],
+        0x51f076a0: ['ft-pasangan-ipar', 'Pasangan Ipar', 'Ipar'],
+        0x89352287: ['ft-anak-1', 'Anak Ke-1', 'Anak Kandung'],
+        0x22da1b3c: ['ft-anak-2', 'Anak Ke-2', 'Anak Kandung'],
+        0xb197e254: ['ft-anak-3', 'Anak Ke-3', 'Anak Kandung'],
+        0x852adee4: ['ft-menantu', 'Menantu', 'Pasangan Anak'],
+        0x51950a85: ['ft-cucu-1', 'Cucu', 'Cucu'],
+        0xc826e51f: ['ft-keponakan-1', 'Keponakan 1', 'Anak Kakak'],
+        0x10464acd: ['ft-keponakan-2', 'Keponakan 2', 'Anak Kakak'],
+        0xaed50fad: ['ft-keponakan-3', 'Keponakan 3', 'Anak Ipar'],
+        0xe91c8bb6: ['ft-keponakan-4', 'Keponakan 4', 'Anak Ipar']
+      };
+      const getLegacyById = id => LEGACY_ID_HASH_MAP[hashName32(id)] || null;
+
+      const createDefaultKinshipTree = () => {
         const nodes = [
           // 4G & 3G Ancestors (Canggah & Buyut)
-          { id: 'p-btambeh', name: 'Canggah Pria', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-btambeh-w'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
-          { id: 'p-btambeh-w', name: 'Canggah Wanita', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-btambeh'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
-          { id: 'p-bmina', name: 'Kakek Buyut', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-btambeh', 'p-btambeh-w'], spouses: ['p-bmina-w'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
-          { id: 'p-bmina-w', name: 'Nenek Buyut', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-bmina'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
+          { id: 'ft-canggah-pria', name: 'Canggah Pria', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['ft-canggah-wanita'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
+          { id: 'ft-canggah-wanita', name: 'Canggah Wanita', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-canggah-pria'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
+          { id: 'ft-kakek-buyut', name: 'Kakek Buyut', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-canggah-pria', 'ft-canggah-wanita'], spouses: ['ft-nenek-buyut'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
+          { id: 'ft-nenek-buyut', name: 'Nenek Buyut', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-kakek-buyut'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
 
           // 2G Ancestors: Paternal & Maternal Grandparents (Kakek & Nenek)
-          { id: 'p-salabung', name: 'Kakek (Ayah)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-bmina', 'p-bmina-w'], spouses: ['p-dinya'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
-          { id: 'p-dinya', name: 'Nenek (Ayah)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-salabung'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
-          { id: 'p-saputra', name: 'Kakek (Ibu)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-ammah1'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
-          { id: 'p-ammah1', name: 'Nenek (Ibu)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-saputra'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          { id: 'ft-kakek-ayah', name: 'Kakek (Ayah)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-kakek-buyut', 'ft-nenek-buyut'], spouses: ['ft-nenek-ayah'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'ft-nenek-ayah', name: 'Nenek (Ayah)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-kakek-ayah'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          { id: 'ft-kakek-ibu', name: 'Kakek (Ibu)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['ft-nenek-ibu'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'ft-nenek-ibu', name: 'Nenek (Ibu)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-kakek-ibu'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
 
           // 1G Above Core: Parents (Ayah & Ibu) + Uncle & Aunt (Paman & Bibi)
-          { id: 'p-munawi', name: 'Ayah', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-salabung', 'p-dinya'], spouses: ['p-nahra'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
-          { id: 'p-nahra', name: 'Ibu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-saputra', 'p-ammah1'], spouses: ['p-munawi'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
-          { id: 'p-paman', name: 'Paman', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-salabung', 'p-dinya'], spouses: ['p-bibi'], divorcedSpouses: [], suffix: 'Saudara Ayah', note: '' },
-          { id: 'p-bibi', name: 'Bibi', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-paman'], divorcedSpouses: [], suffix: 'Pasangan Paman', note: '' },
+          { id: 'ft-ayah', name: 'Ayah', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-kakek-ayah', 'ft-nenek-ayah'], spouses: ['ft-ibu'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
+          { id: 'ft-ibu', name: 'Ibu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-kakek-ibu', 'ft-nenek-ibu'], spouses: ['ft-ayah'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
+          { id: 'ft-paman', name: 'Paman', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-kakek-ayah', 'ft-nenek-ayah'], spouses: ['ft-bibi'], divorcedSpouses: [], suffix: 'Saudara Ayah', note: '' },
+          { id: 'ft-bibi', name: 'Bibi', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-paman'], divorcedSpouses: [], suffix: 'Pasangan Paman', note: '' },
 
           // Spouse's Parents & Grandparents (Mertua & Kakek/Nenek Pasangan)
-          { id: 'p-khoyun', name: 'Kakek (Pasangan)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-lamani'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
-          { id: 'p-lamani', name: 'Nenek (Pasangan)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-khoyun'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
-          { id: 'p-ikhsan', name: 'Ayah Mertua', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-khoyun', 'p-lamani'], spouses: ['p-fathah'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
-          { id: 'p-fathah', name: 'Ibu Mertua', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-ikhsan'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
+          { id: 'ft-kakek-pasangan', name: 'Kakek (Pasangan)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['ft-nenek-pasangan'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'ft-nenek-pasangan', name: 'Nenek (Pasangan)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-kakek-pasangan'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          { id: 'ft-ayah-mertua', name: 'Ayah Mertua', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-kakek-pasangan', 'ft-nenek-pasangan'], spouses: ['ft-ibu-mertua'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
+          { id: 'ft-ibu-mertua', name: 'Ibu Mertua', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-ayah-mertua'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
 
           // Core Generation (0G): Saya, Pasangan, Kakak, Ipar, Adik, & Sepupu
-          { id: 'p-tholib', name: 'Saya', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: ['p-maziyah'], divorcedSpouses: [], suffix: 'Inti Keluarga', note: '' },
-          { id: 'p-maziyah', name: 'Pasangan', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-tholib'], divorcedSpouses: [], suffix: 'Suami / Istri', note: '' },
-          { id: 'p-lekbo', name: 'Kakak', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: ['p-lekbo-h'], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
-          { id: 'p-lekbo-h', name: 'Ipar', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-lekbo'], divorcedSpouses: [], suffix: 'Pasangan Kakak', note: '' },
-          { id: 'p-adik', name: 'Adik', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: [], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
-          { id: 'p-sepupu-1', name: 'Sepupu 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-paman', 'p-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
-          { id: 'p-sepupu-2', name: 'Sepupu 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-paman', 'p-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
-          { id: 'p-mul', name: 'Saudara Pasangan', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-mul-w'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
-          { id: 'p-mul-w', name: 'Pasangan Ipar', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-mul'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
+          { id: 'ft-inti', name: 'Saya', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-ayah', 'ft-ibu'], spouses: ['ft-pasangan'], divorcedSpouses: [], suffix: 'Inti Keluarga', note: '' },
+          { id: 'ft-pasangan', name: 'Pasangan', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-ayah-mertua', 'ft-ibu-mertua'], spouses: ['ft-inti'], divorcedSpouses: [], suffix: 'Suami / Istri', note: '' },
+          { id: 'ft-kakak', name: 'Kakak', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-ayah', 'ft-ibu'], spouses: ['ft-ipar'], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
+          { id: 'ft-ipar', name: 'Ipar', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['ft-kakak'], divorcedSpouses: [], suffix: 'Pasangan Kakak', note: '' },
+          { id: 'ft-adik', name: 'Adik', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-ayah', 'ft-ibu'], spouses: [], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
+          { id: 'ft-sepupu-1', name: 'Sepupu 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-paman', 'ft-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
+          { id: 'ft-sepupu-2', name: 'Sepupu 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-paman', 'ft-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
+          { id: 'ft-saudara-pasangan', name: 'Saudara Pasangan', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-ayah-mertua', 'ft-ibu-mertua'], spouses: ['ft-pasangan-ipar'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
+          { id: 'ft-pasangan-ipar', name: 'Pasangan Ipar', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-saudara-pasangan'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
 
           // Descendants (-1G & -2G): Anak, Menantu, Cucu, & Keponakan
-          { id: 'p-faris', name: 'Anak Ke-1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
-          { id: 'p-faiz', name: 'Anak Ke-2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
-          { id: 'p-wahyu', name: 'Anak Ke-3', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: ['p-wahyu-w'], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
-          { id: 'p-wahyu-w', name: 'Menantu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-wahyu'], divorcedSpouses: [], suffix: 'Pasangan Anak', note: '' },
-          { id: 'p-cucu1', name: 'Cucu', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-wahyu', 'p-wahyu-w'], spouses: [], divorcedSpouses: [], suffix: 'Cucu', note: '' },
-          { id: 'p-dul', name: 'Keponakan 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' },
-          { id: 'p-awi', name: 'Keponakan 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' }
+          { id: 'ft-anak-1', name: 'Anak Ke-1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-inti', 'ft-pasangan'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'ft-anak-2', name: 'Anak Ke-2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-inti', 'ft-pasangan'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'ft-anak-3', name: 'Anak Ke-3', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-inti', 'ft-pasangan'], spouses: ['ft-menantu'], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'ft-menantu', name: 'Menantu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['ft-anak-3'], divorcedSpouses: [], suffix: 'Pasangan Anak', note: '' },
+          { id: 'ft-cucu-1', name: 'Cucu', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-anak-3', 'ft-menantu'], spouses: [], divorcedSpouses: [], suffix: 'Cucu', note: '' },
+          { id: 'ft-keponakan-1', name: 'Keponakan 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['ft-ipar', 'ft-kakak'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' },
+          { id: 'ft-keponakan-2', name: 'Keponakan 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['ft-ipar', 'ft-kakak'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' }
         ];
         return {
-          version: 3,
-          focusId: 'p-tholib',
+          version: 4,
+          focusId: 'ft-inti',
           upGenLimit: 'inf',
           downGenMode: 'inf',
           canvasTheme: ftCfg.canvasTheme || 'holo-dark',
@@ -15864,44 +15913,59 @@ function v136CustomerRuntime(C) {
         };
       };
 
-      // Normalize / migrate legacy v1 nodes or partial v2 nodes into strict bidirectional relational graph
+      const createStarterLineage = () => {
+        if (ftCfg.starterTree && Array.isArray(ftCfg.starterTree.nodes) && ftCfg.starterTree.nodes.length) {
+          return JSON.parse(JSON.stringify(ftCfg.starterTree));
+        }
+        return createDefaultKinshipTree();
+      };
+
+      // Normalize / migrate legacy nodes into strict bidirectional relational graph (preserving any uploaded photos while replacing old sample names!)
       const normalizeTreeData = raw => {
         if (!raw || !Array.isArray(raw.nodes) || !raw.nodes.length) {
           return createStarterLineage();
         }
-        const hasOldPersonalSample = raw.version !== 3 && raw.nodes.some(n => OLD_SAMPLE_PERSON_NAMES.has(String(n?.name || '').trim()));
-        const hasCustomPhotos = raw.nodes.some(n => String(n?.photo || '').trim().length > 0);
-        if (hasOldPersonalSample && !hasCustomPhotos) {
-          const fresh = createStarterLineage();
+        const hasAnyLegacyNode = raw.nodes.some(n => getLegacyById(n?.id) || isLegacySampleName(n?.name));
+        const hasAnyPhoto = raw.nodes.some(n => String(n?.photo || '').trim().length > 0);
+        if (hasAnyLegacyNode && !hasAnyPhoto && raw.version !== 4) {
+          const fresh = createDefaultKinshipTree();
           if (['holo-dark', 'cyber-light'].includes(raw.canvasTheme)) fresh.canvasTheme = raw.canvasTheme;
           return fresh;
         }
         const isLegacyV1 = raw.version !== 2 && raw.nodes.some(n => n.gen !== undefined && !Array.isArray(n.parents));
+        const mapLegacyId = id => (getLegacyById(id) ? getLegacyById(id)[0] : String(id || ''));
         const nodes = raw.nodes.map((n, idx) => {
-          const st = String(n.status || '').toLowerCase();
+          const rawId = String(n.id || 'ft-' + idx);
+          const legEntry = getLegacyById(rawId);
+          const mappedId = legEntry ? legEntry[0] : rawId;
+          const rawName = String(n.name || n.firstName || '').trim();
+          const shouldReplaceName = isLegacySampleName(rawName) || (legEntry && (!rawName || rawName === C.personName || rawName === C.secondName));
+          const cleanName = shouldReplaceName ? (legEntry ? legEntry[1] : 'Anggota Keluarga') : rawName;
+          const cleanSuffix = shouldReplaceName && legEntry ? legEntry[2] : String(n.suffix ?? n.status ?? '').trim();
+          const st = String(cleanSuffix || '').toLowerCase();
           const guessedGender = n.gender === 'F' || n.gender === 'M' || n.gender === 'U'
             ? n.gender
             : (/(ibu|nenek|istri|wanita|perempuan|mother|grandmother|wife|sister|daughter|aunt|bibi)/i.test(st) ? 'F' : 'M');
           return {
-            id: String(n.id || 'p-' + idx),
-            name: String(n.name || n.firstName || '').trim(),
-            lastName: String(n.lastName || '').trim(),
+            id: mappedId,
+            name: cleanName,
+            lastName: shouldReplaceName ? '' : String(n.lastName || '').trim(),
             gender: guessedGender,
             photo: String(n.photo || ''),
             birthDay: String(n.birthDay || ''),
             birthMonth: String(n.birthMonth || ''),
-            birthYear: String(n.birthYear || ''),
+            birthYear: shouldReplaceName ? '' : String(n.birthYear || ''),
             deathStatus: ['alive', 'deceased', 'unknown'].includes(n.deathStatus) ? n.deathStatus : 'alive',
             deathDay: String(n.deathDay || ''),
             deathMonth: String(n.deathMonth || ''),
             deathYear: String(n.deathYear || ''),
-            suffix: String(n.suffix ?? n.status ?? '').trim(),
+            suffix: cleanSuffix,
             note: String(n.note || '').trim(),
-            parents: Array.isArray(n.parents) ? [...new Set(n.parents.filter(Boolean))] : [],
-            spouses: Array.isArray(n.spouses) ? [...new Set(n.spouses.filter(Boolean))] : [],
-            divorcedSpouses: Array.isArray(n.divorcedSpouses) ? [...new Set(n.divorcedSpouses.filter(Boolean))] : [],
+            parents: Array.isArray(n.parents) ? [...new Set(n.parents.filter(Boolean).map(mapLegacyId))] : [],
+            spouses: Array.isArray(n.spouses) ? [...new Set(n.spouses.filter(Boolean).map(mapLegacyId))] : [],
+            divorcedSpouses: Array.isArray(n.divorcedSpouses) ? [...new Set(n.divorcedSpouses.filter(Boolean).map(mapLegacyId))] : [],
             _legacyGen: Number(n.gen) || 0,
-            _legacyLinkTo: String(n.linkTo || '')
+            _legacyLinkTo: n.linkTo ? mapLegacyId(String(n.linkTo)) : ''
           };
         });
 
@@ -15937,9 +16001,10 @@ function v136CustomerRuntime(C) {
           delete n._legacyLinkTo;
         }
 
-        const focusId = byId.has(raw.focusId) ? raw.focusId : (nodes.find(x => x.id === 'p-tholib' || x.id === 'g0-me')?.id || nodes[0].id);
+        const mappedFocus = mapLegacyId(raw.focusId);
+        const focusId = byId.has(mappedFocus) ? mappedFocus : (nodes.find(x => x.id === 'ft-inti' || x.id === 'p-root' || x.id === 'g0-me')?.id || nodes[0].id);
         return {
-          version: 3,
+          version: 4,
           focusId,
           upGenLimit: ['inf', 4, 3, 2, '4', '3', '2'].includes(raw.upGenLimit) ? (raw.upGenLimit === 'inf' ? 'inf' : Number(raw.upGenLimit)) : 'inf',
           downGenMode: ['children', 'children_spouses', 'grandchildren', 'inf'].includes(raw.downGenMode) ? raw.downGenMode : 'inf',
@@ -15963,6 +16028,7 @@ function v136CustomerRuntime(C) {
           '<div data-ft-focus-banner></div>' +
           '<div class="wft-focus-quick-btns">' +
             '<button type="button" data-ft-open-wheel></button>' +
+            '<button type="button" data-ft-reset-core-top style="border-color:#f59e0b;background:rgba(245,158,11,0.18);color:#fde68a!important"></button>' +
             '<button type="button" data-ft-theme-btn></button>' +
             '<button type="button" data-ft-lang-toggle>🌐 ID / EN</button>' +
           '</div>' +
@@ -16784,6 +16850,11 @@ function v136CustomerRuntime(C) {
             ? t('👤 Lihat Biodata ' + (focusP.name || ''), '👤 View Profile ' + (focusP.name || ''))
             : t('☸ Menu Aksi: ' + (focusP.name || ''), '☸ Action Wheel: ' + (focusP.name || ''));
         }
+        const resetTopBtn = section.querySelector('[data-ft-reset-core-top]');
+        if (resetTopBtn) {
+          resetTopBtn.hidden = isVisitorLocked();
+          resetTopBtn.textContent = t('🔄 Reset / Mulai dari Awal', '🔄 Reset / Start from Core');
+        }
         const themeBtn = section.querySelector('[data-ft-theme-btn]');
         if (themeBtn) {
           themeBtn.textContent = treeData.canvasTheme === 'holo-dark'
@@ -17501,18 +17572,29 @@ function v136CustomerRuntime(C) {
             const f = e.target.files?.[0];
             if (!f) return;
             try {
+              capturePageScroll();
               curPhoto = await compressThumb(f);
               renderAvPreview();
+              person.photo = curPhoto;
+              await saveDualVault(ftKey, treeData);
+              renderTree();
+              restorePageScroll();
+              statusEl.textContent = t(`📸 Foto ${fullName(person)} berhasil dimasukkan & tersimpan di silsilah!`, `📸 Photo for ${fullName(person)} saved in family tree!`);
             } catch (err) {}
           };
         }
 
         const clearPhotoBtn = profileDialog.querySelector('[data-wft-clear-photo]');
         if (clearPhotoBtn) {
-          clearPhotoBtn.onclick = () => {
+          clearPhotoBtn.onclick = async () => {
+            capturePageScroll();
             curPhoto = '';
+            person.photo = '';
             renderAvPreview();
             clearPhotoBtn.style.display = 'none';
+            await saveDualVault(ftKey, treeData);
+            renderTree();
+            restorePageScroll();
           };
         }
 
@@ -17809,20 +17891,38 @@ function v136CustomerRuntime(C) {
         centerOnPerson(treeData.focusId);
       };
 
-      // Export PNG Snapshot of Visible Family Tree
-      section.querySelector('[data-ft-snapshot-btn]').onclick = () => {
+      // Helper: Load photo image for Canvas Snapshot so all uploaded photos are rendered inside the exported PNG
+      const loadPhotoForCanvas = (src, domNodeId = '') =>
+        new Promise(resolve => {
+          if (!src) return resolve(null);
+          if (domNodeId) {
+            const liveImg = nodesLayer.querySelector(`.wft-person-node[data-node-id="${domNodeId}"] img`);
+            if (liveImg && liveImg.complete && liveImg.naturalWidth > 0) {
+              return resolve(liveImg);
+            }
+          }
+          const im = new Image();
+          if (!src.startsWith('data:')) im.crossOrigin = 'anonymous';
+          im.onload = () => resolve(im);
+          im.onerror = () => resolve(null);
+          im.src = src;
+        });
+
+      // Export PNG Snapshot of Visible Family Tree (WITH ALL UPLOADED PHOTOS INCLUDED!)
+      section.querySelector('[data-ft-snapshot-btn]').onclick = async () => {
         try {
           if (!lastLayoutPositions.size) return;
+          statusEl.textContent = t('⏳ Menyiapkan gambar silsilah beserta seluruh foto...', '⏳ Preparing family tree snapshot with all photos...');
           let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
           for (const pos of lastLayoutPositions.values()) {
-            minX = Math.min(minX, pos.x - 90);
-            maxX = Math.max(maxX, pos.x + 90);
-            minY = Math.min(minY, pos.y - 80);
-            maxY = Math.max(maxY, pos.y + 90);
+            minX = Math.min(minX, pos.x - 95);
+            maxX = Math.max(maxX, pos.x + 95);
+            minY = Math.min(minY, pos.y - 85);
+            maxY = Math.max(maxY, pos.y + 98);
           }
-          const pad = 40;
-          const cw = Math.max(480, Math.round(maxX - minX + pad * 2));
-          const ch = Math.max(360, Math.round(maxY - minY + pad * 2));
+          const pad = 44;
+          const cw = Math.max(520, Math.round(maxX - minX + pad * 2));
+          const ch = Math.max(380, Math.round(maxY - minY + pad * 2));
           const canvas = document.createElement('canvas');
           canvas.width = cw * 2;
           canvas.height = ch * 2;
@@ -17836,7 +17936,7 @@ function v136CustomerRuntime(C) {
           const ox = pad - minX;
           const oy = pad - minY;
 
-          // Draw orthogonal lines via Path2D
+          // 1. Draw orthogonal lines via Path2D
           ctx.strokeStyle = isDark ? '#6488a8' : '#78756e';
           ctx.lineWidth = 3;
           ctx.lineCap = 'round';
@@ -17849,44 +17949,152 @@ function v136CustomerRuntime(C) {
             try { ctx.stroke(new Path2D(shifted)); } catch (e) {}
           });
 
-          // Draw nodes
-          for (const [id, pos] of lastLayoutPositions.entries()) {
-            const p = findPerson(id);
-            if (!p) continue;
-            const nx = pos.x + ox;
-            const ny = pos.y + oy;
+          // 2. Draw marriage union badges
+          nodesLayer.querySelectorAll('.wft-union-node').forEach(uEl => {
+            const ux = parseFloat(uEl.style.left || '0') + ox;
+            const uy = parseFloat(uEl.style.top || '0') + oy;
+            ctx.save();
             ctx.beginPath();
-            ctx.arc(nx, ny, AVATAR_R, 0, Math.PI * 2);
-            ctx.fillStyle = p.gender === 'F' ? '#d95b26' : '#0f7b8a';
+            ctx.arc(ux, uy, 11, 0, Math.PI * 2);
+            ctx.fillStyle = isDark ? '#0e2240' : '#ffffff';
             ctx.fill();
-            ctx.lineWidth = p.id === treeData.focusId ? 5 : 3;
-            ctx.strokeStyle = p.id === treeData.focusId ? '#fbbf24' : '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = isDark ? '#38bdf8' : '#78756e';
             ctx.stroke();
-
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 16px system-ui, sans-serif';
+            ctx.fillStyle = isDark ? '#bae6fd' : '#334155';
+            ctx.font = 'bold 11px system-ui, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText((p.name || '•').slice(0, 2).toUpperCase(), nx, ny);
+            ctx.fillText('⚭', ux, uy);
+            ctx.restore();
+          });
 
+          // 3. Preload all photos in parallel
+          const entries = Array.from(lastLayoutPositions.entries());
+          const loadedPhotos = await Promise.all(
+            entries.map(([id]) => {
+              const p = findPerson(id);
+              return loadPhotoForCanvas(p?.photo || '', id);
+            })
+          );
+
+          // 4. Draw person nodes WITH their uploaded photos inside circular clip!
+          for (let i = 0; i < entries.length; i++) {
+            const [id, pos] = entries[i];
+            const p = findPerson(id);
+            if (!p) continue;
+            const photoImg = loadedPhotos[i];
+            const nx = pos.x + ox;
+            const ny = pos.y + oy;
+            const isFocus = p.id === treeData.focusId;
+
+            if (isFocus) {
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(nx, ny, AVATAR_R + 5, 0, Math.PI * 2);
+              ctx.strokeStyle = 'rgba(251, 191, 36, 0.55)';
+              ctx.lineWidth = 6;
+              ctx.stroke();
+              ctx.restore();
+            }
+
+            // Circular Avatar Clip & Fill
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(nx, ny, AVATAR_R, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+
+            ctx.fillStyle = p.gender === 'F' ? '#d95b26' : '#0f7b8a';
+            ctx.fillRect(nx - AVATAR_R, ny - AVATAR_R, AVATAR_R * 2, AVATAR_R * 2);
+
+            if (photoImg) {
+              // Draw uploaded photo with center-crop cover inside circle
+              const iw = photoImg.naturalWidth || photoImg.width || 1;
+              const ih = photoImg.naturalHeight || photoImg.height || 1;
+              const diam = AVATAR_R * 2;
+              const sc = Math.max(diam / iw, diam / ih);
+              const dw = iw * sc;
+              const dh = ih * sc;
+              ctx.drawImage(photoImg, nx - dw * 0.5, ny - dh * 0.5, dw, dh);
+            } else {
+              // Draw clean silhouette avatar when no photo is uploaded
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+              ctx.beginPath();
+              ctx.arc(nx, ny - 6, 9.5, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.beginPath();
+              ctx.arc(nx, ny + 22, 18, Math.PI * 1.12, Math.PI * 1.88, false);
+              ctx.fill();
+            }
+            ctx.restore();
+
+            // Avatar Ring Border
+            ctx.beginPath();
+            ctx.arc(nx, ny, AVATAR_R, 0, Math.PI * 2);
+            ctx.lineWidth = isFocus ? 4.5 : 3.2;
+            ctx.strokeStyle = isFocus ? '#fbbf24' : (p.gender === 'F' ? '#f06430' : '#17b8cf');
+            ctx.stroke();
+
+            // Deceased Ribbon
+            if (p.deathStatus === 'deceased' || p.deathYear) {
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(nx + AVATAR_R * 0.72, ny - AVATAR_R * 0.72, 8.5, 0, Math.PI * 2);
+              ctx.fillStyle = '#0f172a';
+              ctx.fill();
+              ctx.lineWidth = 1.5;
+              ctx.strokeStyle = '#fbbf24';
+              ctx.stroke();
+              ctx.fillStyle = '#fde68a';
+              ctx.font = 'bold 10px system-ui, sans-serif';
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillText('✝', nx + AVATAR_R * 0.72, ny - AVATAR_R * 0.72);
+              ctx.restore();
+            }
+
+            // Name Pill
             const label = fullName(p);
             ctx.font = 'bold 11px system-ui, sans-serif';
-            const tw = Math.min(110, ctx.measureText(label).width + 14);
+            const tw = Math.min(118, Math.max(54, ctx.measureText(label).width + 16));
+            const pillX = nx - tw * 0.5;
+            const pillY = ny + AVATAR_R + 4;
             ctx.fillStyle = isDark ? '#091426' : '#ffffff';
-            ctx.fillRect(nx - tw * 0.5, ny + AVATAR_R + 4, tw, 18);
-            ctx.strokeStyle = isDark ? '#38bdf8' : '#94a3b8';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(nx - tw * 0.5, ny + AVATAR_R + 4, tw, 18);
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(pillX, pillY, tw, 18, 6);
+            else ctx.rect(pillX, pillY, tw, 18);
+            ctx.fill();
+            ctx.strokeStyle = isFocus ? '#fbbf24' : (isDark ? '#38bdf8' : '#94a3b8');
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
             ctx.fillStyle = isDark ? '#f8fafc' : '#1e293b';
-            ctx.fillText(label.slice(0, 16), nx, ny + AVATAR_R + 13);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label.slice(0, 18), nx, pillY + 9.5);
+
+            // Subtitle Pill (Suffix / Birth Year)
+            const subText = [p.suffix, p.birthYear].filter(Boolean).join(' · ');
+            if (subText) {
+              ctx.font = '600 9.5px system-ui, sans-serif';
+              ctx.fillStyle = isDark ? '#94a3b8' : '#475569';
+              ctx.fillText(subText.slice(0, 22), nx, pillY + 27);
+            }
           }
 
-          const a = document.createElement('a');
-          a.href = canvas.toDataURL('image/png');
-          a.download = 'WYPHA-Silsilah-Keluarga-' + (findPerson(treeData.focusId)?.name || 'Lineage') + '.png';
+          const dataUrl = canvas.toDataURL('image/png');
+          const fileName = 'WYPHA-Silsilah-Keluarga-' + (findPerson(treeData.focusId)?.name || 'Lineage') + '.png';
+          const hostDoc = (window.top && window.top !== window && window.top.document) ? window.top.document : document;
+          const a = hostDoc.createElement('a');
+          a.href = dataUrl;
+          a.download = fileName;
+          hostDoc.body.appendChild(a);
           a.click();
-          statusEl.textContent = t('📸 Gambar silsilah berhasil diunduh ke HP!', '📸 Family tree snapshot downloaded to phone!');
-        } catch (err) {}
+          setTimeout(() => a.remove(), 1000);
+          statusEl.textContent = t('📸 Gambar silsilah beserta seluruh foto berhasil disimpan ke HP!', '📸 Family tree snapshot with all photos saved to phone!');
+        } catch (err) {
+          statusEl.textContent = t('⚠ Gagal menyimpan gambar silsilah.', '⚠ Failed to save snapshot.');
+        }
       };
 
       // Backup & Import JSON + Start Single / Sample
@@ -17926,35 +18134,72 @@ function v136CustomerRuntime(C) {
         e.target.value = '';
       };
 
-      section.querySelector('[data-ft-start-single]').onclick = async () => {
+      const resetToSingleCore = async () => {
         if (isVisitorLocked()) return;
+        capturePageScroll();
         const coreName = t('Saya', 'Me');
         treeData = {
-          version: 2,
-          focusId: 'p-root',
+          version: 4,
+          focusId: 'ft-inti',
           upGenLimit: 'inf',
           downGenMode: 'inf',
           canvasTheme: treeData.canvasTheme || 'holo-dark',
           nodes: [
-            { id: 'p-root', name: coreName, lastName: '', gender: 'M', photo: '', birthDay: '', birthMonth: '', birthYear: '', deathStatus: 'alive', deathDay: '', deathMonth: '', deathYear: '', suffix: t('Inti Keluarga', 'Core'), note: '', parents: [], spouses: [], divorcedSpouses: [] }
+            { id: 'ft-inti', name: coreName, lastName: '', gender: 'M', photo: '', birthDay: '', birthMonth: '', birthYear: '', deathStatus: 'alive', deathDay: '', deathMonth: '', deathYear: '', suffix: t('Inti Keluarga', 'Core Family'), note: '', parents: [], spouses: [], divorcedSpouses: [] }
           ]
         };
         await saveDualVault(ftKey, treeData);
         settingsSheet.hidden = true;
+        closeRadialWheel();
         renderTree();
-        centerOnPerson('p-root', 1.0);
-        statusEl.textContent = t('✨ Dimulai dari 1 orang inti. Ketuk lingkaran untuk menambah orang tua, pasangan, atau anak.', '✨ Started with 1 core person. Tap the circle to add parents, spouse, or children.');
+        centerOnPerson('ft-inti', 1.0);
+        restorePageScroll();
+        statusEl.textContent = t('✨ Silsilah direset ke 1 orang inti (Saya). Ketuk lingkaran untuk mulai menambah Orang Tua, Pasangan, atau Anak.', '✨ Tree reset to 1 core person (Me). Tap the circle to add Parents, Spouse, or Children.');
       };
 
-      section.querySelector('[data-ft-reset-sample]').onclick = async () => {
+      const resetToDefaultKinshipSample = async () => {
         if (isVisitorLocked()) return;
-        treeData = createStarterLineage();
+        capturePageScroll();
+        treeData = createDefaultKinshipTree();
         await saveDualVault(ftKey, treeData);
         settingsSheet.hidden = true;
+        closeRadialWheel();
         renderTree();
         centerOnPerson(treeData.focusId, 0.92);
-        statusEl.textContent = t('✓ Contoh silsilah keluarga lengkap dimuat.', '✓ Full sample family lineage loaded.');
+        restorePageScroll();
+        statusEl.textContent = t('✓ Silsilah keluarga default (Ayah, Ibu, Paman, Kakek, Sepupu, dll.) berhasil dimuat ulang.', '✓ Default family lineage loaded.');
       };
+
+      section.querySelector('[data-ft-start-single]').onclick = resetToSingleCore;
+      section.querySelector('[data-ft-reset-sample]').onclick = resetToDefaultKinshipSample;
+
+      const resetTopBtnEl = section.querySelector('[data-ft-reset-core-top]');
+      if (resetTopBtnEl) {
+        resetTopBtnEl.onclick = () => {
+          if (isVisitorLocked()) return;
+          const dlg = ensureRelDialog();
+          dlg.innerHTML =
+            `<h3>🔄 ${t('Reset & Mulai Ulang Silsilah Keluarga', 'Reset & Restart Family Tree')}</h3>` +
+            `<p style="margin:0 0 12px;font:500 13px/1.5 system-ui;color:#cbd5e1">${t('Pilih mode reset silsilah keluarga yang Anda inginkan:', 'Choose how you want to reset the family tree:')}</p>` +
+            '<div class="v136-form-grid">' +
+              `<button type="button" class="v136-btn primary" data-reset-mode="core" style="justify-content:flex-start;text-align:left;padding:12px 14px;width:100%">✨ <div><strong style="display:block;font-size:13.5px">${t('Mulai dari Awal / 1 Orang Inti (Saya)', 'Start from Scratch / 1 Core Person (Me)')}</strong><small style="opacity:.85;font-weight:500">${t('Menghapus cabang contoh dan menyisakan 1 lingkaran Inti (Saya) untuk dibangun dari nol.', 'Clears branches and starts with 1 Core person (Me) to build from scratch.')}</small></div></button>` +
+              `<button type="button" class="v136-btn" data-reset-mode="sample" style="justify-content:flex-start;text-align:left;padding:12px 14px;width:100%">🌳 <div><strong style="display:block;font-size:13.5px">${t('Reset ke Bagan Default Lengkap (Ayah, Ibu, Paman, Kakek, Sepupu)', 'Reset to Full Default Kinship Tree')}</strong><small style="opacity:.85;font-weight:500">${t('Memuat ulang struktur contoh lengkap dengan nama hubungan keluarga.', 'Reloads the complete default family relationship structure.')}</small></div></button>` +
+              '<div style="display:flex;justify-content:flex-end;margin-top:6px">' +
+                `<button type="button" class="v136-btn" data-reset-cancel>${t('Batal', 'Cancel')}</button>` +
+              '</div>' +
+            '</div>';
+          dlg.querySelector('[data-reset-cancel]').onclick = () => closeDialogLockScroll(dlg);
+          dlg.querySelector('[data-reset-mode="core"]').onclick = async () => {
+            closeDialogLockScroll(dlg);
+            await resetToSingleCore();
+          };
+          dlg.querySelector('[data-reset-mode="sample"]').onclick = async () => {
+            closeDialogLockScroll(dlg);
+            await resetToDefaultKinshipSample();
+          };
+          openDialogLockScroll(dlg);
+        };
+      }
 
       section.querySelector('[data-ft-lang-toggle]').onclick = () => {
         const next = getLang() === 'en' ? 'id' : 'en';
@@ -17972,7 +18217,11 @@ function v136CustomerRuntime(C) {
       const refreshFtFromVault = () => {
         loadDualVault(ftKey).then(saved => {
           if (saved && Array.isArray(saved.nodes) && saved.nodes.length) {
+            const wasLegacy = saved.version !== 4 || saved.nodes.some(n => getLegacyById(n?.id) || isLegacySampleName(n?.name));
             treeData = normalizeTreeData(saved);
+            if (wasLegacy) {
+              saveDualVault(ftKey, treeData);
+            }
           }
           renderTree();
           centerOnPerson(treeData.focusId, 0.92);
