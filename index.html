@@ -1421,6 +1421,7 @@ html.v1261-editor:not([data-editor-palette=dark]):not([data-editor-palette=fresh
               <option value="royal">👑 Royal Gold</option>
               <option value="neon">⚡ Neon Fantasy</option>
               <option value="clean">✦ Clean Premium</option>
+              <option value="led-3d">📟 Panel LED 3D Bergerak Vertikal (Bisa Atur Warna di Microsite)</option>
             </select>
           </div>
           <div class="grid2">
@@ -2445,8 +2446,8 @@ const TEMPLATE_B64 = {"baby":"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImlkIj4KPGhlYW
 
 const THEME_LIBRARY={"baby":[{"id":"fantasy","label":"Magical Fantasy","category":"Fantasy & Dream","family":"magic","engineTheme":"fantasy","palette":{"primary":"#68e8ff","secondary":"#9f83ff","accent":"#ff9fcf","gold":"#ffe28a","bg0":"#050313","bg1":"#0b0726","bg2":"#15103c","bg3":"#241456"},"symbols":"✦,✨,☁️,⭐","headline":"YOUR LITTLE FANTASY","tagline":"A tiny magical story where wonder, love, and imagination come alive.","chips":["Magic Story","Little Dreamer","Made With Love"]},{"id":"nature","label":"Little Nature","category":"Nature & Adventure","family":"nature","engineTheme":"nature","palette":{"primary":"#79e6a8","secondary":"#b5e98a","accent":"#ffe07e","gold":"#f7d78a","bg0":"#07170f","bg1":"#0d2a1a","bg2":"#17462a","bg3":"#225d36"},"symbols":"🌿,🍃,🦋,✦","headline":"A LITTLE WORLD IN BLOOM","tagline":"A sweet little journey growing with love, wonder, and the beauty of nature.","chips":["Nature Story","Little Explorer","Grown With Love"]},{"id":"adventure","label":"Little Explorer","category":"Nature & Adventure","family":"nature","engineTheme":"adventure","palette":{"primary":"#7ee2c3","secondary":"#d7d98b","accent":"#ffb85c","gold":"#f3d88d","bg0":"#071711","bg1":"#10291d","bg2":"#244b31","bg3":"#3b5634"},"symbols":"🧭,🌲,⛺,✦","headline":"THE LITTLE ADVENTURE BEGINS","tagline":"A tiny explorer ready to discover a world of beautiful stories.","chips":["Little Explorer","Adventure Story","Brave & Curious"]},{"id":"camping","label":"Camping Adventure","category":"Nature & Adventure","family":"nature","engineTheme":null,"palette":{"primary":"#67d8b0","secondary":"#f0b96f","accent":"#ffd987","gold":"#d8c38b","bg0":"#07140f","bg1":"#102219","bg2":"#263b25","bg3":"#56361d"},"symbols":"⛺,🌲,🔥,✦","headline":"CAMPING UNDER THE STARS","tagline":"A cozy little adventure filled with lantern light, pine trees, and dreams beneath the night sky.","chips":["Happy Camper","Little Explorer","Campfire Dreams"],"bundle":"explorer-rustic","decor":"camping"},{"id":"sakura","label":"Sakura Dream","category":"Nature & Adventure","family":"sakura","engineTheme":null,"palette":{"primary":"#ffb8d1","secondary":"#ffd5e5","accent":"#b8d8ff","gold":"#ffe6a6","bg0":"#140a16","bg1":"#251326","bg2":"#43203d","bg3":"#65314f"},"symbols":"🌸,✿,🦋,✦","headline":"A LITTLE SAKURA DREAM","tagline":"A gentle little story blooming beneath a magical sky of cherry blossoms.","chips":["Sakura Story","Little Dreamer","Bloom With Love"],"bundle":"floral-dream","decor":"sakura"},{"id":"doctor","label":"Little Doctor","category":"Profession & Career","family":"medical","engineTheme":null,"palette":{"primary":"#70e6ef","secondary":"#a7f1df","accent":"#d9fff5","gold":"#f5dc8d","bg0":"#06171b","bg1":"#0b2930","bg2":"#12434c","bg3":"#1e5e62"},"symbols":"✚,♡,🩺,✦","headline":"LITTLE DOCTOR, BIG DREAMS","tagline":"A tiny healer with a caring heart, bright curiosity, and a future full of kindness.","chips":["Little Doctor","Born To Care","Healing Dreams"],"bundle":"doctor-clean","decor":"medical"},{"id":"nurse","label":"Little Nurse","category":"Profession & Career","family":"medical","engineTheme":null,"palette":{"primary":"#7ee7d7","secondary":"#c5f5ed","accent":"#ffb9cc","gold":"#f6dd99","bg0":"#07191a","bg1":"#102b2b","bg2":"#194443","bg3":"#315b59"},"symbols":"♡,✚,🤍,✦","headline":"A HEART MADE TO CARE","tagline":"A gentle little soul carrying kindness, courage, and a beautiful caring spirit.","chips":["Little Nurse","Kind Heart","Care With Love"],"bundle":"doctor-clean","decor":"medical"},{"id":"pilot","label":"Future Pilot","category":"Profession & Career","family":"aviation","engineTheme":null,"palette":{"primary":"#66cfff","secondary":"#97b8ff","accent":"#f5d27d","gold":"#fff0a0","bg0":"#061321","bg1":"#0b2540","bg2":"#123e66","bg3":"#21547c"},"symbols":"✈,☁️,⌖,✦","headline":"READY FOR TAKEOFF","tagline":"A little dreamer preparing to soar beyond the clouds and discover a sky full of possibilities.","chips":["Future Pilot","Sky Explorer","Above The Clouds"],"bundle":"aviation-pass","decor":"aviation"},{"id":"cabin-crew","label":"Little Cabin Crew","category":"Profession & Career","family":"aviation","engineTheme":null,"palette":{"primary":"#7ad9ff","secondary":"#d9ecff","accent":"#c69cff","gold":"#f4d68d","bg0":"#081424","bg1":"#112844","bg2":"#233c64","bg3":"#51477c"},"symbols":"✈,☁️,♡,✦","headline":"FLY WITH GRACE","tagline":"A charming little journey filled with smiles, elegance, and dreams that travel beyond the clouds.","chips":["Cabin Dream","Fly With Grace","Beautiful Journey"],"bundle":"aviation-elegant","decor":"aviation"},{"id":"fishing","label":"Little Angler","category":"Hobby & Lifestyle","family":"fishing","engineTheme":null,"palette":{"primary":"#62cfd1","secondary":"#91d2ae","accent":"#e5bd70","gold":"#f6dc94","bg0":"#06191b","bg1":"#0c2c31","bg2":"#174b50","bg3":"#385d4e"},"symbols":"≈,🐟,🎣,✦","headline":"CASTING LITTLE DREAMS","tagline":"A tiny angler ready to cast dreams into calm waters and reel in wonderful adventures.","chips":["Little Angler","Fishing Story","Ocean Spirit"],"bundle":"fishing-dock","decor":"fishing"},{"id":"makeup-artist","label":"Little Makeup Artist","category":"Profession & Career","family":"glam","engineTheme":null,"palette":{"primary":"#ff9cc5","secondary":"#d8a9ff","accent":"#ffd0e5","gold":"#f6d29b","bg0":"#190b17","bg1":"#31162a","bg2":"#512642","bg3":"#753957"},"symbols":"✦,💄,♡,✧","headline":"BEAUTY BEGINS WITH IMAGINATION","tagline":"A little artist ready to color the world with creativity, sparkle, and a beautiful touch.","chips":["Little Artist","Beauty Dream","Sparkle Touch"],"bundle":"vanity-glam","decor":"glam"},{"id":"chef","label":"Little Chef","category":"Profession & Career","family":"culinary","engineTheme":null,"palette":{"primary":"#ffb46d","secondary":"#ffe09a","accent":"#ff8d78","gold":"#f4cf7d","bg0":"#1a1009","bg1":"#322014","bg2":"#553522","bg3":"#784c2a"},"symbols":"♨,🍳,✦,♡","headline":"A LITTLE CHEF IN THE MAKING","tagline":"A delicious little story seasoned with curiosity, creativity, and a whole lot of love.","chips":["Little Chef","Happy Kitchen","Made With Love"],"bundle":"culinary-board","decor":"culinary"},{"id":"barista","label":"Little Barista","category":"Profession & Career","family":"culinary","engineTheme":null,"palette":{"primary":"#c89b72","secondary":"#f0c995","accent":"#80c7b1","gold":"#e7cf8c","bg0":"#160f0b","bg1":"#2b1e16","bg2":"#493426","bg3":"#65503a"},"symbols":"☕,✦,♡,♨","headline":"BREWING LITTLE DREAMS","tagline":"A warm little story filled with cozy moments, sweet imagination, and dreams worth brewing.","chips":["Little Barista","Cozy Story","Brewed With Love"],"bundle":"cafe-board","decor":"culinary"},{"id":"photographer","label":"Little Photographer","category":"Profession & Career","family":"cinema","engineTheme":null,"palette":{"primary":"#7fdcff","secondary":"#aaa4ff","accent":"#ffd074","gold":"#f3dc94","bg0":"#07121b","bg1":"#102638","bg2":"#1a4055","bg3":"#36506a"},"symbols":"📷,✦,◈,✨","headline":"CAPTURING LITTLE WONDERS","tagline":"A tiny storyteller ready to capture beautiful moments, bright smiles, and unforgettable dreams.","chips":["Little Photographer","Memory Maker","Capture The Magic"],"bundle":"cinema-ticket","decor":"cinema"},{"id":"musician","label":"Little Musician","category":"Art & Performance","family":"music","engineTheme":null,"palette":{"primary":"#72dbff","secondary":"#bb8cff","accent":"#ff9ab6","gold":"#f5db80","bg0":"#0a0a1a","bg1":"#171432","bg2":"#2d2450","bg3":"#4f3263"},"symbols":"♫,♪,✦,🎵","headline":"A LITTLE MELODY BEGINS","tagline":"A beautiful little story where every dream has a rhythm and every smile becomes a melody.","chips":["Little Musician","Magic Melody","Play Your Dream"],"bundle":"music-stage","decor":"music"},{"id":"astronaut","label":"Little Astronaut","category":"Fantasy & Dream","family":"space","engineTheme":"space","palette":{"primary":"#6ec8ff","secondary":"#a58cff","accent":"#f198ff","gold":"#f5db83","bg0":"#030712","bg1":"#081128","bg2":"#161b49","bg3":"#2d276b"},"symbols":"🚀,✦,🪐,⭐","headline":"TO THE STARS AND BEYOND","tagline":"A tiny explorer ready to discover galaxies, chase starlight, and dream beyond every horizon.","chips":["Little Astronaut","Space Explorer","Dream Beyond"],"bundle":"space-hud","decor":"space"},{"id":"football","label":"Football Star","category":"Sport & Energy","family":"sport","engineTheme":"football","palette":{"primary":"#79e69c","secondary":"#d8eb72","accent":"#69c4ff","gold":"#f5d66f","bg0":"#06170c","bg1":"#0d2a16","bg2":"#17452a","bg3":"#26623c"},"symbols":"⚽,★,🏆,⚡","headline":"A LITTLE CHAMPION RISES","tagline":"A young dreamer ready to play with heart, courage, and unstoppable energy.","chips":["Future Star","Play With Heart","Champion Dream"],"bundle":"sport-score","decor":"sports"},{"id":"racing","label":"Little Racer","category":"Sport & Energy","family":"sport","engineTheme":null,"palette":{"primary":"#ff5c72","secondary":"#62d7ff","accent":"#ffd15c","gold":"#fff09a","bg0":"#12070a","bg1":"#270d13","bg2":"#4b1422","bg3":"#702237"},"symbols":"🏁,⚡,★,◆","headline":"READY, SET, DREAM","tagline":"A little racer fueled by courage, speed, and dreams that never stop moving forward.","chips":["Little Racer","Full Speed","Born To Win"],"bundle":"racing-panel","decor":"sports"},{"id":"police","label":"Little Police Hero","category":"Profession & Career","family":"career","engineTheme":null,"palette":{"primary":"#64b9ff","secondary":"#8fd4ff","accent":"#f0c95c","gold":"#f5e39e","bg0":"#07111c","bg1":"#0c2340","bg2":"#173b62","bg3":"#285681"},"symbols":"★,🛡️,✦,◆","headline":"BRAVE HEART, BRIGHT FUTURE","tagline":"A little hero learning courage, kindness, and the spirit of protecting what matters.","chips":["Little Hero","Brave & Kind","Serve With Heart"],"bundle":"metal-badge","decor":"tech"},{"id":"firefighter","label":"Little Firefighter","category":"Profession & Career","family":"career","engineTheme":null,"palette":{"primary":"#ff7b55","secondary":"#ffd064","accent":"#6bd5ff","gold":"#f7de8a","bg0":"#190907","bg1":"#33130e","bg2":"#5e2517","bg3":"#823b24"},"symbols":"🔥,★,🛡️,✦","headline":"COURAGE STARTS SMALL","tagline":"A little hero with a brave heart, ready to shine through every challenge.","chips":["Little Firefighter","Brave Heart","Hero Dream"],"bundle":"rescue-badge","decor":"sports"},{"id":"safari","label":"Safari Adventure","category":"Nature & Adventure","family":"nature","engineTheme":"safari","palette":{"primary":"#e7bd65","secondary":"#9dc97b","accent":"#f3d88a","gold":"#ffe7aa","bg0":"#171207","bg1":"#2c2512","bg2":"#4b4222","bg3":"#6a5830"},"symbols":"🦒,🌿,🐘,✦","headline":"A WILD LITTLE ADVENTURE","tagline":"A tiny explorer stepping into a playful world of nature, curiosity, and wonderful discoveries.","chips":["Safari Story","Wild Explorer","Adventure Awaits"],"bundle":"explorer-rustic","decor":"nature"},{"id":"ocean","label":"Little Ocean","category":"Nature & Adventure","family":"ocean","engineTheme":"ocean","palette":{"primary":"#5fd8e8","secondary":"#73b7ff","accent":"#9ce8d3","gold":"#f5df9a","bg0":"#03151b","bg1":"#082a35","bg2":"#0e4a5d","bg3":"#1b6a79"},"symbols":"≈,🐚,✦,🫧","headline":"A LITTLE WORLD UNDER THE SEA","tagline":"A gentle ocean story filled with sparkling waves, tiny wonders, and dreams as wide as the sea.","chips":["Ocean Story","Little Sailor","Sea Of Dreams"],"bundle":"ocean-pearl","decor":"ocean"},{"id":"royal","label":"Little Royal","category":"Royal & Luxury","family":"royal","engineTheme":"royal","palette":{"primary":"#b58cff","secondary":"#f3c96c","accent":"#ffafca","gold":"#ffe9a5","bg0":"#100817","bg1":"#21102d","bg2":"#3a1c4a","bg3":"#57325f"},"symbols":"♛,✦,◆,❖","headline":"A LITTLE ROYAL STORY","tagline":"A precious little story wrapped in elegance, wonder, and dreams fit for a tiny royal.","chips":["Little Royal","Golden Dream","Born To Shine"],"bundle":"royal-luxe","decor":"royal"},{"id":"princess","label":"Little Princess","category":"Royal & Luxury","family":"royal","engineTheme":"princess","palette":{"primary":"#ff9bc8","secondary":"#d9a4ff","accent":"#ffd3e7","gold":"#f7d997","bg0":"#170917","bg1":"#2e142b","bg2":"#4d2345","bg3":"#6f365e"},"symbols":"♕,✦,♡,✨","headline":"ONCE UPON A LITTLE DREAM","tagline":"A sparkling little fairy-tale filled with grace, sweetness, and beautiful imagination.","chips":["Little Princess","Fairy Dream","Shine With Love"],"bundle":"royal-floral","decor":"royal"},{"id":"islamic","label":"Little Blessing","category":"Spiritual & Cultural","family":"spiritual","engineTheme":"religious","palette":{"primary":"#5bd8ca","secondary":"#b7e2c8","accent":"#e8c96d","gold":"#f8e5a4","bg0":"#041614","bg1":"#0a2b28","bg2":"#124842","bg3":"#245e55"},"symbols":"☪,✦,⭐,🤍","headline":"A PRECIOUS LITTLE BLESSING","tagline":"A gentle little story filled with gratitude, love, beautiful prayers, and hopeful dreams.","chips":["Little Blessing","With Gratitude","Beautiful Prayer"],"bundle":"islamic-arch","decor":"spiritual"},{"id":"vintage-europe","label":"Vintage Europe","category":"World & Culture","family":"vintage","engineTheme":"vintage","palette":{"primary":"#b58d69","secondary":"#d8bd91","accent":"#8fb6ad","gold":"#e7d2a1","bg0":"#16100b","bg1":"#2a1d13","bg2":"#493425","bg3":"#65503c"},"symbols":"✦,🗝️,🧳,❖","headline":"A LITTLE OLD-WORLD ADVENTURE","tagline":"A charming little journey through timeless streets, warm memories, and vintage wonder.","chips":["Vintage Story","Little Traveler","Timeless Dream"],"bundle":"vintage-plaque","decor":"vintage"},{"id":"anime-inspired","label":"Anime-Inspired Fantasy","category":"Fantasy & Dream","family":"anime","engineTheme":null,"palette":{"primary":"#67e9ff","secondary":"#8f8cff","accent":"#ff79c6","gold":"#ffe36f","bg0":"#050716","bg1":"#0c1230","bg2":"#1b2356","bg3":"#3f2b72"},"symbols":"⚡,✦,◈,✧","headline":"A NEW ADVENTURE AWAKENS","tagline":"A bold little hero entering a colorful world of energy, courage, friendship, and imagination.","chips":["Little Hero","Power Of Dreams","New Adventure"],"bundle":"anime-energy","decor":"anime"},{"id":"gamer","label":"Little Gamer","category":"Hobby & Lifestyle","family":"tech","engineTheme":null,"palette":{"primary":"#56f6d0","secondary":"#7b8cff","accent":"#ff68d5","gold":"#eaff70","bg0":"#030b12","bg1":"#071a24","bg2":"#0d3240","bg3":"#1e4e5a"},"symbols":"◇,⚡,＋,🎮","headline":"PRESS START TO DREAM","tagline":"A playful little journey powered by curiosity, imagination, and endless new levels to explore.","chips":["Little Gamer","Next Level","Play The Dream"],"bundle":"game-hud","decor":"tech"},{"id":"gardener","label":"Little Gardener","category":"Nature & Adventure","family":"nature","engineTheme":null,"palette":{"primary":"#77d993","secondary":"#cbe585","accent":"#f5be72","gold":"#f4dd9c","bg0":"#07150c","bg1":"#102719","bg2":"#23472a","bg3":"#3f6235"},"symbols":"🌱,🌿,✦,🌼","headline":"GROWING LITTLE DREAMS","tagline":"A sweet little story planted with love, patience, curiosity, and beautiful things yet to bloom.","chips":["Little Gardener","Grow With Love","Blooming Dreams"],"bundle":"floral-dream","decor":"nature"},{"id":"scientist","label":"Little Scientist","category":"Profession & Career","family":"tech","engineTheme":null,"palette":{"primary":"#62dfff","secondary":"#9fa8ff","accent":"#6ff0bd","gold":"#f0d679","bg0":"#04101b","bg1":"#092238","bg2":"#103b58","bg3":"#275675"},"symbols":"⚗,✦,＋,◈","headline":"CURIOUS MINDS CREATE MAGIC","tagline":"A little explorer ready to ask big questions, discover new wonders, and imagine amazing possibilities.","chips":["Little Scientist","Curious Mind","Discover More"],"bundle":"lab-hud","decor":"tech"},{"id":"sailor","label":"Little Sailor","category":"Profession & Career","family":"ocean","engineTheme":null,"palette":{"primary":"#5dcbe8","secondary":"#87aaff","accent":"#f4c85f","gold":"#f9e2a4","bg0":"#05131d","bg1":"#0b283a","bg2":"#14465e","bg3":"#245f75"},"symbols":"⚓,≈,✦,⛵","headline":"SAIL INTO LITTLE DREAMS","tagline":"A tiny sailor ready to follow the stars, cross gentle waves, and discover wonderful horizons.","chips":["Little Sailor","Ocean Dream","New Horizons"],"bundle":"ocean-pearl","decor":"ocean"},{"id":"ballerina","label":"Little Ballerina","category":"Art & Performance","family":"glam","engineTheme":null,"palette":{"primary":"#ffb6d1","secondary":"#d5bbff","accent":"#f8d8e7","gold":"#f4daa0","bg0":"#170d17","bg1":"#2c1830","bg2":"#4b2950","bg3":"#69406c"},"symbols":"✦,♡,🩰,✧","headline":"DANCE INTO A BEAUTIFUL DREAM","tagline":"A graceful little story filled with music, imagination, courage, and sparkling steps.","chips":["Little Ballerina","Graceful Dream","Dance With Joy"],"bundle":"vanity-glam","decor":"glam"}],"couple":[{"id":"romantic","label":"Romantic Love","category":"Romance","family":"romance","engineTheme":"romantic","palette":{"primary":"#ff9fbd","secondary":"#e8b4d1","accent":"#f6d073","gold":"#ffe8a0","bg0":"#180a12","bg1":"#321523","bg2":"#52243a","bg3":"#73364d"},"symbols":"♡,✦,🌹,✨","headline":"OUR LOVE STORY","tagline":"Two hearts, one journey, and countless little moments that became home.","chips":["Two Hearts","One Journey","Forever Us"]},{"id":"garden","label":"Secret Garden","category":"Romance","family":"nature","engineTheme":"garden","palette":{"primary":"#8ed49b","secondary":"#d3d98a","accent":"#ffb3c9","gold":"#f4d98d","bg0":"#07150d","bg1":"#112819","bg2":"#26482d","bg3":"#4d5940"},"symbols":"🌿,🌹,✦,♡","headline":"LOVE IN FULL BLOOM","tagline":"A love story growing gently through every season, every smile, and every shared dream.","chips":["Growing Together","Garden Of Love","Always Us"]},{"id":"islamic-love","label":"Islamic Love","category":"Spiritual","family":"spiritual","engineTheme":"islamic-love","palette":{"primary":"#58d7c7","secondary":"#c6dfbf","accent":"#e6c666","gold":"#f8e4a5","bg0":"#051613","bg1":"#0a2b26","bg2":"#16483d","bg3":"#2d6252"},"symbols":"☪,✦,🤍,⭐","headline":"A LOVE WRITTEN WITH PRAYER","tagline":"Two hearts walking together with gratitude, patience, faith, and beautiful prayers.","chips":["With Gratitude","One Prayer","One Journey"]},{"id":"moonlight","label":"Moonlight Romance","category":"Romance","family":"magic","engineTheme":"moonlight","palette":{"primary":"#7799ff","secondary":"#ad8cff","accent":"#e993d4","gold":"#f1d98b","bg0":"#050717","bg1":"#0c1230","bg2":"#1c2656","bg3":"#3a376b"},"symbols":"☾,✦,⭐,♡","headline":"UNDER THE SAME MOON","tagline":"A quiet love story glowing softly through distance, time, and every shared dream.","chips":["Moonlit Love","Always Near","One Sky"]},{"id":"royal","label":"Royal Love","category":"Luxury","family":"royal","engineTheme":"royal","palette":{"primary":"#ad82ff","secondary":"#e8c568","accent":"#ff9fc1","gold":"#f6df9c","bg0":"#120817","bg1":"#261132","bg2":"#45204f","bg3":"#63386c"},"symbols":"♛,✦,❖,♡","headline":"A ROYAL LOVE STORY","tagline":"A timeless journey of two hearts wrapped in elegance, devotion, and golden memories.","chips":["Royal Hearts","Golden Story","Forever"]},{"id":"sunset","label":"Sunset Love","category":"Travel & Memory","family":"romance","engineTheme":"sunset","palette":{"primary":"#ff9a72","secondary":"#ffc068","accent":"#e68bb9","gold":"#ffe2a1","bg0":"#190b0b","bg1":"#341716","bg2":"#5a2925","bg3":"#77413a"},"symbols":"☀,♡,✦,🌅","headline":"LOVE AT GOLDEN HOUR","tagline":"A warm journey where every sunset becomes another beautiful memory together.","chips":["Golden Hour","Side By Side","Forever Warm"]},{"id":"luxury","label":"Luxury Velvet","category":"Luxury","family":"royal","engineTheme":"luxury","palette":{"primary":"#c89dff","secondary":"#f0ca6e","accent":"#e889b9","gold":"#ffe4a0","bg0":"#0e0713","bg1":"#211026","bg2":"#3a193e","bg3":"#552955"},"symbols":"◆,✦,♡,❖","headline":"OUR TIMELESS MOMENT","tagline":"An elegant love story built from loyalty, laughter, and memories worth keeping forever.","chips":["Timeless Love","Luxury Memory","Always Us"]},{"id":"travel","label":"Travel Diary","category":"Travel & Memory","family":"travel","engineTheme":"travel","palette":{"primary":"#72cfe8","secondary":"#9bd4a6","accent":"#f0b96c","gold":"#f5dd9c","bg0":"#071419","bg1":"#102a2d","bg2":"#224848","bg3":"#4d5d46"},"symbols":"✈,🧳,✦,♡","headline":"OUR JOURNEY TOGETHER","tagline":"Two hearts collecting roads, skies, laughter, and unforgettable moments around the world.","chips":["Travel Together","Our Journey","New Memories"]},{"id":"vintage","label":"Vintage Romance","category":"Classic","family":"vintage","engineTheme":"vintage","palette":{"primary":"#b68e6b","secondary":"#d7ba91","accent":"#b7909a","gold":"#ead3a4","bg0":"#160f0c","bg1":"#2c1d16","bg2":"#493126","bg3":"#67483a"},"symbols":"🗝️,✦,♡,❖","headline":"A LOVE THAT FEELS TIMELESS","tagline":"A warm old-world romance made of quiet moments, handwritten feelings, and lasting devotion.","chips":["Timeless Love","Old Soul","Forever Story"]},{"id":"ocean","label":"Ocean Love","category":"Travel & Memory","family":"ocean","engineTheme":"ocean","palette":{"primary":"#61d4e5","secondary":"#78b7ef","accent":"#9adfcf","gold":"#f2db91","bg0":"#04151b","bg1":"#082c36","bg2":"#104b5b","bg3":"#1f6874"},"symbols":"≈,🐚,♡,✦","headline":"LOVE AS DEEP AS THE OCEAN","tagline":"A beautiful journey carried by gentle waves, open skies, and hearts that always find each other.","chips":["Ocean Hearts","Together Always","Endless Blue"]},{"id":"winter","label":"Winter Romance","category":"Seasonal","family":"magic","engineTheme":"winter","palette":{"primary":"#b7ddff","secondary":"#c4b7ff","accent":"#f1c9df","gold":"#f5e3b2","bg0":"#07111d","bg1":"#10233a","bg2":"#213e5d","bg3":"#455978"},"symbols":"❄,✦,♡,☕","headline":"WARM HEARTS, WINTER NIGHTS","tagline":"A cozy love story glowing brighter through cold nights, warm hands, and shared dreams.","chips":["Winter Love","Warm Hearts","Cozy Forever"]},{"id":"cinematic","label":"Cinematic Love","category":"Modern","family":"cinema","engineTheme":"cinematic","palette":{"primary":"#72c9ff","secondary":"#9c84ff","accent":"#f17fb6","gold":"#e9c569","bg0":"#06080f","bg1":"#101522","bg2":"#202a3b","bg3":"#393f52"},"symbols":"◆,✦,♡,🎞️","headline":"OUR STORY, LIKE A MOVIE","tagline":"A cinematic journey of two hearts, beautiful scenes, and a story worth replaying forever.","chips":["Our Movie","Best Scene","Forever Story"]},{"id":"sakura-love","label":"Sakura Romance","category":"Seasonal","family":"sakura","engineTheme":null,"palette":{"primary":"#ffb3cf","secondary":"#e8bbff","accent":"#bad7ff","gold":"#f8dfa0","bg0":"#150a15","bg1":"#2c1629","bg2":"#4c2846","bg3":"#6d405e"},"symbols":"🌸,✦,♡,✿","headline":"LOVE BENEATH THE BLOSSOMS","tagline":"A soft romance blooming like sakura petals—gentle, beautiful, and unforgettable.","chips":["Sakura Love","Bloom Together","Sweet Memory"],"bundle":"floral-dream","decor":"sakura"},{"id":"coffee-date","label":"Coffee Date","category":"Lifestyle","family":"culinary","engineTheme":null,"palette":{"primary":"#c89973","secondary":"#e0bc90","accent":"#d38e9f","gold":"#f0d19a","bg0":"#150e0a","bg1":"#2b1c14","bg2":"#483125","bg3":"#63483a"},"symbols":"☕,♡,✦,♨","headline":"OUR FAVORITE LITTLE MOMENT","tagline":"A cozy love story made of warm drinks, long talks, quiet laughter, and simply being together.","chips":["Coffee & Us","Cozy Love","Favorite Person"],"bundle":"cafe-board","decor":"culinary"},{"id":"aviation-love","label":"Love Above The Clouds","category":"Travel & Memory","family":"aviation","engineTheme":null,"palette":{"primary":"#6fd3ff","secondary":"#a0baff","accent":"#eaa5ce","gold":"#f2d57b","bg0":"#061422","bg1":"#0c2942","bg2":"#174665","bg3":"#315f7d"},"symbols":"✈,☁️,♡,✦","headline":"LOVE ABOVE THE CLOUDS","tagline":"Two hearts sharing the same destination, carrying dreams together beyond every horizon.","chips":["One Destination","Fly Together","Sky Of Love"],"bundle":"aviation-elegant","decor":"aviation"},{"id":"beach-honeymoon","label":"Beach Honeymoon","category":"Travel & Memory","family":"ocean","engineTheme":null,"palette":{"primary":"#65d9df","secondary":"#8fc8f1","accent":"#ffbd8d","gold":"#f5dc8d","bg0":"#061619","bg1":"#0c3033","bg2":"#1a5051","bg3":"#3f6a5f"},"symbols":"🌊,♡,✦,🐚","headline":"OUR LITTLE PARADISE","tagline":"A sunlit love story made of warm sand, sea breeze, laughter, and memories just for two.","chips":["Paradise Together","Ocean Love","Honeymoon Dream"],"bundle":"ocean-pearl","decor":"ocean"},{"id":"wedding-gold","label":"Wedding Gold","category":"Milestone","family":"royal","engineTheme":null,"palette":{"primary":"#f0cb77","secondary":"#f7e5ad","accent":"#e9b3bd","gold":"#fff0bf","bg0":"#161008","bg1":"#2d2113","bg2":"#4d3820","bg3":"#6c5030"},"symbols":"💍,✦,♡,❖","headline":"THE DAY OUR FOREVER BEGAN","tagline":"A golden chapter celebrating promises, devotion, and two lives choosing one beautiful journey.","chips":["Our Forever","Golden Vows","One Promise"],"bundle":"royal-luxe","decor":"royal"},{"id":"korean-romance","label":"K-Drama Romance","category":"Modern","family":"cinema","engineTheme":null,"palette":{"primary":"#e5a8ca","secondary":"#b5b7ef","accent":"#99d3d5","gold":"#f2dba1","bg0":"#110b13","bg1":"#24172b","bg2":"#3e2a49","bg3":"#5e4961"},"symbols":"♡,✦,☂,✨","headline":"OUR FAVORITE SCENE","tagline":"A gentle romance filled with quiet glances, warm moments, and a story that feels beautifully cinematic.","chips":["Favorite Scene","Soft Romance","Always You"],"bundle":"cinema-ticket","decor":"cinema"},{"id":"paris-vintage","label":"Paris Vintage","category":"Classic","family":"vintage","engineTheme":null,"palette":{"primary":"#b78e74","secondary":"#d5b5a0","accent":"#bca3b3","gold":"#ead2a0","bg0":"#17100d","bg1":"#2d2019","bg2":"#4a342b","bg3":"#675045"},"symbols":"🗼,♡,✦,🗝️","headline":"A LITTLE PARIS LOVE STORY","tagline":"A timeless romance wandering through old streets, warm lights, and memories that never fade.","chips":["Paris Love","Timeless Us","Old-World Dream"],"bundle":"vintage-plaque","decor":"vintage"},{"id":"stargazing","label":"Stargazing Love","category":"Romance","family":"space","engineTheme":null,"palette":{"primary":"#6f9cff","secondary":"#a28dff","accent":"#e78ccf","gold":"#f1d679","bg0":"#040713","bg1":"#0a1230","bg2":"#192250","bg3":"#343467"},"symbols":"⭐,☾,♡,✦","headline":"UNDER A SKY FULL OF US","tagline":"Two hearts looking at the same stars, holding the same dreams, and choosing each other again and again.","chips":["One Sky","Starry Love","Same Dream"],"bundle":"space-hud","decor":"space"}],"fan":[{"id":"concert","label":"Concert Stage","category":"Stage & Music","family":"music","engineTheme":"concert","palette":{"primary":"#5ee8ff","secondary":"#c075ff","accent":"#ff69bd","gold":"#ffd86f","bg0":"#040817","bg1":"#0a1632","bg2":"#1d2454","bg3":"#442b68"},"symbols":"♫,✦,⚡,✨","headline":"ME AND MY IDOL","tagline":"From the glowing stage to the deepest part of my story—your presence became a light behind many dreams.","chips":["Forever Fan","Inspired By You","Stage Dream"]},{"id":"kpop-neon","label":"K-Pop Neon","category":"Stage & Music","family":"music","engineTheme":"kpop-neon","palette":{"primary":"#61ecff","secondary":"#a66fff","accent":"#ff57c7","gold":"#ffe064","bg0":"#030713","bg1":"#0b1330","bg2":"#242052","bg3":"#55236a"},"symbols":"✦,♫,♡,⚡","headline":"MY NEON FAN DREAM","tagline":"A vivid fan story glowing with music, inspiration, unforgettable moments, and endless admiration.","chips":["Neon Fan","Stage Energy","Forever Inspired"]},{"id":"award-night","label":"Award Night","category":"Cinema & Celebrity","family":"cinema","engineTheme":"award-night","palette":{"primary":"#e7c46c","secondary":"#b894ff","accent":"#ff92b8","gold":"#ffe69d","bg0":"#0b0810","bg1":"#181323","bg2":"#30233e","bg3":"#51405e"},"symbols":"★,✦,🏆,◆","headline":"A NIGHT TO REMEMBER","tagline":"A glamorous fan fantasy filled with spotlights, applause, inspiration, and a dream encounter.","chips":["Award Night","Dream Moment","Golden Memory"]},{"id":"cinematic","label":"Cinema Idol","category":"Cinema & Celebrity","family":"cinema","engineTheme":"cinematic","palette":{"primary":"#70caff","secondary":"#987fff","accent":"#f17faf","gold":"#e9cb70","bg0":"#05070d","bg1":"#101521","bg2":"#222c3b","bg3":"#3d4353"},"symbols":"🎞️,✦,★,◆","headline":"OUR CINEMATIC MOMENT","tagline":"A fan fantasy unfolding like a movie scene—emotional, unforgettable, and beautifully larger than life.","chips":["Movie Moment","Fan Story","Unforgettable"]},{"id":"dreamy","label":"Dreamy Idol","category":"Fantasy & Dream","family":"magic","engineTheme":"dreamy","palette":{"primary":"#9cc7ff","secondary":"#d4a1ff","accent":"#ffafe0","gold":"#f5dfa3","bg0":"#080817","bg1":"#15142e","bg2":"#302b52","bg3":"#57426e"},"symbols":"☁️,✦,♡,⭐","headline":"A DREAM THAT FEELS REAL","tagline":"A soft fan fantasy where admiration, inspiration, and imagination finally share the same beautiful moment.","chips":["Dream Meet","Forever Fan","Inspired"]},{"id":"football-star","label":"Football Idol","category":"Sports Idol","family":"sport","engineTheme":"football-star","palette":{"primary":"#6cde91","secondary":"#79caff","accent":"#f2ce62","gold":"#fff099","bg0":"#04140b","bg1":"#0b2a16","bg2":"#17482c","bg3":"#2b6841"},"symbols":"⚽,★,🏆,⚡","headline":"ME AND MY FOOTBALL HERO","tagline":"A fan story powered by passion, unforgettable matches, inspiration, and the dream of meeting a true hero.","chips":["Football Fan","My Hero","Champion Dream"],"bundle":"sport-score","decor":"sports"},{"id":"golden-stage","label":"Golden Stage","category":"Stage & Music","family":"royal","engineTheme":"golden-stage","palette":{"primary":"#efca6b","secondary":"#c395ff","accent":"#ff91bb","gold":"#ffeba9","bg0":"#100910","bg1":"#24142a","bg2":"#42233d","bg3":"#634157"},"symbols":"★,✦,◆,✨","headline":"A GOLDEN FAN MOMENT","tagline":"A premium fan fantasy wrapped in spotlight, admiration, elegance, and memories worth keeping forever.","chips":["Golden Fan","Spotlight Dream","Forever Inspired"]},{"id":"luxury","label":"Luxury Fan Pass","category":"Luxury","family":"royal","engineTheme":"luxury","palette":{"primary":"#c89fff","secondary":"#eac96d","accent":"#f18cb8","gold":"#ffe5a0","bg0":"#0d0712","bg1":"#201027","bg2":"#3b1b40","bg3":"#582e58"},"symbols":"◆,✦,★,❖","headline":"THE ULTIMATE FAN PASS","tagline":"An exclusive fan fantasy designed like a rare collectible—personal, elegant, and unforgettable.","chips":["VIP Fan","Collector Pass","Exclusive Memory"]},{"id":"retro","label":"Retro Idol","category":"Retro","family":"vintage","engineTheme":"retro","palette":{"primary":"#ffae72","secondary":"#79d9d4","accent":"#d592c5","gold":"#f4dc89","bg0":"#170d0b","bg1":"#302016","bg2":"#52372a","bg3":"#705347"},"symbols":"★,♫,✦,◆","headline":"A RETRO FAN STORY","tagline":"A nostalgic fan moment glowing with vintage energy, timeless admiration, and unforgettable style.","chips":["Retro Fan","Classic Idol","Timeless Memory"]},{"id":"purple-stage","label":"Purple Stage","category":"Stage & Music","family":"music","engineTheme":"purple-stage","palette":{"primary":"#9b7dff","secondary":"#da72ff","accent":"#ff6ab9","gold":"#f2d16d","bg0":"#070512","bg1":"#140c2d","bg2":"#2a1850","bg3":"#50226a"},"symbols":"♫,✦,⚡,★","headline":"PURPLE LIGHTS, BIG DREAMS","tagline":"A dramatic fan fantasy surrounded by stage lights, music, energy, and a moment imagined for years.","chips":["Stage Dream","Purple Night","Forever Fan"]},{"id":"fanmeeting","label":"Fan Meeting","category":"Fan Experience","family":"romance","engineTheme":"fanmeeting","palette":{"primary":"#7fdcff","secondary":"#e19cff","accent":"#ff9fc8","gold":"#f4d987","bg0":"#07101a","bg1":"#13243a","bg2":"#303452","bg3":"#5b4665"},"symbols":"♡,✦,✨,★","headline":"THE FAN MEETING OF MY DREAMS","tagline":"A warm fantasy where distance disappears and admiration finally becomes a shared moment.","chips":["Fan Meeting","Dream Come True","Special Moment"]},{"id":"sports-arena","label":"Sports Arena","category":"Sports Idol","family":"sport","engineTheme":"sports-arena","palette":{"primary":"#58dbff","secondary":"#77e896","accent":"#ffd05f","gold":"#f6e293","bg0":"#041018","bg1":"#0a2633","bg2":"#124759","bg3":"#28666d"},"symbols":"★,⚡,🏆,◆","headline":"MEET MY SPORTS HERO","tagline":"A high-energy fan story filled with passion, arena lights, unforgettable victories, and inspiration.","chips":["Sports Fan","Arena Dream","My Champion"]},{"id":"anime-fandom","label":"Anime-Inspired Fandom","category":"Fantasy & Dream","family":"anime","engineTheme":null,"palette":{"primary":"#60e9ff","secondary":"#8c82ff","accent":"#ff6ccb","gold":"#ffe265","bg0":"#040612","bg1":"#0a1130","bg2":"#1b2258","bg3":"#43296e"},"symbols":"⚡,✦,◈,✧","headline":"FAN ENERGY AWAKENS","tagline":"A stylized fan fantasy inspired by bold energy, dramatic panels, glowing power, and limitless imagination.","chips":["Anime Fan","Energy Mode","Dream Encounter"],"bundle":"anime-energy","decor":"anime"},{"id":"movie-premiere","label":"Movie Premiere","category":"Cinema & Celebrity","family":"cinema","engineTheme":null,"palette":{"primary":"#e3bf69","secondary":"#f189aa","accent":"#698dcc","gold":"#ffe099","bg0":"#0c080c","bg1":"#21131b","bg2":"#3c2030","bg3":"#593c4c"},"symbols":"🎬,★,✦,◆","headline":"OUR RED CARPET MOMENT","tagline":"A glamorous fan fantasy where camera flashes, cinema lights, and a long-awaited dream meet in one scene.","chips":["Red Carpet","Movie Dream","Premiere Night"],"bundle":"cinema-ticket","decor":"cinema"},{"id":"rock-stage","label":"Rock Stage","category":"Stage & Music","family":"music","engineTheme":null,"palette":{"primary":"#ff5e72","secondary":"#8b7bff","accent":"#68d7ff","gold":"#ffd361","bg0":"#100407","bg1":"#260b12","bg2":"#491321","bg3":"#6e2431"},"symbols":"♫,⚡,★,✦","headline":"TURN THE FAN DREAM LOUDER","tagline":"A powerful fan fantasy charged with music, stage energy, unforgettable riffs, and pure inspiration.","chips":["Rock Fan","Live Energy","Stage Legend"],"bundle":"music-stage","decor":"music"},{"id":"esports","label":"Esports Idol","category":"Digital & Gaming","family":"tech","engineTheme":null,"palette":{"primary":"#42f1c5","secondary":"#697cff","accent":"#fa5cdb","gold":"#dfff66","bg0":"#020a10","bg1":"#071922","bg2":"#0d3041","bg3":"#194d5f"},"symbols":"◇,⚡,🎮,＋","headline":"PLAYER MEETS LEGEND","tagline":"A digital fan fantasy powered by skill, competition, bright screens, and the dream of meeting a gaming icon.","chips":["Esports Fan","GG Legend","Next Level"],"bundle":"game-hud","decor":"tech"},{"id":"basketball-star","label":"Basketball Idol","category":"Sports Idol","family":"sport","engineTheme":null,"palette":{"primary":"#ff984f","secondary":"#63cfff","accent":"#f0cc58","gold":"#fff0a0","bg0":"#150a04","bg1":"#2d1608","bg2":"#512a0f","bg3":"#724019"},"symbols":"🏀,★,⚡,🏆","headline":"COURTSIDE WITH MY HERO","tagline":"A fan fantasy filled with arena lights, big plays, inspiration, and the energy of a dream courtside moment.","chips":["Basketball Fan","Courtside Dream","My Hero"],"bundle":"sport-score","decor":"sports"},{"id":"racing-idol","label":"Racing Idol","category":"Sports Idol","family":"sport","engineTheme":null,"palette":{"primary":"#ff5268","secondary":"#57d9ff","accent":"#f1cb55","gold":"#fff096","bg0":"#120508","bg1":"#280b10","bg2":"#4d1420","bg3":"#732636"},"symbols":"🏁,⚡,★,◆","headline":"FULL SPEED FAN DREAM","tagline":"A fast-paced fan fantasy driven by speed, courage, iconic moments, and admiration without limits.","chips":["Racing Fan","Full Speed","Track Legend"],"bundle":"racing-panel","decor":"sports"},{"id":"streamer","label":"Streamer / Creator","category":"Digital & Gaming","family":"tech","engineTheme":null,"palette":{"primary":"#60dfff","secondary":"#9a7cff","accent":"#ff68c8","gold":"#e9df69","bg0":"#040813","bg1":"#0a1830","bg2":"#182c50","bg3":"#3d3869"},"symbols":"🎥,⚡,✦,◇","headline":"FROM SCREEN TO DREAM MOMENT","tagline":"A creator fan fantasy where inspiration jumps beyond the screen and becomes a memorable shared story.","chips":["Creator Fan","Online Inspiration","Dream Collab"],"bundle":"game-hud","decor":"tech"},{"id":"fashion-icon","label":"Fashion Idol","category":"Luxury","family":"glam","engineTheme":null,"palette":{"primary":"#ff9ec6","secondary":"#c497ff","accent":"#f0d4dc","gold":"#f1cf78","bg0":"#160914","bg1":"#2f142a","bg2":"#50223f","bg3":"#713956"},"symbols":"✦,◆,♡,✨","headline":"MY FASHION ICON MOMENT","tagline":"A stylish fan fantasy filled with confidence, elegance, creativity, and a dream encounter worth remembering.","chips":["Style Fan","Fashion Dream","Icon Moment"],"bundle":"vanity-glam","decor":"glam"},{"id":"idol-travel","label":"Travel With My Idol","category":"Fan Experience","family":"travel","engineTheme":null,"palette":{"primary":"#6bd7ef","secondary":"#8ed7b3","accent":"#f0b46c","gold":"#f5dc94","bg0":"#061418","bg1":"#102a2d","bg2":"#21494a","bg3":"#4c604b"},"symbols":"✈,🧳,✦,♡","headline":"A JOURNEY WITH MY IDOL","tagline":"A playful fan fantasy imagining new places, unforgettable moments, and an adventure shared with inspiration.","chips":["Travel Fan","Dream Journey","New Memory"],"bundle":"aviation-elegant","decor":"aviation"}]};
 const FAMILY_PRESETS={"magic":{"bundle":"crystal-magic","layout":"cinematic","decor":"sparkle","mood":"magical","nameStyle":"glitter","fonts":["Cinzel Decorative","Fredoka","Nunito"],"bundlePool":["crystal-magic","cloud-dream","neon-fantasy"]},"nature":{"bundle":"explorer-rustic","layout":"storybook","decor":"nature","mood":"warm","nameStyle":"clean","fonts":["Grandstander","Fredoka","Nunito"],"bundlePool":["explorer-rustic","floral-dream","vintage-plaque"]},"sakura":{"bundle":"floral-dream","layout":"storybook","decor":"sakura","mood":"dreamy","nameStyle":"glitter","fonts":["Yeseva One","Fredoka","Nunito"],"bundlePool":["floral-dream","crystal-magic","royal-floral"]},"medical":{"bundle":"doctor-clean","layout":"editorial","decor":"medical","mood":"professional","nameStyle":"clean","fonts":["Sora","Montserrat Alternates","Nunito"],"bundlePool":["doctor-clean","metal-badge","lab-hud"]},"aviation":{"bundle":"aviation-pass","layout":"poster","decor":"aviation","mood":"cinematic","nameStyle":"crystal","fonts":["Bebas Neue","Montserrat Alternates","Poppins"],"bundlePool":["aviation-pass","aviation-elegant","cockpit-hud"]},"fishing":{"bundle":"fishing-dock","layout":"storybook","decor":"fishing","mood":"warm","nameStyle":"clean","fonts":["Grandstander","Fredoka","Nunito"],"bundlePool":["fishing-dock","explorer-rustic","ocean-pearl"]},"glam":{"bundle":"vanity-glam","layout":"showcase","decor":"glam","mood":"elegant","nameStyle":"glitter","fonts":["Bodoni Moda","Montserrat Alternates","Poppins"],"bundlePool":["vanity-glam","crystal-magic","royal-floral"]},"culinary":{"bundle":"culinary-board","layout":"storybook","decor":"culinary","mood":"warm","nameStyle":"clean","fonts":["Lilita One","Fredoka","Nunito"],"bundlePool":["culinary-board","cafe-board","vintage-plaque"]},"cinema":{"bundle":"cinema-ticket","layout":"cinematic","decor":"cinema","mood":"cinematic","nameStyle":"glitter","fonts":["Bebas Neue","Montserrat Alternates","Poppins"],"bundlePool":["cinema-ticket","neon-fantasy","royal-luxe"]},"music":{"bundle":"music-stage","layout":"showcase","decor":"music","mood":"energetic","nameStyle":"neon","fonts":["Bebas Neue","Unbounded","Poppins"],"bundlePool":["music-stage","neon-fantasy","crystal-magic"]},"space":{"bundle":"space-hud","layout":"immersive","decor":"space","mood":"magical","nameStyle":"neon","fonts":["Orbitron","Unbounded","Poppins"],"bundlePool":["space-hud","hologram-tech","crystal-magic"]},"sport":{"bundle":"sport-score","layout":"poster","decor":"sports","mood":"energetic","nameStyle":"clean","fonts":["Anton","Bebas Neue","Poppins"],"bundlePool":["sport-score","racing-panel","game-hud"]},"career":{"bundle":"metal-badge","layout":"editorial","decor":"tech","mood":"professional","nameStyle":"clean","fonts":["Sora","Montserrat Alternates","Nunito"],"bundlePool":["metal-badge","doctor-clean","cockpit-hud"]},"ocean":{"bundle":"ocean-pearl","layout":"immersive","decor":"ocean","mood":"dreamy","nameStyle":"crystal","fonts":["Marcellus SC","Montserrat Alternates","Nunito"],"bundlePool":["ocean-pearl","crystal-magic","explorer-rustic"]},"royal":{"bundle":"royal-luxe","layout":"showcase","decor":"royal","mood":"elegant","nameStyle":"royal","fonts":["Cinzel Decorative","Cinzel","Cormorant Garamond"],"bundlePool":["royal-luxe","royal-floral","crystal-magic"]},"spiritual":{"bundle":"islamic-arch","layout":"editorial","decor":"spiritual","mood":"elegant","nameStyle":"royal","fonts":["Cinzel","Cormorant SC","Nunito"],"bundlePool":["islamic-arch","royal-luxe","crystal-magic"]},"vintage":{"bundle":"vintage-plaque","layout":"storybook","decor":"vintage","mood":"warm","nameStyle":"royal","fonts":["Cormorant SC","Cinzel","Lora"],"bundlePool":["vintage-plaque","parchment-scroll","explorer-rustic"]},"anime":{"bundle":"anime-energy","layout":"poster","decor":"anime","mood":"energetic","nameStyle":"neon","fonts":["Bungee","Unbounded","Poppins"],"bundlePool":["anime-energy","hologram-tech","game-hud"]},"tech":{"bundle":"game-hud","layout":"immersive","decor":"tech","mood":"energetic","nameStyle":"neon","fonts":["Orbitron","Audiowide","Poppins"],"bundlePool":["game-hud","hologram-tech","lab-hud"]},"romance":{"bundle":"floral-dream","layout":"cinematic","decor":"romance","mood":"romantic","nameStyle":"glitter","fonts":["Playfair Display","Great Vibes","DM Sans"],"bundlePool":["floral-dream","crystal-magic","royal-floral"]},"travel":{"bundle":"aviation-elegant","layout":"storybook","decor":"aviation","mood":"cinematic","nameStyle":"clean","fonts":["Playfair Display","Montserrat Alternates","DM Sans"],"bundlePool":["aviation-elegant","vintage-plaque","ocean-pearl"]}};
-const FRAME_OPTIONS=[["template","Original Template"],["crystal-cut","Crystal Cut"],["royal-gold","Royal Gold Plaque"],["wood-sign","Rustic Wood Sign"],["rope-explorer","Explorer Rope"],["medical-card","Medical ID Card"],["boarding-pass","Boarding Pass"],["cockpit-panel","Cockpit Panel"],["vanity-mirror","Vanity Mirror"],["scoreboard","Scoreboard"],["hologram","Hologram"],["manga-panel","Manga Panel"],["neon-ticket","Neon Ticket"],["cloud-bubble","Cloud Bubble"],["floral-wreath","Floral Wreath"],["metal-badge","Metal Badge"],["ocean-shell","Ocean Pearl"],["film-clapper","Cinema Clapper"],["parchment","Vintage Parchment"],["game-hud","Game HUD"],["lab-panel","Lab Panel"],["rescue-badge","Rescue Badge"],["racing-panel","Racing Panel"],["cafe-board","Cafe Board"]];
-const FRAME_BUNDLES={"crystal-magic":{"label":"Crystal Magic","title":"crystal-cut","name":"crystal-cut","chip":"cloud-bubble","section":"crystal-cut"},"cloud-dream":{"label":"Cloud Dream","title":"cloud-bubble","name":"crystal-cut","chip":"cloud-bubble","section":"cloud-bubble"},"neon-fantasy":{"label":"Neon Fantasy","title":"neon-ticket","name":"hologram","chip":"neon-ticket","section":"hologram"},"explorer-rustic":{"label":"Explorer Rustic","title":"wood-sign","name":"rope-explorer","chip":"rope-explorer","section":"wood-sign"},"floral-dream":{"label":"Floral Dream","title":"floral-wreath","name":"crystal-cut","chip":"floral-wreath","section":"cloud-bubble"},"doctor-clean":{"label":"Doctor Clean","title":"medical-card","name":"medical-card","chip":"medical-card","section":"lab-panel"},"aviation-pass":{"label":"Aviation Boarding Pass","title":"boarding-pass","name":"cockpit-panel","chip":"boarding-pass","section":"cockpit-panel"},"aviation-elegant":{"label":"Aviation Elegant","title":"boarding-pass","name":"crystal-cut","chip":"boarding-pass","section":"metal-badge"},"cockpit-hud":{"label":"Cockpit HUD","title":"cockpit-panel","name":"hologram","chip":"metal-badge","section":"cockpit-panel"},"fishing-dock":{"label":"Fishing Dock","title":"wood-sign","name":"rope-explorer","chip":"ocean-shell","section":"wood-sign"},"vanity-glam":{"label":"Vanity Glam","title":"vanity-mirror","name":"vanity-mirror","chip":"floral-wreath","section":"crystal-cut"},"culinary-board":{"label":"Culinary Board","title":"cafe-board","name":"wood-sign","chip":"cafe-board","section":"wood-sign"},"cafe-board":{"label":"Cafe Vintage","title":"cafe-board","name":"parchment","chip":"cafe-board","section":"parchment"},"cinema-ticket":{"label":"Cinema Ticket","title":"film-clapper","name":"neon-ticket","chip":"film-clapper","section":"neon-ticket"},"music-stage":{"label":"Music Stage","title":"neon-ticket","name":"hologram","chip":"neon-ticket","section":"metal-badge"},"space-hud":{"label":"Space HUD","title":"hologram","name":"game-hud","chip":"hologram","section":"game-hud"},"sport-score":{"label":"Sport Scoreboard","title":"scoreboard","name":"metal-badge","chip":"scoreboard","section":"scoreboard"},"racing-panel":{"label":"Racing Panel","title":"racing-panel","name":"metal-badge","chip":"racing-panel","section":"racing-panel"},"metal-badge":{"label":"Professional Metal","title":"metal-badge","name":"metal-badge","chip":"metal-badge","section":"metal-badge"},"ocean-pearl":{"label":"Ocean Pearl","title":"ocean-shell","name":"crystal-cut","chip":"ocean-shell","section":"ocean-shell"},"royal-luxe":{"label":"Royal Luxe","title":"royal-gold","name":"royal-gold","chip":"royal-gold","section":"royal-gold"},"royal-floral":{"label":"Royal Floral","title":"royal-gold","name":"crystal-cut","chip":"floral-wreath","section":"floral-wreath"},"islamic-arch":{"label":"Elegant Arch","title":"royal-gold","name":"metal-badge","chip":"crystal-cut","section":"royal-gold"},"vintage-plaque":{"label":"Vintage Plaque","title":"parchment","name":"parchment","chip":"parchment","section":"parchment"},"parchment-scroll":{"label":"Parchment Story","title":"parchment","name":"parchment","chip":"parchment","section":"parchment"},"anime-energy":{"label":"Anime Energy","title":"manga-panel","name":"hologram","chip":"manga-panel","section":"game-hud"},"game-hud":{"label":"Game HUD","title":"game-hud","name":"hologram","chip":"game-hud","section":"game-hud"},"hologram-tech":{"label":"Hologram Tech","title":"hologram","name":"hologram","chip":"neon-ticket","section":"hologram"},"lab-hud":{"label":"Lab HUD","title":"lab-panel","name":"medical-card","chip":"lab-panel","section":"hologram"},"rescue-badge":{"label":"Rescue Hero","title":"rescue-badge","name":"metal-badge","chip":"rescue-badge","section":"metal-badge"}};
+const FRAME_OPTIONS=[["template","Original Template"],["led-3d","📟 Panel LED 3D Bergerak Vertikal"],["crystal-cut","Crystal Cut"],["royal-gold","Royal Gold Plaque"],["wood-sign","Rustic Wood Sign"],["rope-explorer","Explorer Rope"],["medical-card","Medical ID Card"],["boarding-pass","Boarding Pass"],["cockpit-panel","Cockpit Panel"],["vanity-mirror","Vanity Mirror"],["scoreboard","Scoreboard"],["hologram","Hologram"],["manga-panel","Manga Panel"],["neon-ticket","Neon Ticket"],["cloud-bubble","Cloud Bubble"],["floral-wreath","Floral Wreath"],["metal-badge","Metal Badge"],["ocean-shell","Ocean Pearl"],["film-clapper","Cinema Clapper"],["parchment","Vintage Parchment"],["game-hud","Game HUD"],["lab-panel","Lab Panel"],["rescue-badge","Rescue Badge"],["racing-panel","Racing Panel"],["cafe-board","Cafe Board"]];
+const FRAME_BUNDLES={"led-3d-panel":{"label":"📟 3D LED Moving Panel (Judul & Nama)","title":"led-3d","name":"led-3d","chip":"neon-ticket","section":"neon-ticket"},"crystal-magic":{"label":"Crystal Magic","title":"crystal-cut","name":"crystal-cut","chip":"cloud-bubble","section":"crystal-cut"},"cloud-dream":{"label":"Cloud Dream","title":"cloud-bubble","name":"crystal-cut","chip":"cloud-bubble","section":"cloud-bubble"},"neon-fantasy":{"label":"Neon Fantasy","title":"neon-ticket","name":"hologram","chip":"neon-ticket","section":"hologram"},"explorer-rustic":{"label":"Explorer Rustic","title":"wood-sign","name":"rope-explorer","chip":"rope-explorer","section":"wood-sign"},"floral-dream":{"label":"Floral Dream","title":"floral-wreath","name":"crystal-cut","chip":"floral-wreath","section":"cloud-bubble"},"doctor-clean":{"label":"Doctor Clean","title":"medical-card","name":"medical-card","chip":"medical-card","section":"lab-panel"},"aviation-pass":{"label":"Aviation Boarding Pass","title":"boarding-pass","name":"cockpit-panel","chip":"boarding-pass","section":"cockpit-panel"},"aviation-elegant":{"label":"Aviation Elegant","title":"boarding-pass","name":"crystal-cut","chip":"boarding-pass","section":"metal-badge"},"cockpit-hud":{"label":"Cockpit HUD","title":"cockpit-panel","name":"hologram","chip":"metal-badge","section":"cockpit-panel"},"fishing-dock":{"label":"Fishing Dock","title":"wood-sign","name":"rope-explorer","chip":"ocean-shell","section":"wood-sign"},"vanity-glam":{"label":"Vanity Glam","title":"vanity-mirror","name":"vanity-mirror","chip":"floral-wreath","section":"crystal-cut"},"culinary-board":{"label":"Culinary Board","title":"cafe-board","name":"wood-sign","chip":"cafe-board","section":"wood-sign"},"cafe-board":{"label":"Cafe Vintage","title":"cafe-board","name":"parchment","chip":"cafe-board","section":"parchment"},"cinema-ticket":{"label":"Cinema Ticket","title":"film-clapper","name":"neon-ticket","chip":"film-clapper","section":"neon-ticket"},"music-stage":{"label":"Music Stage","title":"neon-ticket","name":"hologram","chip":"neon-ticket","section":"metal-badge"},"space-hud":{"label":"Space HUD","title":"hologram","name":"game-hud","chip":"hologram","section":"game-hud"},"sport-score":{"label":"Sport Scoreboard","title":"scoreboard","name":"metal-badge","chip":"scoreboard","section":"scoreboard"},"racing-panel":{"label":"Racing Panel","title":"racing-panel","name":"metal-badge","chip":"racing-panel","section":"racing-panel"},"metal-badge":{"label":"Professional Metal","title":"metal-badge","name":"metal-badge","chip":"metal-badge","section":"metal-badge"},"ocean-pearl":{"label":"Ocean Pearl","title":"ocean-shell","name":"crystal-cut","chip":"ocean-shell","section":"ocean-shell"},"royal-luxe":{"label":"Royal Luxe","title":"royal-gold","name":"royal-gold","chip":"royal-gold","section":"royal-gold"},"royal-floral":{"label":"Royal Floral","title":"royal-gold","name":"crystal-cut","chip":"floral-wreath","section":"floral-wreath"},"islamic-arch":{"label":"Elegant Arch","title":"royal-gold","name":"metal-badge","chip":"crystal-cut","section":"royal-gold"},"vintage-plaque":{"label":"Vintage Plaque","title":"parchment","name":"parchment","chip":"parchment","section":"parchment"},"parchment-scroll":{"label":"Parchment Story","title":"parchment","name":"parchment","chip":"parchment","section":"parchment"},"anime-energy":{"label":"Anime Energy","title":"manga-panel","name":"hologram","chip":"manga-panel","section":"game-hud"},"game-hud":{"label":"Game HUD","title":"game-hud","name":"hologram","chip":"game-hud","section":"game-hud"},"hologram-tech":{"label":"Hologram Tech","title":"hologram","name":"hologram","chip":"neon-ticket","section":"hologram"},"lab-hud":{"label":"Lab HUD","title":"lab-panel","name":"medical-card","chip":"lab-panel","section":"hologram"},"rescue-badge":{"label":"Rescue Hero","title":"rescue-badge","name":"metal-badge","chip":"rescue-badge","section":"metal-badge"}};
 const MOOD_OPTIONS=[["magical","Magical"],["dreamy","Dreamy"],["cinematic","Cinematic"],["warm","Warm & Cozy"],["elegant","Elegant"],["professional","Professional"],["energetic","Energetic"],["romantic","Romantic"],["heroic","Heroic"],["mysterious","Mysterious"]];
 const LAYOUT_OPTIONS=[["classic","Classic"],["cinematic","Cinematic"],["storybook","Storybook"],["poster","Poster"],["editorial","Editorial"],["immersive","Immersive"],["showcase","Showcase"],["compact","Compact"]];
 const DECOR_PACKS={"none":{"label":"None","symbols":[]},"sparkle":{"label":"Fantasy Sparkle","symbols":["✦","✧","⋆","✨"]},"nature":{"label":"Nature","symbols":["🌿","🍃","✦","🦋"]},"camping":{"label":"Camping","symbols":["⛺","✦","🔥","🌲"]},"sakura":{"label":"Sakura","symbols":["🌸","✿","✦","❀"]},"medical":{"label":"Medical","symbols":["✚","♡","＋","✦"]},"aviation":{"label":"Aviation","symbols":["✈","☁","⌖","✦"]},"fishing":{"label":"Fishing","symbols":["≈","🐟","✦","◌"]},"glam":{"label":"Glam","symbols":["✦","✧","♡","◆"]},"culinary":{"label":"Culinary","symbols":["♨","✦","◆","♡"]},"cinema":{"label":"Cinema","symbols":["◆","★","✦","◼"]},"music":{"label":"Music","symbols":["♫","♪","✦","★"]},"space":{"label":"Space","symbols":["✦","⋆","☾","◉"]},"sports":{"label":"Sports","symbols":["★","⚡","◆","✦"]},"tech":{"label":"Tech","symbols":["⌬","◇","＋","✦"]},"ocean":{"label":"Ocean","symbols":["≈","◌","✦","◇"]},"royal":{"label":"Royal","symbols":["♛","✦","◆","❖"]},"spiritual":{"label":"Spiritual","symbols":["☪","✦","◇","✧"]},"vintage":{"label":"Vintage","symbols":["❖","✦","◆","◇"]},"anime":{"label":"Anime Energy","symbols":["⚡","✦","◈","✧"]},"romance":{"label":"Romance","symbols":["♡","✦","✧","❀"]}};
@@ -5972,7 +5973,7 @@ function v124PublicConfig(s){const type=v124Type(s),p=V124_PROFILES[type],v=v124
 function v124Labels(s){const C=v124PublicConfig(s);return{galleryTitle:C.galleryTitle,videoTitle:C.videoTitle,kicker:V124_PROFILES[C.type].eyebrow}}
 function v124FeatureHTML(C){const esc=escapeHTML,attr=escAttr,text=v=>esc(v).replace(/\n/g,'<br>'),d=C.details,person=C.secondName&&['wedding','anniversary'].includes(C.type)?C.name+' & '+C.secondName:C.name,icon='<span class="p124-symbol" aria-hidden="true">'+esc(C.icon)+'</span>';let body='';const facts=rows=>'<dl class="p124-facts">'+rows.filter(([,value])=>String(value||'').trim()).map(([label,value])=>'<div><dt>'+esc(label)+'</dt><dd>'+text(value)+'</dd></div>').join('')+'</dl>',chapters=()=>'<div class="p124-chapters">'+C.items.map((item,i)=>'<button type="button" data-p124-chapter="'+i+'" aria-pressed="'+(i===0)+'"><span>'+String(i+1).padStart(2,'0')+'</span>'+esc(item.title)+'</button>').join('')+'</div><div class="p124-chapter-body" role="status">'+text(C.items[0]?.body||C.message)+'</div>';
  if(C.type==='birthday')body='<div class="p124-birthday-orbit"><span>MAKE A WISH</span><div class="p124-age">'+esc(d.age||'✦')+'</div><button type="button" id="p124BirthdayCandle" aria-pressed="false"><i class="p124-flame"></i><i class="p124-wax"></i><b>Sentuh lilinnya</b></button></div><p class="p124-name">'+esc(person)+'</p><p id="p124Wish" class="p124-message" role="status">'+text(C.message)+'</p><button type="button" id="p124NextWish">Buka harapan berikutnya ✦</button><div class="p124-burst" aria-hidden="true"></div>';
- if(C.type==='baby')body='<div class="p124-passport p124-passport-holo" id="p124BabyPassportCard"><div class="p124-passport-heading"><span class="p124-passport-brand"><img src="'+attr(C.design1262?.logo||V1262_BRAND_LOGO)+'" alt="WYPHA PrintLab" class="p124-passport-logo"><b>WYPHA PRINTLAB · LITTLE LIFE PASSPORT</b></span><span class="p124-passport-badge-no">01</span></div><div class="p124-passport-identity"><div class="p124-baby-photo-slot" id="p124BabyPhotoSlot"><div class="p124-baby-photo-frame"><img id="p124BabyPhotoImg" alt="Foto '+attr(person)+'" '+(C.photos?.[0]?.src?'src="'+attr(C.photos[0].src)+'"':'hidden')+'><span id="p124BabyPhotoPlaceholder" '+(C.photos?.[0]?.src?'hidden':'')+'>👶</span></div><label class="p124-baby-upload-btn" title="Tambah / ganti foto bayi dari HP">📷 Foto Bayi dari HP<input type="file" id="p124BabyPhotoInput" accept="image/*" hidden></label></div><div class="p124-baby-name-col"><div class="p124-holo-field-box p124-name-holo-box"><span class="p124-baby-kicker">✦ NAMA LENGKAP BUAH HATI</span><p class="p124-name">'+esc(person)+'</p></div><div class="p124-holo-field-box p124-parents-holo-box"><span class="p124-baby-kicker">✦ BUAH HATI TERCINTA DARI</span><p class="p124-baby-parents-sub">'+esc([d.parentA,d.parentB].filter(Boolean).join(' & ')||'Keluarga Bahagia')+'</p></div></div></div>'+facts([['Lahir',v124DisplayDate(d.birthDate)],['Jam (WIB)',d.birthTime],['Berat',d.weight],['Panjang',d.length],['Orang tua', [d.parentA,d.parentB].filter(Boolean).join(' & ')]])+'<div class="p124-holo-age-wrap" id="p124BabyAgeHolo" data-birth-date="'+attr(d.birthDate||C.date||'')+'" data-birth-time="'+attr(d.birthTime||'00:00')+'"><div class="p124-holo-age-title"><span>✦ USIA BUAH HATI SAAT INI (LIVE HOLOGRAM)</span></div><div class="wypha-holo-clock-grid" role="timer" aria-label="Usia bayi"><div class="wypha-holo-box"><b data-baby-unit="years" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>TAHUN</span></div><div class="wypha-holo-box"><b data-baby-unit="months" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>BULAN</span></div><div class="wypha-holo-box"><b data-baby-unit="days" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>HARI</span></div><div class="wypha-holo-box"><b data-baby-unit="hours" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>JAM</span></div><div class="wypha-holo-box"><b data-baby-unit="minutes" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>MENIT</span></div><div class="wypha-holo-box"><b data-baby-unit="seconds" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>DETIK</span></div></div></div><div class="p124-passport-actions"><button type="button" id="p124BabyPassportDownload">↓ Simpan Paspor Kelahiran PNG</button><span id="p124BabyPassportStatus" role="status"></span></div></div>';
+ if(C.type==='baby')body='<div class="p124-passport p124-passport-holo" id="p124BabyPassportCard"><div class="p124-passport-heading"><span class="p124-passport-brand"><img src="'+attr(C.design1262?.logo||V1262_BRAND_LOGO)+'" alt="WYPHA PrintLab" class="p124-passport-logo"><b>WYPHA PRINTLAB · LITTLE LIFE PASSPORT</b></span><span class="p124-passport-seal-chip" aria-hidden="true">✦ HOLO-ID</span></div><div class="p124-passport-identity"><div class="p124-baby-photo-slot" id="p124BabyPhotoSlot"><div class="p124-baby-photo-frame"><img id="p124BabyPhotoImg" alt="Foto '+attr(person)+'" '+(C.photos?.[0]?.src?'src="'+attr(C.photos[0].src)+'"':'hidden')+'><span id="p124BabyPhotoPlaceholder" '+(C.photos?.[0]?.src?'hidden':'')+'>👶</span></div><label class="p124-baby-upload-btn" title="Tambah / ganti foto bayi dari HP">📷 Foto Bayi dari HP<input type="file" id="p124BabyPhotoInput" accept="image/*" hidden></label></div><div class="p124-baby-name-col"><div class="p124-holo-field-box p124-name-holo-box"><span class="p124-baby-kicker">✦ NAMA LENGKAP BUAH HATI</span><p class="p124-name">'+esc(person)+'</p></div><div class="p124-holo-field-box p124-parents-holo-box"><span class="p124-baby-kicker">✦ BUAH HATI TERCINTA DARI</span><p class="p124-baby-parents-sub">'+esc([d.parentA,d.parentB].filter(Boolean).join(' & ')||'Keluarga Bahagia')+'</p></div></div></div>'+facts([['Lahir',v124DisplayDate(d.birthDate)],['Jam (WIB)',d.birthTime],['Berat',d.weight],['Panjang',d.length],['Orang tua', [d.parentA,d.parentB].filter(Boolean).join(' & ')]])+'<div class="p124-holo-age-wrap" id="p124BabyAgeHolo" data-birth-date="'+attr(d.birthDate||C.date||'')+'" data-birth-time="'+attr(d.birthTime||'00:00')+'"><div class="p124-holo-age-title"><span>✦ USIA BUAH HATI SAAT INI</span></div><div class="wypha-holo-clock-grid" role="timer" aria-label="Usia bayi"><div class="wypha-holo-box"><b data-baby-unit="years" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>TAHUN</span></div><div class="wypha-holo-box"><b data-baby-unit="months" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>BULAN</span></div><div class="wypha-holo-box"><b data-baby-unit="days" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>HARI</span></div><div class="wypha-holo-box"><b data-baby-unit="hours" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>JAM</span></div><div class="wypha-holo-box"><b data-baby-unit="minutes" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>MENIT</span></div><div class="wypha-holo-box"><b data-baby-unit="seconds" class="wypha-holo-digits"><i class="wypha-holo-digit">0</i><i class="wypha-holo-digit">0</i></b><span>DETIK</span></div></div></div><div class="p124-passport-actions"><button type="button" id="p124BabyPassportDownload">↓ Simpan Paspor Kelahiran PNG</button><span id="p124BabyPassportStatus" role="status"></span></div></div>';
  if(C.type==='wedding'){const map=v123Link(d.mapUrl);body='<div class="p124-invitation"><div class="p124-wedding-rings" aria-hidden="true"><i></i><i></i></div><p class="p124-name">'+esc(person)+'</p>'+facts([['Hari istimewa',v124DisplayDate(d.eventDate)||C.date],['Waktu (WIB)',d.eventTime],['Tempat',d.venue]])+'<p class="p124-message">'+text(C.message)+'</p><div class="p124-actions">'+(d.eventDate?'<button type="button" id="p124Calendar">＋ Simpan tanggal</button>':'')+(map?'<a href="'+attr(map)+'" target="_blank" rel="noopener noreferrer">Lihat lokasi ↗</a>':'')+'</div></div><form class="p124-rsvp"><h3>Kabarkan Kehadiranmu</h3><label>Nama tamu<input name="guest" required autocomplete="name"></label><div class="p124-form-row"><label>Kehadiran<select name="attendance"><option value="Hadir">Hadir</option><option value="Belum pasti">Belum pasti</option><option value="Tidak dapat hadir">Tidak dapat hadir</option></select></label><label>Jumlah tamu<input name="guests" type="number" min="1" max="99" value="1" required></label></div><button type="submit">Siapkan konfirmasi</button><p class="p124-rsvp-preview" role="status"></p><a id="p124RsvpSend" hidden target="_blank" rel="noopener noreferrer">Lanjut ke WhatsApp ↗</a><small>Konfirmasi dikirim melalui WhatsApp pengundang.</small></form>'}
  if(C.type==='anniversary')body='<div class="p124-love-orbit"><span aria-hidden="true">∞</span><p class="p124-name">'+esc(person)+'</p><p id="p124Together" class="p124-counter">Kita, dan bab yang terus bertambah.</p></div>'+chapters()+'<p class="p124-message">'+text(C.message)+'</p>';
  if(C.type==='graduation')body='<div class="p124-graduation-portal"><span class="p124-cap" aria-hidden="true">◇</span><p class="p124-name">'+esc(person)+'</p>'+facts([['Institusi',d.institution],['Program',d.program],['Angkatan kelulusan',d.year]])+'<button type="button" id="p124FutureOpen" aria-expanded="false">Buka surat untuk masa depan ↗</button></div><div id="p124FutureLetter" class="p124-letter" hidden><p>'+text(C.message)+'</p>'+(d.future?'<h3>Untuk langkah berikutnya</h3><p>'+text(d.future)+'</p>':'')+'<button type="button" id="p124FutureDownload">↓ Simpan surat .txt</button></div>';
@@ -7616,13 +7617,13 @@ function v13BabyPassportDefaults(v = {}) {
   return {
     frameStyle: V13_BABY_PASSPORT_FRAMES.some(x => x[0] === v.frameStyle) ? v.frameStyle : 'holo-neon',
     bgMode: V13_BABY_PASSPORT_BG_MODES.some(x => x[0] === v.bgMode) ? v.bgMode : 'gradient',
-    bgColor1: hex(v.bgColor1, '#07192e'),
-    bgColor2: hex(v.bgColor2, '#1a1438'),
+    bgColor1: hex(v.bgColor1, '#122238'),
+    bgColor2: hex(v.bgColor2, '#1e2942'),
     bgImage: typeof v.bgImage === 'string' ? v.bgImage : '',
     bgOverlay: Math.max(0, Math.min(85, Number.isFinite(Number(v.bgOverlay)) ? Number(v.bgOverlay) : 25)),
-    textColor: hex(v.textColor, '#f2fbff'),
-    accentColor: hex(v.accentColor, '#72f5ff'),
-    borderColor: hex(v.borderColor, '#6ef3ff'),
+    textColor: hex(v.textColor, '#f8fafc'),
+    accentColor: hex(v.accentColor, '#93e5ff'),
+    borderColor: hex(v.borderColor, '#88d9f7'),
     fontFamily: V13_BABY_FONTS.some(x => x[0] === v.fontFamily) ? v.fontFamily : 'theme',
     depth3d: Math.max(1, Math.min(5, Number.isFinite(Number(v.depth3d)) ? Number(v.depth3d) : 4)),
     diorama: v.diorama !== false,
@@ -7665,7 +7666,8 @@ function v13Settings(v = {}) {
     fanDiary: v138FanDiaryDefaults(v.fanDiary),
     customerLock: v14CustomerLockDefaults(v.customerLock),
     digitalStore: v141StoreDefaults(v.digitalStore),
-    virtualLibrary: v142LibraryDefaults(v.virtualLibrary)
+    virtualLibrary: v142LibraryDefaults(v.virtualLibrary),
+    ledPanel: v151LedDefaults(v.ledPanel)
   };
 }
 
@@ -8424,91 +8426,108 @@ html.qfs-wow-locked #wypha3dHudBar {
   width: 100% !important;
   max-width: 680px !important;
   margin: 0 auto !important;
-  padding: clamp(16px, 4vw, 28px) !important;
+  padding: clamp(18px, 4.2vw, 30px) !important;
   background:
-    radial-gradient(ellipse at 12% 10%, rgba(110, 243, 255, 0.22), transparent 55%),
-    radial-gradient(ellipse at 88% 90%, rgba(255, 133, 200, 0.20), transparent 55%),
-    linear-gradient(145deg, var(--pp-bg1, #07192e) 0%, #10243d 50%, var(--pp-bg2, #1a1438) 100%) !important;
-  color: var(--pp-text, #f2fbff) !important;
-  border: 2px solid var(--pp-border, #6ef3ff) !important;
-  border-radius: 28px !important;
+    radial-gradient(circle at 14% 12%, rgba(147, 229, 255, 0.14), transparent 58%),
+    radial-gradient(circle at 86% 88%, rgba(244, 180, 218, 0.13), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(253, 230, 168, 0.06), transparent 68%),
+    linear-gradient(155deg, var(--pp-bg1, #122238) 0%, #172a45 52%, var(--pp-bg2, #1e2942) 100%) !important;
+  color: var(--pp-text, #f8fafc) !important;
+  border: 1.5px solid rgba(176, 228, 255, 0.45) !important;
+  border-radius: 30px !important;
   box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.58),
-    0 0 28px rgba(110, 243, 255, 0.28),
-    inset 0 0 24px rgba(110, 243, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    0 20px 50px rgba(4, 10, 24, 0.42),
+    0 0 24px rgba(147, 229, 255, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 0 32px rgba(147, 229, 255, 0.05) !important;
+  backdrop-filter: blur(18px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.15) !important;
   overflow: hidden !important;
+  position: relative !important;
+}
+.p124-passport.p124-passport-holo::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 24px;
+  border: 1px dashed rgba(255, 235, 186, 0.24);
+  pointer-events: none;
 }
 .p124-passport-holo .p124-passport-heading {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 8px !important;
-  padding: 9px 12px !important;
-  margin-bottom: 14px !important;
-  border-radius: 16px !important;
-  background: linear-gradient(135deg, rgba(6, 22, 44, 0.92), rgba(24, 14, 48, 0.90)) !important;
-  border: 1.5px solid rgba(110, 243, 255, 0.72) !important;
-  box-shadow: 0 0 18px rgba(110, 243, 255, 0.24), inset 0 0 12px rgba(110, 243, 255, 0.14) !important;
+  gap: 10px !important;
+  padding: 10px 14px !important;
+  margin-bottom: 16px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(147, 229, 255, 0.06)) !important;
+  border: 1px solid rgba(186, 234, 255, 0.36) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
   font-size: 11px !important;
-  letter-spacing: 0.06em !important;
-  line-height: 1.25 !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.3 !important;
 }
 .p124-passport-brand {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  color: #8ef5ff !important;
-  font: 800 10.5px/1.25 Syne, system-ui, sans-serif !important;
-  letter-spacing: 0.06em !important;
+  gap: 10px !important;
+  color: #dff6ff !important;
+  font: 700 11px/1.3 'Plus Jakarta Sans', Syne, system-ui, sans-serif !important;
+  letter-spacing: 0.05em !important;
   text-align: left !important;
   min-width: 0 !important;
 }
 .p124-passport-brand b {
-  font: 800 10.5px/1.25 Syne, system-ui, sans-serif !important;
+  font: 800 11px/1.3 'Plus Jakarta Sans', Syne, system-ui, sans-serif !important;
   letter-spacing: 0.06em !important;
-  color: #8ef5ff !important;
+  background: linear-gradient(90deg, #ffffff, #bae6fd, #fde68a);
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
   word-break: normal !important;
   overflow-wrap: break-word !important;
 }
+.p124-passport-seal-chip,
 .p124-passport-badge-no {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
-  padding: 5px 9px !important;
-  border-radius: 10px !important;
-  border: 1.5px solid #ff85c8 !important;
-  background: rgba(255, 133, 200, 0.18) !important;
-  color: #fff !important;
-  font: 800 11.5px/1 ui-monospace, monospace !important;
-  letter-spacing: 0 !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(253, 230, 138, 0.45) !important;
+  background: linear-gradient(135deg, rgba(253, 230, 138, 0.16), rgba(147, 229, 255, 0.14)) !important;
+  color: #fef3c7 !important;
+  font: 700 9.5px/1 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  letter-spacing: 0.08em !important;
   white-space: nowrap !important;
-  box-shadow: 0 0 12px rgba(255, 133, 200, 0.35) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
 }
 .p124-passport-logo {
-  width: 40px !important;
-  height: 40px !important;
+  width: 38px !important;
+  height: 38px !important;
   object-fit: contain !important;
   flex-shrink: 0;
+  border-radius: 10px;
 }
 .p124-passport-identity {
   display: grid;
-  grid-template-columns: 126px minmax(0, 1fr);
+  grid-template-columns: 124px minmax(0, 1fr);
   gap: 14px;
   align-items: stretch;
   margin: 0 0 16px;
   padding: 14px;
   border-radius: 22px;
-  background: linear-gradient(145deg, rgba(5, 16, 34, 0.82), rgba(18, 12, 38, 0.82));
-  border: 1.5px solid rgba(110, 243, 255, 0.52);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 0 18px rgba(110, 243, 255, 0.10);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(15, 30, 52, 0.55));
+  border: 1px solid rgba(186, 234, 255, 0.32);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 @media (max-width: 520px) {
   .p124-passport-identity {
     grid-template-columns: 98px minmax(0, 1fr);
     gap: 10px;
-    padding: 10px;
+    padding: 11px;
   }
 }
 .p124-baby-photo-slot {
@@ -8521,10 +8540,10 @@ html.qfs-wow-locked #wypha3dHudBar {
 .p124-baby-photo-frame {
   width: 112px;
   height: 136px;
-  border-radius: 18px;
-  border: 2px solid #6ef3ff;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 18px rgba(110, 243, 255, 0.4);
-  background: linear-gradient(145deg, #0d2238, #1f1638);
+  border-radius: 20px;
+  border: 2px solid rgba(186, 234, 255, 0.65);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28), 0 0 14px rgba(147, 229, 255, 0.18);
+  background: linear-gradient(145deg, #162a44, #232746);
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -8546,16 +8565,21 @@ html.qfs-wow-locked #wypha3dHudBar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 9px;
+  padding: 5px 10px;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(110, 243, 255, 0.25), rgba(184, 124, 255, 0.32));
-  border: 1px solid rgba(110, 243, 255, 0.72);
-  color: #fff;
-  font: 700 9.5px/1.2 Syne, system-ui, sans-serif;
+  background: linear-gradient(135deg, rgba(147, 229, 255, 0.20), rgba(196, 181, 253, 0.24));
+  border: 1px solid rgba(186, 234, 255, 0.55);
+  color: #f8fafc;
+  font: 700 9.5px/1.2 'Plus Jakarta Sans', system-ui, sans-serif;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  box-shadow: 0 0 12px rgba(110, 243, 255, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.p124-baby-upload-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(147, 229, 255, 0.32), rgba(196, 181, 253, 0.36));
 }
 .p124-baby-name-col {
   min-width: 0;
@@ -8565,64 +8589,59 @@ html.qfs-wow-locked #wypha3dHudBar {
   gap: 10px;
   text-align: left;
 }
-/* Individual Hologram / Neon Frame for Every Text Field in Passport */
+/* Comfortable Pearl-Glass Futuristic Frame for Every Text Field in Passport */
 .p124-holo-field-box {
   position: relative;
-  padding: 10px 13px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(8, 26, 50, 0.90), rgba(26, 16, 52, 0.86));
-  border: 1.5px solid rgba(110, 243, 255, 0.72);
+  padding: 11px 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(15, 28, 48, 0.62));
+  border: 1px solid rgba(186, 234, 255, 0.42);
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.35),
-    0 0 16px rgba(110, 243, 255, 0.22),
-    inset 0 0 12px rgba(110, 243, 255, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    0 6px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 .p124-parents-holo-box {
-  border-color: rgba(255, 133, 200, 0.68);
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.32),
-    0 0 14px rgba(255, 133, 200, 0.20),
-    inset 0 0 10px rgba(255, 133, 200, 0.12);
+  border-color: rgba(249, 168, 212, 0.42);
+  background: linear-gradient(135deg, rgba(255, 240, 248, 0.07), rgba(28, 22, 48, 0.58));
 }
 .p124-baby-kicker {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 2.5px 9px;
   margin-bottom: 5px;
   border-radius: 999px;
-  background: rgba(110, 243, 255, 0.14);
-  border: 1px solid rgba(110, 243, 255, 0.45);
-  font: 800 8.5px/1.2 Syne, system-ui, sans-serif;
-  letter-spacing: 0.14em;
-  color: #8ef5ff;
+  background: rgba(147, 229, 255, 0.13);
+  border: 1px solid rgba(186, 234, 255, 0.35);
+  font: 700 8.5px/1.2 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: 0.11em;
+  color: #bae6fd;
 }
 .p124-parents-holo-box .p124-baby-kicker {
-  background: rgba(255, 133, 200, 0.15);
-  border-color: rgba(255, 133, 200, 0.5);
-  color: #ffb8e2;
+  background: rgba(249, 168, 212, 0.14);
+  border-color: rgba(249, 168, 212, 0.38);
+  color: #fbcfe8;
 }
 .p124-passport-holo .p124-name {
   margin: 0 !important;
   color: #ffffff !important;
-  font-size: clamp(17px, 4.4vw, 28px) !important;
-  line-height: 1.22 !important;
+  font-size: clamp(17px, 4.3vw, 26px) !important;
+  line-height: 1.25 !important;
   font-weight: 800 !important;
-  text-shadow: 0 0 16px rgba(110, 243, 255, 0.42);
+  text-shadow: 0 2px 10px rgba(147, 229, 255, 0.22);
   overflow-wrap: anywhere !important;
   word-break: break-word !important;
   white-space: normal !important;
 }
 .p124-baby-parents-sub {
   margin: 0;
-  font: 700 clamp(12px, 3.2vw, 15px)/1.35 system-ui, sans-serif;
-  color: #eefaff;
+  font: 600 clamp(12.5px, 3.2vw, 15px)/1.4 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #f1f5f9;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
-/* Individual Hologram / Neon Frames on Every Fact Item (.p124-facts > div) */
+/* Comfortable Pearl-Glass Fact Cards (.p124-facts > div) */
 .p124-passport-holo .p124-facts {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -8636,24 +8655,18 @@ html.qfs-wow-locked #wypha3dHudBar {
 }
 .p124-passport-holo .p124-facts > div {
   position: relative !important;
-  padding: 10px 12px !important;
-  border-radius: 16px !important;
-  background: linear-gradient(145deg, rgba(7, 22, 44, 0.90), rgba(22, 14, 48, 0.86)) !important;
-  border: 1.5px solid rgba(110, 243, 255, 0.65) !important;
+  padding: 11px 13px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(15, 28, 48, 0.56)) !important;
+  border: 1px solid rgba(186, 234, 255, 0.34) !important;
   box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.36),
-    0 0 15px rgba(110, 243, 255, 0.20),
-    inset 0 0 12px rgba(110, 243, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+    0 6px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
   text-align: left !important;
   min-width: 0 !important;
 }
 .p124-passport-holo .p124-facts > div:nth-child(even) {
-  border-color: rgba(196, 140, 255, 0.68) !important;
-  box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.36),
-    0 0 15px rgba(196, 140, 255, 0.20),
-    inset 0 0 12px rgba(196, 140, 255, 0.12) !important;
+  border-color: rgba(216, 180, 254, 0.36) !important;
 }
 .p124-passport-holo .p124-facts > div:last-child:nth-child(odd) {
   grid-column: 1 / -1 !important;
@@ -8663,43 +8676,43 @@ html.qfs-wow-locked #wypha3dHudBar {
   padding: 2px 8px !important;
   margin-bottom: 6px !important;
   border-radius: 999px !important;
-  background: rgba(110, 243, 255, 0.14) !important;
-  border: 1px solid rgba(110, 243, 255, 0.42) !important;
-  color: #8ef5ff !important;
-  font: 800 9px/1.2 Syne, system-ui, sans-serif !important;
-  letter-spacing: 0.12em !important;
+  background: rgba(147, 229, 255, 0.12) !important;
+  border: 1px solid rgba(186, 234, 255, 0.30) !important;
+  color: #bae6fd !important;
+  font: 700 9px/1.2 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  letter-spacing: 0.10em !important;
   text-transform: uppercase !important;
   opacity: 1 !important;
 }
 .p124-passport-holo .p124-facts dd {
   margin: 0 !important;
   padding: 7px 10px !important;
-  border-radius: 11px !important;
-  background: rgba(4, 12, 26, 0.78) !important;
-  border: 1px solid rgba(110, 243, 255, 0.45) !important;
-  color: #ffffff !important;
-  font: 700 clamp(12.5px, 3.2vw, 15px)/1.35 system-ui, sans-serif !important;
-  box-shadow: inset 0 0 10px rgba(110, 243, 255, 0.12) !important;
+  border-radius: 12px !important;
+  background: rgba(10, 20, 38, 0.48) !important;
+  border: 1px solid rgba(186, 234, 255, 0.24) !important;
+  color: #f8fafc !important;
+  font: 700 clamp(12.5px, 3.2vw, 15px)/1.38 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2) !important;
   overflow-wrap: anywhere !important;
   word-break: break-word !important;
 }
 
-/* Fitted 6-Unit & Per-Digit Small Hologram Boxes for Tahun, Bulan, Hari, Jam, Menit, Detik */
+/* Soft Futuristic 6-Unit & Per-Digit Boxes for Tahun, Bulan, Hari, Jam, Menit, Detik */
 .p124-holo-age-wrap {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: 100% !important;
   margin: 16px 0 14px !important;
-  padding: clamp(10px, 2.5vw, 14px) !important;
-  border-radius: 20px !important;
-  background: linear-gradient(145deg, rgba(4, 13, 28, 0.90), rgba(16, 11, 36, 0.90)) !important;
-  border: 1.5px solid rgba(110, 243, 255, 0.62) !important;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42), 0 0 18px rgba(110, 243, 255, 0.2), inset 0 0 14px rgba(110, 243, 255, 0.1) !important;
+  padding: clamp(11px, 2.6vw, 16px) !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(12, 24, 44, 0.65)) !important;
+  border: 1px solid rgba(186, 234, 255, 0.36) !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
 }
 .p124-holo-age-title {
-  font: 800 clamp(9px, 2.4vw, 10.5px)/1.3 Syne, system-ui, sans-serif;
-  letter-spacing: 0.12em;
-  color: #8ef5ff;
+  font: 700 clamp(9.5px, 2.4vw, 11px)/1.3 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: 0.10em;
+  color: #dff6ff;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -8714,11 +8727,11 @@ html.qfs-wow-locked #wypha3dHudBar {
 .wypha-holo-box {
   box-sizing: border-box !important;
   min-width: 0 !important;
-  padding: clamp(5px, 1.4vw, 8px) clamp(3px, 0.8vw, 6px) !important;
-  border-radius: 13px !important;
-  background: linear-gradient(165deg, rgba(8, 26, 50, 0.92), rgba(20, 14, 44, 0.92)) !important;
-  border: 1.5px solid rgba(110, 243, 255, 0.68) !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(110, 243, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  padding: clamp(6px, 1.4vw, 9px) clamp(3px, 0.8vw, 6px) !important;
+  border-radius: 14px !important;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(15, 28, 48, 0.68)) !important;
+  border: 1px solid rgba(186, 234, 255, 0.38) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -8726,8 +8739,7 @@ html.qfs-wow-locked #wypha3dHudBar {
   gap: 5px !important;
 }
 .wypha-holo-box:nth-child(even) {
-  border-color: rgba(255, 133, 200, 0.72) !important;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 133, 200, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(244, 180, 218, 0.40) !important;
 }
 .wypha-holo-digits {
   display: inline-flex !important;
@@ -8744,28 +8756,27 @@ html.qfs-wow-locked #wypha3dHudBar {
   min-width: 0 !important;
   max-width: 28px !important;
   height: clamp(22px, 5.8vw, 32px) !important;
-  border-radius: 7px !important;
-  background: linear-gradient(180deg, rgba(4, 16, 34, 0.96), rgba(14, 34, 64, 0.92)) !important;
-  border: 1px solid rgba(126, 246, 255, 0.85) !important;
-  box-shadow: 0 0 8px rgba(110, 243, 255, 0.35), inset 0 0 6px rgba(110, 243, 255, 0.22) !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(12, 24, 44, 0.82), rgba(20, 36, 62, 0.78)) !important;
+  border: 1px solid rgba(186, 234, 255, 0.52) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
   color: #ffffff !important;
-  font: 800 clamp(11px, 3.1vw, 17px)/1 ui-monospace, SFMono-Regular, Menlo, monospace !important;
-  text-shadow: 0 0 8px rgba(110, 243, 255, 0.65) !important;
+  font: 800 clamp(11px, 3.1vw, 16.5px)/1 'Plus Jakarta Sans', ui-monospace, SFMono-Regular, monospace !important;
+  text-shadow: 0 1px 4px rgba(147, 229, 255, 0.3) !important;
 }
 .wypha-holo-box:nth-child(even) .wypha-holo-digit {
-  border-color: rgba(255, 148, 218, 0.85) !important;
-  box-shadow: 0 0 8px rgba(255, 133, 200, 0.35), inset 0 0 6px rgba(255, 133, 200, 0.22) !important;
+  border-color: rgba(249, 168, 212, 0.52) !important;
 }
 .wypha-holo-box > span {
   display: block !important;
-  font: 800 clamp(7px, 1.8vw, 9.5px)/1.1 Syne, system-ui, sans-serif !important;
-  letter-spacing: 0.06em !important;
-  color: #9ef6ff !important;
+  font: 700 clamp(7px, 1.8vw, 9.5px)/1.1 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  color: #bae6fd !important;
   text-transform: uppercase !important;
   white-space: nowrap !important;
 }
 .wypha-holo-box:nth-child(even) > span {
-  color: #ffb8e6 !important;
+  color: #fbcfe8 !important;
 }
 .p124-passport-actions {
   display: flex;
@@ -10983,7 +10994,7 @@ function v13CustomerRuntime(C, BTS_LOGO_SRC) {
             ctx.fillText('WYPHA PRINTLAB · LITTLE LIFE PASSPORT', 190, 86);
             ctx.fillStyle = '#b9eaff';
             ctx.font = '700 15px Syne, system-ui, sans-serif';
-            ctx.fillText('OFFICIAL HOLOGRAM BIRTH RECORD · EDITION 01', 190, 114);
+            ctx.fillText('OFFICIAL HOLOGRAM BIRTH RECORD · SPECIAL KEEPSAKE', 190, 114);
 
             let curY = 162;
             ctx.save();
@@ -11073,7 +11084,7 @@ function v13CustomerRuntime(C, BTS_LOGO_SRC) {
             ctx.fillStyle = ppCfg.accentColor || '#72f5ff';
             ctx.font = '800 15px Syne, system-ui, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('✦ USIA BUAH HATI SAAT INI (HOLOGRAM REALTIME)', W / 2, curY + 30);
+            ctx.fillText('✦ USIA BUAH HATI SAAT INI', W / 2, curY + 30);
 
             const units = [
               ['TAHUN', age.years],
@@ -13629,7 +13640,8 @@ function v13Output(s) {
     v138Output(s, C) +
     v14Output(s, C) +
     v141Output(s, C) +
-    v142Output(s, C)
+    v142Output(s, C) +
+    v151Output(s, C)
   );
 }
 
@@ -17535,7 +17547,7 @@ function v136CustomerRuntime(C) {
             ? '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px">' +
                 `<button type="button" class="v136-btn primary" data-wft-prof-save style="padding:9px 18px">💾 ${t('Simpan ke HP', 'Save to Phone')}</button>` +
               '</div>'
-            : `<p style="margin:12px 0 0;font:600 11.5px system-ui;color:#d97706;text-align:center">🔒 ${t('Buka PIN Customer di bagian atas layar untuk mengedit biodata silsilah.', 'Unlock Customer PIN at the top of the screen to edit lineage details.')}</p>`);
+            : `<p style="margin:12px 0 0;font:600 11.5px system-ui;color:#d97706;text-align:center">🔒 ${t('Ketuk 🔑 PIN / ✏️ di bagian atas layar untuk mengedit biodata silsilah.', 'Tap 🔑 PIN / ✏️ at the top of the screen to edit lineage details.')}</p>`);
 
         const avEl = profileDialog.querySelector('[data-wft-prof-av]');
         const renderAvPreview = () => {
@@ -19178,7 +19190,7 @@ function v137CustomerRuntime(C) {
         <div class="wypha-cloud-vault-inner">
           <div class="wypha-cloud-badge">
             <span class="wypha-cloud-badge-dot"></span>
-            <span class="wypha-cloud-badge-txt">☁️ GOOGLE DRIVE CLOUD SYNC &amp; PUSAT DATA CUSTOMER</span>
+            <span class="wypha-cloud-badge-txt">☁️ GOOGLE DRIVE CLOUD SYNC &amp; PUSAT DATA PRIBADI</span>
           </div>
           <h2 class="wypha-cloud-title">Simpan &amp; Pulihkan Kenanganmu Kapan Saja</h2>
           <p class="wypha-cloud-desc">
@@ -22552,6 +22564,7 @@ function v138CustomerRuntime(C) {
       const normalizeLoadedDiary = list => list.map(e => ({
         ...e,
         photo: window.__wyphaDecodePoolRefs126 ? window.__wyphaDecodePoolRefs126(e.photo || '') : (e.photo || ''),
+        audio: window.__wyphaDecodePoolRefs126 ? window.__wyphaDecodePoolRefs126(e.audio || '') : (e.audio || ''),
         stickers: Array.isArray(e.stickers) ? e.stickers.map(st => ({
           ...st,
           src: window.__wyphaDecodePoolRefs126 ? window.__wyphaDecodePoolRefs126(st.src || '') : (st.src || '')
@@ -22590,6 +22603,7 @@ function v138CustomerRuntime(C) {
         const serializable = entries.map(e => ({
           ...e,
           photo: window.__wyphaEncodePoolRefs126 ? window.__wyphaEncodePoolRefs126(e.photo || '') : (e.photo || ''),
+          audio: window.__wyphaEncodePoolRefs126 ? window.__wyphaEncodePoolRefs126(e.audio || '') : (e.audio || ''),
           stickers: Array.isArray(e.stickers) ? e.stickers.map(st => ({
             ...st,
             src: window.__wyphaEncodePoolRefs126 ? window.__wyphaEncodePoolRefs126(st.src || '') : (st.src || '')
@@ -22609,7 +22623,8 @@ function v138CustomerRuntime(C) {
             const norm = normalizeLoadedDiary(idbVal);
             entries = norm.map((e, idx) => ({
               ...e,
-              photo: (e.photo && e.photo.length > 5) ? e.photo : (entries.find(x => x.id === e.id)?.photo || entries[idx]?.photo || '')
+              photo: (e.photo && e.photo.length > 5) ? e.photo : (entries.find(x => x.id === e.id)?.photo || entries[idx]?.photo || ''),
+              audio: (e.audio && e.audio.length > 5) ? e.audio : (entries.find(x => x.id === e.id)?.audio || entries[idx]?.audio || '')
             }));
             if (typeof renderCalendarAndEntries === 'function') renderCalendarAndEntries();
           }
@@ -22667,11 +22682,21 @@ function v138CustomerRuntime(C) {
                 '</div>' +
                 '<input type="text" id="v138DiaryTitle" placeholder="Judul catatan / momen hari ini...">' +
                 '<textarea id="v138DiaryNote" rows="4" placeholder="Tulis catatan diary, jadwal konser, atau isi hatimu tanpa batas di tanggal ini..."></textarea>' +
-                '<div class="v139-diary-row-wrap" style="align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;border-radius:12px;background:rgba(8,22,46,0.75);border:1px dashed rgba(110,243,255,0.42)">' +
-                  '<label class="v138-cal-nav-btn" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin:0">📷 <span id="v138DiaryAddPhotoLbl">Lampirkan Foto Catatan</span><input type="file" id="v138DiaryFormPhotoInp" accept="image/*" hidden></label>' +
+                '<div class="v139-diary-row-wrap" style="align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:12px;background:rgba(8,22,46,0.75);border:1px dashed rgba(110,243,255,0.42)">' +
+                  '<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">' +
+                    '<label class="v138-cal-nav-btn" style="cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin:0">📷 <span id="v138DiaryAddPhotoLbl">Lampirkan Foto</span><input type="file" id="v138DiaryFormPhotoInp" accept="image/*" hidden></label>' +
+                    '<button type="button" class="v138-cal-nav-btn" id="v138DiaryRecordVoiceBtn" style="display:inline-flex;align-items:center;gap:5px">🎙 <span id="v138DiaryRecordVoiceLbl">Rekam Voice Note</span></button>' +
+                    '<label class="v138-cal-nav-btn" style="cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin:0">🎵 <span id="v138DiaryUploadAudioLbl">Audio dari HP</span><input type="file" id="v138DiaryFormAudioInp" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.webm" hidden></label>' +
+                  '</div>' +
+                  '<span id="v138DiaryRecordStatus" hidden style="font:700 11px system-ui;color:#ff9de2"></span>' +
                   '<div id="v138DiaryFormPhotoWrap" hidden style="display:inline-flex;align-items:center;gap:8px">' +
                     '<img id="v138DiaryFormPhotoThumb" alt="Preview Foto Catatan" title="Klik untuk lihat foto utuh" style="width:64px;height:64px;object-fit:contain;border-radius:10px;background:#040a16;border:1px solid #6ef3ff;cursor:zoom-in">' +
                     '<button type="button" class="v138-cal-nav-btn" id="v138DiaryFormPhotoClear" title="Hapus foto lampiran" style="color:#ff9bb8 !important;padding:4px 8px">× Hapus Foto</button>' +
+                  '</div>' +
+                  '<div id="v138DiaryFormAudioWrap" hidden style="display:flex;align-items:center;gap:6px;width:100%;margin-top:4px;padding:6px 8px;border-radius:10px;background:rgba(16,12,38,0.88);border:1px solid rgba(213,140,255,0.45)">' +
+                    '<span style="font:700 10.5px system-ui;color:#e9d5ff;white-space:nowrap">🎧 Voice/Audio:</span>' +
+                    '<audio id="v138DiaryFormAudioPlayer" controls preload="metadata" style="flex:1;height:32px;min-width:140px"></audio>' +
+                    '<button type="button" class="v138-cal-nav-btn" id="v138DiaryFormAudioClear" title="Hapus suara lampiran" style="color:#ff9bb8 !important;padding:4px 8px">× Hapus</button>' +
                   '</div>' +
                 '</div>' +
                 '<div class="v139-diary-row-wrap" style="justify-content:space-between;align-items:center">' +
@@ -22752,6 +22777,15 @@ function v138CustomerRuntime(C) {
                     '<button type="button" class="v138-cal-nav-btn" data-df-photo-zoom-btn style="margin:6px auto 8px;font-size:10.5px;padding:4px 12px">🔍 Klik Perbesar Foto Utuh</button>' +
                   '</div>'
                 : '') +
+              (entry.audio
+                ? '<div style="margin:8px 0 12px;padding:10px 12px;border-radius:14px;border:1.5px solid rgba(213,140,255,.55);background:linear-gradient(135deg,rgba(12,24,48,.92),rgba(28,14,48,.92));position:relative;z-index:2;display:grid;gap:6px">' +
+                    '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">' +
+                      '<strong style="font:800 11px Syne,system-ui;color:#f5d0fe">🎙 ' + t('VOICE NOTE / AUDIO DIARY:', 'DIARY VOICE NOTE / AUDIO:') + '</strong>' +
+                      '<button type="button" class="v138-cal-nav-btn" data-df-audio-del style="font-size:10px;padding:2px 8px;color:#ff9bb8 !important">🗑 ' + t('Hapus Suara', 'Delete Audio') + '</button>' +
+                    '</div>' +
+                    '<audio controls preload="metadata" src="' + entry.audio + '" style="width:100%;height:36px"></audio>' +
+                  '</div>'
+                : '') +
               '<div style="font:500 13px/1.65 system-ui,sans-serif;color:#eaf7ff;white-space:pre-wrap;position:relative;z-index:2;min-height:110px" data-df-note></div>' +
               '<div style="margin-top:16px;padding-top:8px;border-top:1px dashed rgba(110,243,255,.3);display:flex;justify-content:space-between;align-items:center;font:700 9.5px Orbitron,system-ui;color:#8ef5ff;opacity:.85;position:relative;z-index:2">' +
                 '<span>' + ([C.personName, C.secondName].filter(Boolean).join(' ✦ ') || 'MY FAN DIARY') + '</span>' +
@@ -22778,6 +22812,8 @@ function v138CustomerRuntime(C) {
                   '<option value="gold">🌙 Midnight Gold</option>' +
                 '</select>' +
                 '<label class="v138-cal-nav-btn" style="cursor:pointer">📷 ' + t('Foto Diary', 'Diary Photo') + '<input type="file" id="v139ModalPhotoInp" accept="image/*" hidden></label>' +
+                '<button type="button" class="v138-cal-nav-btn" id="v139ModalRecordBtn">🎙 ' + t('Rekam Suara', 'Record Voice') + '</button>' +
+                '<label class="v138-cal-nav-btn" style="cursor:pointer">🎵 ' + t('Audio HP', 'Phone Audio') + '<input type="file" id="v139ModalAudioInp" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.webm" hidden></label>' +
               '</div>' +
               '<button type="button" class="v138-moments-btn" id="v139DownloadDiaryPng">💾 ' + t('Simpan Diary PNG', 'Save Diary PNG') + '</button>' +
             '</div>';
@@ -22825,6 +22861,79 @@ function v138CustomerRuntime(C) {
             };
             im.src = u;
           };
+
+          const modalAudioInp = fullModal.querySelector('#v139ModalAudioInp');
+          if (modalAudioInp) {
+            modalAudioInp.onchange = e => {
+              const f = e.target.files?.[0];
+              e.target.value = '';
+              if (!f) return;
+              const reader = new FileReader();
+              reader.onload = () => {
+                const dataUrl = String(reader.result || '');
+                if (dataUrl) {
+                  entry.audio = dataUrl;
+                  saveDiary();
+                  renderCalendarAndEntries();
+                  renderFullModal();
+                }
+              };
+              reader.readAsDataURL(f);
+            };
+          }
+
+          const modalRecordBtn = fullModal.querySelector('#v139ModalRecordBtn');
+          if (modalRecordBtn) {
+            modalRecordBtn.onclick = async () => {
+              if (modalRecordBtn.dataset.recording === '1' && window.__wyphaDiaryModalRecorder) {
+                try { window.__wyphaDiaryModalRecorder.stop(); } catch (e) {}
+                return;
+              }
+              if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+                modalAudioInp?.click();
+                return;
+              }
+              try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const chunks = [];
+                const mime = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'].find(m => MediaRecorder.isTypeSupported?.(m)) || '';
+                const rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+                window.__wyphaDiaryModalRecorder = rec;
+                modalRecordBtn.dataset.recording = '1';
+                modalRecordBtn.textContent = '⏹ ' + t('Stop & Simpan', 'Stop & Save');
+                rec.ondataavailable = ev => { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
+                rec.onstop = () => {
+                  stream.getTracks().forEach(tr => tr.stop());
+                  modalRecordBtn.dataset.recording = '0';
+                  const blob = new Blob(chunks, { type: rec.mimeType || 'audio/webm' });
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    const dataUrl = String(reader.result || '').replace(/^data:video\//, 'data:audio/').replace(/^data:application\/octet-stream/, 'data:audio/webm');
+                    if (dataUrl) {
+                      entry.audio = dataUrl;
+                      saveDiary();
+                      renderCalendarAndEntries();
+                      renderFullModal();
+                    }
+                  };
+                  reader.readAsDataURL(blob);
+                };
+                rec.start();
+              } catch (err) {
+                modalAudioInp?.click();
+              }
+            };
+          }
+
+          const modalAudioDel = fullModal.querySelector('[data-df-audio-del]');
+          if (modalAudioDel) {
+            modalAudioDel.onclick = () => {
+              entry.audio = '';
+              saveDiary();
+              renderCalendarAndEntries();
+              renderFullModal();
+            };
+          }
 
           // Render Pasted Stickers on #v139DiaryPageStage
           const stageEl = fullModal.querySelector('#v139DiaryPageStage');
@@ -23042,6 +23151,7 @@ function v138CustomerRuntime(C) {
             sec.querySelector('#v138DiaryTitle').value = entry.title || '';
             sec.querySelector('#v138DiaryNote').value = entry.note || '';
             setPendingDiaryFormPhoto(entry.photo || '');
+            setPendingDiaryFormAudio(entry.audio || '');
             renderCalendarAndEntries();
             sec.querySelector('#v138DiaryTitle').focus();
           };
@@ -23057,16 +23167,35 @@ function v138CustomerRuntime(C) {
       let selectedDate = now.toISOString().slice(0, 10);
       let editingEntryId = null;
       let pendingDiaryFormPhoto = '';
+      let pendingDiaryFormAudio = '';
       const formPhotoInp = sec.querySelector('#v138DiaryFormPhotoInp');
       const formPhotoWrap = sec.querySelector('#v138DiaryFormPhotoWrap');
       const formPhotoThumb = sec.querySelector('#v138DiaryFormPhotoThumb');
       const formPhotoClear = sec.querySelector('#v138DiaryFormPhotoClear');
+      const formAudioInp = sec.querySelector('#v138DiaryFormAudioInp');
+      const formAudioWrap = sec.querySelector('#v138DiaryFormAudioWrap');
+      const formAudioPlayer = sec.querySelector('#v138DiaryFormAudioPlayer');
+      const formAudioClear = sec.querySelector('#v138DiaryFormAudioClear');
+      const formRecordBtn = sec.querySelector('#v138DiaryRecordVoiceBtn');
+      const formRecordLbl = sec.querySelector('#v138DiaryRecordVoiceLbl');
+      const formRecordStatus = sec.querySelector('#v138DiaryRecordStatus');
       const setPendingDiaryFormPhoto = src => {
         pendingDiaryFormPhoto = src || '';
         if (formPhotoWrap && formPhotoThumb) {
           formPhotoWrap.hidden = !pendingDiaryFormPhoto;
           if (pendingDiaryFormPhoto) formPhotoThumb.src = pendingDiaryFormPhoto;
           else formPhotoThumb.removeAttribute('src');
+        }
+      };
+      const setPendingDiaryFormAudio = src => {
+        pendingDiaryFormAudio = src || '';
+        if (formAudioWrap && formAudioPlayer) {
+          formAudioWrap.hidden = !pendingDiaryFormAudio;
+          if (pendingDiaryFormAudio) formAudioPlayer.src = pendingDiaryFormAudio;
+          else {
+            try { formAudioPlayer.pause(); } catch (e) {}
+            formAudioPlayer.removeAttribute('src');
+          }
         }
       };
       if (formPhotoThumb) {
@@ -23097,6 +23226,99 @@ function v138CustomerRuntime(C) {
             setPendingDiaryFormPhoto(c.toDataURL('image/jpeg', 0.84));
           };
           im.src = u;
+        };
+      }
+      if (formAudioClear) {
+        formAudioClear.onclick = () => setPendingDiaryFormAudio('');
+      }
+      if (formAudioInp) {
+        formAudioInp.onchange = e => {
+          const f = e.target.files?.[0];
+          e.target.value = '';
+          if (!f) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            const dataUrl = String(reader.result || '');
+            if (dataUrl) {
+              setPendingDiaryFormAudio(dataUrl);
+              if (formRecordStatus) {
+                formRecordStatus.hidden = false;
+                formRecordStatus.textContent = '✓ ' + t('Audio dari HP siap disimpan!', 'Phone audio attached!');
+                setTimeout(() => { formRecordStatus.hidden = true; }, 3200);
+              }
+            }
+          };
+          reader.readAsDataURL(f);
+        };
+      }
+      let diaryRecorder = null;
+      let diaryRecChunks = [];
+      let diaryRecTimer = 0;
+      let diaryRecSecs = 0;
+      if (formRecordBtn) {
+        formRecordBtn.onclick = async () => {
+          if (diaryRecorder && diaryRecorder.state === 'recording') {
+            clearInterval(diaryRecTimer);
+            try { diaryRecorder.stop(); } catch (e) {}
+            return;
+          }
+          if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+            if (formRecordStatus) {
+              formRecordStatus.hidden = false;
+              formRecordStatus.textContent = '⚠ ' + t('Browser belum mendukung rekam langsung; silakan pilih file Audio dari HP.', 'Direct recording unsupported here; please choose an audio file from your phone.');
+            }
+            formAudioInp?.click();
+            return;
+          }
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            diaryRecChunks = [];
+            const mime = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg'].find(m => MediaRecorder.isTypeSupported?.(m)) || '';
+            diaryRecorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+            diaryRecSecs = 0;
+            if (formRecordLbl) formRecordLbl.textContent = t('Stop & Simpan Suara', 'Stop & Save Voice');
+            formRecordBtn.style.borderColor = '#ff7ad9';
+            if (formRecordStatus) {
+              formRecordStatus.hidden = false;
+              formRecordStatus.textContent = '🔴 00:00 · ' + t('Merekam voice note...', 'Recording voice note...');
+            }
+            diaryRecTimer = setInterval(() => {
+              diaryRecSecs++;
+              const mm = String(Math.floor(diaryRecSecs / 60)).padStart(2, '0');
+              const ss = String(diaryRecSecs % 60).padStart(2, '0');
+              if (formRecordStatus) formRecordStatus.textContent = `🔴 ${mm}:${ss} · ${t('Merekam...', 'Recording...')}`;
+            }, 1000);
+            diaryRecorder.ondataavailable = ev => {
+              if (ev.data && ev.data.size > 0) diaryRecChunks.push(ev.data);
+            };
+            diaryRecorder.onstop = () => {
+              clearInterval(diaryRecTimer);
+              stream.getTracks().forEach(tr => tr.stop());
+              if (formRecordLbl) formRecordLbl.textContent = t('Rekam Voice Note', 'Record Voice Note');
+              formRecordBtn.style.borderColor = '';
+              const blob = new Blob(diaryRecChunks, { type: diaryRecorder.mimeType || 'audio/webm' });
+              const reader = new FileReader();
+              reader.onload = () => {
+                const rawUrl = String(reader.result || '');
+                const normAudio = rawUrl.replace(/^data:video\//, 'data:audio/').replace(/^data:application\/octet-stream/, 'data:audio/webm');
+                if (normAudio) {
+                  setPendingDiaryFormAudio(normAudio);
+                  if (formRecordStatus) {
+                    formRecordStatus.hidden = false;
+                    formRecordStatus.textContent = '✓ ' + t('Voice note siap disimpan!', 'Voice note ready to save!');
+                    setTimeout(() => { formRecordStatus.hidden = true; }, 3500);
+                  }
+                }
+              };
+              reader.readAsDataURL(blob);
+            };
+            diaryRecorder.start();
+          } catch (err) {
+            if (formRecordStatus) {
+              formRecordStatus.hidden = false;
+              formRecordStatus.textContent = '⚠ ' + t('Izin mikrofon belum aktif; gunakan tombol 🎵 Audio dari HP.', 'Microphone permission denied; use 🎵 Phone Audio.');
+            }
+          }
         };
       }
 
@@ -23185,6 +23407,13 @@ function v138CustomerRuntime(C) {
             '</div>';
           card.querySelector('.v138-diary-entry-title').textContent = item.title || (en ? 'Diary Note' : 'Catatan Diary');
           card.querySelector('.v138-diary-entry-note').textContent = item.note || '';
+          if (item.audio) {
+            const aBox = document.createElement('div');
+            aBox.style.cssText = 'margin:6px 0;padding:6px 9px;border-radius:11px;border:1px solid rgba(213,140,255,.45);background:rgba(16,10,36,.86);display:flex;align-items:center;gap:6px';
+            aBox.innerHTML = `<span style="font:700 10px system-ui;color:#f5d0fe;white-space:nowrap">🎙 Suara:</span><audio controls preload="metadata" src="${item.audio}" style="flex:1;height:30px;min-width:120px"></audio>`;
+            aBox.onclick = ev => ev.stopPropagation();
+            card.querySelector('.v138-diary-entry-title').after(aBox);
+          }
           if (item.photo) {
             const pBox = document.createElement('div');
             pBox.style.cssText = 'margin:6px 0;border-radius:12px;overflow:hidden;border:1px solid rgba(110,243,255,.45);background:#040a16;text-align:center';
@@ -23209,6 +23438,7 @@ function v138CustomerRuntime(C) {
             sec.querySelector('#v138DiaryTitle').value = item.title || '';
             sec.querySelector('#v138DiaryNote').value = item.note || '';
             setPendingDiaryFormPhoto(item.photo || '');
+            setPendingDiaryFormAudio(item.audio || '');
             renderCalendarAndEntries();
           };
           card.querySelector('[data-d-del]').onclick = e => {
@@ -23265,7 +23495,7 @@ function v138CustomerRuntime(C) {
         const songVal = sec.querySelector('#v139DiarySong').value.trim();
         const titleVal = sec.querySelector('#v138DiaryTitle').value.trim() || t('Catatan Harian Fan', 'Fan Diary Note');
         const noteVal = sec.querySelector('#v138DiaryNote').value.trim();
-        if (!noteVal && !titleVal && !pendingDiaryFormPhoto) return;
+        if (!noteVal && !titleVal && !pendingDiaryFormPhoto && !pendingDiaryFormAudio) return;
 
         if (editingEntryId) {
           const idx = entries.findIndex(x => x.id === editingEntryId);
@@ -23279,7 +23509,8 @@ function v138CustomerRuntime(C) {
               song: songVal,
               title: titleVal,
               note: noteVal,
-              photo: pendingDiaryFormPhoto || entries[idx].photo || ''
+              photo: pendingDiaryFormPhoto || entries[idx].photo || '',
+              audio: pendingDiaryFormAudio || entries[idx].audio || ''
             };
           }
           editingEntryId = null;
@@ -23294,6 +23525,7 @@ function v138CustomerRuntime(C) {
             title: titleVal,
             note: noteVal,
             photo: pendingDiaryFormPhoto || '',
+            audio: pendingDiaryFormAudio || '',
             stickers: []
           });
         }
@@ -23302,6 +23534,7 @@ function v138CustomerRuntime(C) {
         sec.querySelector('#v138DiaryNote').value = '';
         sec.querySelector('#v139DiarySong').value = '';
         setPendingDiaryFormPhoto('');
+        setPendingDiaryFormAudio('');
         saveDiary();
         renderCalendarAndEntries();
       };
@@ -24023,6 +24256,10 @@ html.wypha-visitor-locked #v139StickerTools,
 html.wypha-visitor-locked #v139ModalPaperSel,
 html.wypha-visitor-locked #v139ModalPhotoInp,
 html.wypha-visitor-locked label:has(#v139ModalPhotoInp),
+html.wypha-visitor-locked #v139ModalRecordBtn,
+html.wypha-visitor-locked #v139ModalAudioInp,
+html.wypha-visitor-locked label:has(#v139ModalAudioInp),
+html.wypha-visitor-locked [data-df-audio-del],
 html.wypha-visitor-locked #wyphaBabyMobileEditBtn,
 html.wypha-visitor-locked .wypha-baby-mobile-edit-btn,
 html.wypha-visitor-locked #p124BabyPhotoInput,
@@ -24258,7 +24495,7 @@ function v14CustomerRuntime(C) {
         topBar = document.createElement('div');
         topBar.id = 'v14TopMiniPinBar';
         topBar.setAttribute('role', 'region');
-        topBar.setAttribute('aria-label', 'Akses PIN Customer');
+        topBar.setAttribute('aria-label', 'Akses Mode Edit');
         document.body.prepend(topBar);
       }
     }
@@ -24270,7 +24507,7 @@ function v14CustomerRuntime(C) {
     if (!state.unlocked) {
       topBar.innerHTML =
         '<button type="button" class="v14-mini-pin-btn" data-v14-open-pin title="' +
-        t('Buka fasilitas Edit & Tambah Data dengan PIN Customer / Master PIN', 'Unlock Edit & Add Data facilities with Customer PIN / Master PIN') +
+        t('✏️ Buka fasilitas Edit & Tambah Data dengan PIN', '✏️ Unlock Edit & Add Data facilities with PIN') +
         '">' +
           '<span class="v14-mini-dot" aria-hidden="true"></span>' +
           '<span>🔑 PIN</span>' +
@@ -24279,10 +24516,10 @@ function v14CustomerRuntime(C) {
     } else {
       topBar.innerHTML =
         '<button type="button" class="v14-mini-pin-btn is-active-customer" data-v14-open-pin title="' +
-        t('Mode Customer Aktif — Klik untuk pengaturan PIN', 'Customer Mode Active — Tap for PIN settings') +
+        t('✏️ Mode Edit Aktif — Klik untuk pengaturan PIN', '✏️ Edit Mode Active — Tap for PIN settings') +
         '">' +
           '<span class="v14-mini-dot" aria-hidden="true"></span>' +
-          '<span>🔓 ' + (state.unlockedBy === 'master' ? 'Master' : 'Customer') + '</span>' +
+          '<span>✏️</span>' +
         '</button>' +
         '<button type="button" class="v14-mini-pin-btn is-lock-now" data-v14-lock-now title="' +
         t('Kunci kembali ke Mode Pengunjung (Hanya Lihat)', 'Lock back to Visitor Mode (View Only)') +
@@ -24344,13 +24581,13 @@ function v14CustomerRuntime(C) {
       if (!state.unlocked) {
         modal.innerHTML =
           '<div class="v14-modal-head">' +
-            '<strong>🔑 ' + t('AKSES PIN CUSTOMER', 'CUSTOMER PIN ACCESS') + '</strong>' +
+            '<strong>✏️ ' + t('AKSES PIN EDIT', 'EDIT PIN ACCESS') + '</strong>' +
             '<button type="button" class="v14-modal-close" data-v14-close aria-label="Tutup">×</button>' +
           '</div>' +
           '<p style="margin:0 0 10px;color:#cbe8ff;font-size:12px">' +
             t(
-              'Masukkan PIN Customer untuk membuka fasilitas Edit, Tambah Data, Catatan, Foto, Diary & Backup. Pengunjung tanpa PIN hanya dapat melihat isi microsite.',
-              'Enter Customer PIN to unlock Edit, Add Data, Notes, Photos, Diary & Backup facilities. Visitors without a PIN can only view the microsite.'
+              'Masukkan PIN untuk membuka fasilitas ✏️ Edit, Tambah Data, Catatan, Foto, Suara, Diary & Backup. Pengunjung tanpa PIN hanya dapat melihat isi microsite.',
+              'Enter PIN to unlock ✏️ Edit, Add Data, Notes, Photos, Voice, Diary & Backup facilities. Visitors without a PIN can only view the microsite.'
             ) +
           '</p>' +
           (hintTxt
@@ -24367,14 +24604,14 @@ function v14CustomerRuntime(C) {
                 `<button type="button" class="v14-key-btn" data-v14-key="${k}">${k}</button>`
               ).join('') +
             '</div>' +
-            '<button type="submit" class="v14-submit-btn">🔓 ' + t('Buka Fasilitas Edit Customer', 'Unlock Customer Edit Access') + '</button>' +
+            '<button type="submit" class="v14-submit-btn">✏️ ' + t('Buka Mode Edit', 'Unlock Edit Mode') + '</button>' +
           '</form>' +
           '<details style="margin-top:10px;padding:8px 10px;border-radius:12px;background:rgba(12,24,48,0.75);border:1px solid rgba(188,124,255,0.35);font-size:11.5px;color:#d8c8ff">' +
-            '<summary style="cursor:pointer;font-weight:700;color:#e9d5ff">🛟 ' + t('Lupa PIN Customer? Gunakan Master PIN', 'Forgot Customer PIN? Use Master PIN') + '</summary>' +
+            '<summary style="cursor:pointer;font-weight:700;color:#e9d5ff">🛟 ' + t('Lupa PIN? Gunakan Master PIN', 'Forgot PIN? Use Master PIN') + '</summary>' +
             '<p style="margin:6px 0 0;line-height:1.45;color:#cbe4ff">' +
               t(
-                'Jika Anda lupa PIN Customer, ketikkan Master PIN langsung pada kolom di atas lalu tekan Buka. Master PIN dapat membuka seluruh microsite dan mengizinkan Anda mengatur ulang PIN Customer baru.',
-                'If you forgot your Customer PIN, type the Master PIN directly into the field above and tap Unlock. The Master PIN unlocks any microsite and lets you reset a new Customer PIN.'
+                'Jika Anda lupa PIN, ketikkan Master PIN langsung pada kolom di atas lalu tekan Buka. Master PIN dapat membuka seluruh microsite dan mengizinkan Anda mengatur ulang PIN baru.',
+                'If you forgot your PIN, type the Master PIN directly into the field above and tap Unlock. The Master PIN unlocks any microsite and lets you reset a new PIN.'
               ) +
             '</p>' +
           '</details>' +
@@ -24408,8 +24645,8 @@ function v14CustomerRuntime(C) {
             if (matchType === 'master') {
               renderModal(
                 t(
-                  '✓ Terbuka dengan Master PIN! Seluruh fasilitas Edit & Tambah Data kini aktif. Anda juga dapat melihat atau mengganti PIN Customer di bawah.',
-                  '✓ Unlocked with Master PIN! All Edit & Add Data facilities are now active. You can also view or reset the Customer PIN below.'
+                  '✓ Terbuka dengan Master PIN! Seluruh fasilitas ✏️ Edit & Tambah Data kini aktif. Anda juga dapat melihat atau mengganti PIN di bawah.',
+                  '✓ Unlocked with Master PIN! All ✏️ Edit & Add Data facilities are now active. You can also view or reset the PIN below.'
                 ),
                 'ok'
               );
@@ -24418,7 +24655,7 @@ function v14CustomerRuntime(C) {
             }
           } else {
             renderModal(
-              t('⚠ Kode PIN belum sesuai. Masukkan PIN Customer yang benar atau gunakan Master PIN.', '⚠ Incorrect PIN. Please enter the valid Customer PIN or Master PIN.'),
+              t('⚠ Kode PIN belum sesuai. Masukkan PIN yang benar atau gunakan Master PIN.', '⚠ Incorrect PIN. Please enter the valid PIN or Master PIN.'),
               'err'
             );
           }
@@ -24428,12 +24665,12 @@ function v14CustomerRuntime(C) {
         const curCustPin = getActiveCustomerPin();
         modal.innerHTML =
           '<div class="v14-modal-head">' +
-            '<strong>🔓 ' + t('MODE CUSTOMER AKTIF', 'CUSTOMER MODE ACTIVE') + '</strong>' +
+            '<strong>✏️ ' + t('MODE EDIT AKTIF', 'EDIT MODE ACTIVE') + '</strong>' +
             '<button type="button" class="v14-modal-close" data-v14-close aria-label="Tutup">×</button>' +
           '</div>' +
           (flashMsg ? `<div class="v14-status-msg ${flashType === 'ok' ? 'is-ok' : 'is-err'}" style="margin-bottom:10px">${flashMsg}</div>` : '') +
           '<div style="padding:10px 12px;border-radius:14px;background:rgba(16,185,129,0.14);border:1px solid rgba(78,245,168,0.45);margin-bottom:12px;font-size:12px;color:#d1fae5">' +
-            '<strong>✓ ' + (state.unlockedBy === 'master' ? t('Dibuka via Master PIN Recovery', 'Unlocked via Master PIN Recovery') : t('Akses Penuh Customer Aktif', 'Full Customer Access Active')) + '</strong><br>' +
+            '<strong>✓ ' + (state.unlockedBy === 'master' ? t('Dibuka via Master PIN Recovery', 'Unlocked via Master PIN Recovery') : t('✏️ Akses Edit Penuh Aktif', '✏️ Full Edit Access Active')) + '</strong><br>' +
             t(
               'Seluruh fasilitas Edit, Tambah Data, Catatan, Foto, Voice Note, Diary, Stiker, Silsilah & Backup siap digunakan.',
               'All Edit, Add Data, Notes, Photos, Voice Note, Diary, Stickers, Family Tree & Backup facilities are unlocked.'
@@ -24444,9 +24681,9 @@ function v14CustomerRuntime(C) {
             '<button type="button" class="v14-key-btn" data-v14-lock-modal style="border-color:#ff8ab8;color:#ffd0e4;padding:10px 14px">🔒 ' + t('Kunci Kembali', 'Lock Again') + '</button>' +
           '</div>' +
           '<div style="padding:12px;border-radius:14px;background:rgba(8,20,42,0.88);border:1px solid rgba(110,243,255,0.3)">' +
-            '<strong style="display:block;font-size:12px;color:#8ef5ff;margin-bottom:6px">🔑 ' + t('Pengaturan PIN Customer Microsite Ini', 'Customer PIN Settings for This Microsite') + '</strong>' +
+            '<strong style="display:block;font-size:12px;color:#8ef5ff;margin-bottom:6px">✏️ ' + t('Pengaturan PIN Edit Microsite Ini', 'Edit PIN Settings for This Microsite') + '</strong>' +
             '<div style="font-size:11.5px;color:#bfe6ff;margin-bottom:8px">' +
-              t('PIN Customer saat ini: ', 'Current Customer PIN: ') +
+              t('PIN saat ini: ', 'Current PIN: ') +
               '<code style="padding:2px 7px;border-radius:6px;background:rgba(110,243,255,0.16);color:#fff;font-weight:800">' + curCustPin.replace(/</g, '&lt;') + '</code>' +
             '</div>' +
             '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
@@ -24475,7 +24712,7 @@ function v14CustomerRuntime(C) {
           }
           state.customPin = nextPin.slice(0, 32);
           savePinState();
-          renderModal(t('✓ PIN Customer baru berhasil disimpan di HP ini!', '✓ New Customer PIN saved on this phone!'), 'ok');
+          renderModal(t('✓ PIN baru berhasil disimpan di HP ini!', '✓ New PIN saved on this phone!'), 'ok');
         };
         const resetBtn = modal.querySelector('#v14ResetDefaultPinBtn');
         if (resetBtn) {
@@ -28537,6 +28774,7 @@ function v143MasterBootRuntime(CFG) {
   // Canonicalize any wypha storage key so path variations (/index.html, trailing slash, QR query params, embed path, origin, or re-exported projectId) never miss saved data!
   const prefixes = [
     'wypha-v14-pin-state:',
+    'wypha-led3d-panel-v151:',
     'wypha-special-moments-v138:',
     'wypha-fan-diary-v138:',
     'wypha-baby-story-v13:',
@@ -29397,7 +29635,687 @@ function v143MasterHeadBoot(s) {
   return '<script id="wypha-master-persistence-boot">(' + v143MasterBootRuntime.toString() + ')(' + cfg + ');<\/script>';
 }
 
-init();v126Ready();
+
+/* ============================================================================
+   WYPHA V15.1 · 3D LED MOVING PANEL FOR TITLE & NAME + CUSTOMER LED COLOR TUNER
+   - Adds a 3D LED Matrix Bezel Frame with Vertical Moving Text (like an advanced
+     futuristic 3D LED display panel) for Microsite Title & Name.
+   - Automatically adapts to long titles and long names without clipping or
+     cutting off characters (wraps cleanly and adjusts LED board height & scroll).
+   - Provides a studio control panel + an interactive in-microsite LED Color &
+     Mode Tuner so the customer can customize LED colors at any time!
+   ============================================================================ */
+const V151_LED_THEMES = {
+  cyber_cyan:    { label: '⚡ Cyber Cyan',     led: '#00f6ff', glow: '#00b4ff', border: '#38bdf8', bg: '#030b17', secondary: '#a855f7' },
+  neon_magenta:  { label: '💖 Neon Magenta',   led: '#ff47c2', glow: '#ec4899', border: '#f472b6', bg: '#160516', secondary: '#38bdf8' },
+  matrix_green:  { label: '🟢 Matrix Emerald', led: '#34f576', glow: '#10b981', border: '#4ade80', bg: '#03120b', secondary: '#22d3ee' },
+  royal_gold:    { label: '👑 Royal Gold',     led: '#ffe066', glow: '#f59e0b', border: '#fbbf24', bg: '#161004', secondary: '#fb7185' },
+  electric_violet:{label: '🔮 Electric Violet',led: '#d8b4fe', glow: '#8b5cf6', border: '#c084fc', bg: '#110622', secondary: '#38bdf8' },
+  crimson_laser: { label: '🔴 Crimson Laser',  led: '#ff5c77', glow: '#ef4444', border: '#fb7185', bg: '#180509', secondary: '#fbbf24' },
+  sunset_amber:  { label: '🟠 Sunset Amber',   led: '#ff9f43', glow: '#f97316', border: '#fb923c', bg: '#170b04', secondary: '#f43f5e' },
+  ice_white:     { label: '💎 Diamond White',  led: '#f8fafc', glow: '#93c5fd', border: '#cbd5e1', bg: '#070e1a', secondary: '#60a5fa' },
+  rainbow_rgb:   { label: '🌈 Rainbow RGB',    led: '#72f5ff', glow: '#c084fc', border: '#f472b6', bg: '#090919', secondary: '#fde047', rainbow: true }
+};
+
+function v151LedDefaults(v = {}) {
+  v = v && typeof v === 'object' ? v : {};
+  const hex = (val, fb) => /^#[0-9a-f]{6}$/i.test(String(val || '').trim()) ? String(val).trim() : fb;
+  return {
+    enabled: !!v.enabled,
+    applyTitle: v.applyTitle !== false,
+    applyName: v.applyName !== false,
+    motionMode: ['vertical_loop', 'vertical_float', 'static'].includes(v.motionMode) ? v.motionMode : 'vertical_loop',
+    theme: Object.prototype.hasOwnProperty.call(V151_LED_THEMES, v.theme) ? v.theme : 'cyber_cyan',
+    customColor: hex(v.customColor, '#00f6ff'),
+    useCustomColor: !!v.useCustomColor,
+    speed: Math.max(3, Math.min(20, Number.isFinite(Number(v.speed)) ? Number(v.speed) : 8)),
+    customerEditable: v.customerEditable !== false
+  };
+}
+
+const V151_LED_CUSTOMER_CSS = `
+/* WYPHA V15.1 · 3D LED PANEL BOARD FOR MICROSITE TITLE & NAME */
+@keyframes wyphaLedVertLoop {
+  0%   { transform: translate3d(0, 105%, 0); opacity: 0; }
+  12%  { transform: translate3d(0, 0%, 0);   opacity: 1; }
+  84%  { transform: translate3d(0, 0%, 0);   opacity: 1; }
+  96%  { transform: translate3d(0, -105%, 0);opacity: 0; }
+  100% { transform: translate3d(0, -105%, 0);opacity: 0; }
+}
+@keyframes wyphaLedVertFloat {
+  0%, 100% { transform: translate3d(0, 14%, 0); }
+  50%      { transform: translate3d(0, -14%, 0); }
+}
+@keyframes wyphaLedRainbowHue {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+@keyframes wyphaLedScanline {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 24px, 0 0; }
+}
+
+.wypha-led3d-board {
+  --led-color: #00f6ff;
+  --led-glow: #00b4ff;
+  --led-border: #38bdf8;
+  --led-bg: #030b17;
+  --led-sec: #a855f7;
+  --led-speed: 8s;
+  position: relative !important;
+  box-sizing: border-box !important;
+  width: min(100%, 760px) !important;
+  max-width: 95vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: clamp(14px, 3vw, 22px) clamp(16px, 4vw, 28px) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1.6px) 0 0 / 6px 6px,
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.36) 0px, rgba(0, 0, 0, 0.36) 2px, transparent 2px, transparent 4px),
+    linear-gradient(160deg, var(--led-bg) 0%, #09152b 52%, var(--led-bg) 100%) !important;
+  border: 2.5px solid var(--led-border) !important;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.72),
+    0 6px 0 rgba(8, 20, 42, 0.95),
+    0 0 26px color-mix(in srgb, var(--led-glow) 60%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--led-glow) 32%, transparent),
+    inset 0 2px 1px rgba(255, 255, 255, 0.35) !important;
+  transform: perspective(900px) rotateX(2deg) !important;
+  transform-style: preserve-3d !important;
+  overflow: hidden !important;
+  clip-path: none !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+}
+.wypha-led3d-board.is-rainbow {
+  animation: wyphaLedRainbowHue 7s linear infinite !important;
+}
+/* 3D Hardware Corner Rivets / LED Diodes */
+.wypha-led3d-board::before,
+.wypha-led3d-board::after {
+  content: "❖" !important;
+  position: absolute !important;
+  top: 7px !important;
+  font-size: 9px !important;
+  line-height: 1 !important;
+  color: var(--led-color) !important;
+  text-shadow: 0 0 8px var(--led-glow) !important;
+  pointer-events: none !important;
+  z-index: 4 !important;
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  background: none !important;
+  transform: none !important;
+}
+.wypha-led3d-board::before { left: 10px !important; }
+.wypha-led3d-board::after  { right: 10px !important; }
+
+.wypha-led3d-viewport {
+  position: relative !important;
+  width: 100% !important;
+  min-height: clamp(46px, 9vw, 68px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  padding: 6px 8px !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+  background: rgba(2, 6, 15, 0.58) !important;
+  border: 1px solid color-mix(in srgb, var(--led-border) 42%, transparent) !important;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.78) !important;
+}
+
+.wypha-led3d-board .wypha-led3d-text {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 2px 4px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  color: var(--led-color) !important;
+  -webkit-text-fill-color: var(--led-color) !important;
+  background: none !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 12px var(--led-color),
+    0 0 24px var(--led-glow),
+    0 0 38px var(--led-sec) !important;
+  filter: none !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  line-height: 1.28 !important;
+  letter-spacing: 0.06em !important;
+  will-change: transform, opacity;
+}
+
+.wypha-led3d-board[data-led-motion="vertical_loop"] .wypha-led3d-text {
+  animation: wyphaLedVertLoop var(--led-speed, 8s) cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+}
+.wypha-led3d-board[data-led-motion="vertical_float"] .wypha-led3d-text {
+  animation: wyphaLedVertFloat calc(var(--led-speed, 8s) * 0.55) ease-in-out infinite !important;
+}
+.wypha-led3d-board[data-led-motion="static"] .wypha-led3d-text {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Customer Interactive LED Color & Motion Bar in Microsite */
+.wypha-led3d-controls-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px auto 6px;
+  max-width: min(94vw, 560px);
+  position: relative;
+  z-index: 30;
+}
+.wypha-led3d-chip-btn {
+  appearance: none;
+  border: 1px solid rgba(110, 243, 255, 0.55);
+  background: linear-gradient(135deg, rgba(6, 18, 38, 0.92), rgba(24, 12, 48, 0.92));
+  color: #e2f8ff;
+  border-radius: 999px;
+  padding: 5px 13px;
+  font: 700 10.5px/1.2 'Plus Jakarta Sans', Syne, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 12px rgba(110, 243, 255, 0.2);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.wypha-led3d-chip-btn:hover {
+  transform: translateY(-1px);
+  border-color: #6ef3ff;
+}
+.wypha-led3d-drawer {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(5, 14, 30, 0.95), rgba(18, 10, 38, 0.95));
+  border: 1.5px solid rgba(110, 243, 255, 0.48);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(110, 243, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f0f9ff;
+  box-sizing: border-box;
+  text-align: center;
+}
+.wypha-led3d-drawer[hidden] {
+  display: none !important;
+}
+.wypha-led3d-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+.wypha-led3d-swatch {
+  appearance: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font: 700 10px/1.2 system-ui, sans-serif;
+  color: #ffffff;
+  background: rgba(12, 24, 48, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+.wypha-led3d-swatch.is-active {
+  border-color: #ffffff;
+  box-shadow: 0 0 12px var(--sw-color, #00f6ff);
+  transform: scale(1.04);
+}
+.wypha-led3d-swatch i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sw-color, #00f6ff);
+  box-shadow: 0 0 6px var(--sw-color, #00f6ff);
+  display: inline-block;
+}
+.wypha-led3d-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+  font: 600 10.5px system-ui, sans-serif;
+  color: #bae6fd;
+}
+.wypha-led3d-toolbar-row select,
+.wypha-led3d-toolbar-row input[type="color"] {
+  border-radius: 8px;
+  border: 1px solid rgba(110, 243, 255, 0.45);
+  background: #071428;
+  color: #fff;
+  padding: 3px 7px;
+  font: 700 10.5px system-ui, sans-serif;
+  cursor: pointer;
+}
+`;
+
+function v151CustomerRuntime(C) {
+  const start = () => {
+    const cfg = Object.assign(
+      {
+        enabled: false,
+        applyTitle: true,
+        applyName: true,
+        motionMode: 'vertical_loop',
+        theme: 'cyber_cyan',
+        customColor: '#00f6ff',
+        useCustomColor: false,
+        speed: 8,
+        customerEditable: true
+      },
+      C?.ledPanel || {}
+    );
+
+    const projId = String(C?.projectId || C?.product || 'wypha');
+    const storageKey = 'wypha-led3d-panel-v151:' + projId;
+    const lang = () => window.__wyphaGuide?.language || C?.language || 'id';
+    const t = (id, en) => (lang() === 'en' ? en : id);
+
+    // Load customer's saved LED preferences from phone storage
+    let state = { ...cfg };
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object') {
+          if (typeof parsed.enabled === 'boolean') state.enabled = parsed.enabled;
+          if (typeof parsed.applyTitle === 'boolean') state.applyTitle = parsed.applyTitle;
+          if (typeof parsed.applyName === 'boolean') state.applyName = parsed.applyName;
+          if (typeof parsed.theme === 'string' && V151_LED_THEMES[parsed.theme]) state.theme = parsed.theme;
+          if (typeof parsed.customColor === 'string' && /^#[0-9a-f]{6}$/i.test(parsed.customColor)) state.customColor = parsed.customColor;
+          if (typeof parsed.useCustomColor === 'boolean') state.useCustomColor = parsed.useCustomColor;
+          if (['vertical_loop', 'vertical_float', 'static'].includes(parsed.motionMode)) state.motionMode = parsed.motionMode;
+          if (Number.isFinite(Number(parsed.speed))) state.speed = Math.max(3, Math.min(20, Number(parsed.speed)));
+        }
+      }
+    } catch (e) {}
+
+    const saveState = () => {
+      const str = JSON.stringify(state);
+      try { localStorage.setItem(storageKey, str); } catch (e) {}
+      try { window.__wyphaMasterVault?.put?.(storageKey, state); } catch (e) {}
+    };
+
+    const getTitlePairs = () => {
+      const out = [];
+      document.querySelectorAll('.fantasy-headline, .hero-title, #heroTitle').forEach(textEl => {
+        const frameEl = textEl.closest('.headline-frame, .title-frame, .hero-frame') || textEl.parentElement;
+        if (frameEl) out.push({ frameEl, textEl, role: 'title' });
+      });
+      return out;
+    };
+
+    const getNamePairs = () => {
+      const out = [];
+      document.querySelectorAll('.name-3d, .name-frame .name, .ticket-side .person-name').forEach(textEl => {
+        const frameEl = textEl.closest('.name-frame, .ticket-side') || textEl.parentElement;
+        if (frameEl) out.push({ frameEl, textEl, role: 'name' });
+      });
+      return out;
+    };
+
+    // Fit long titles and names cleanly inside the 3D LED board without clipping
+    const fitLedBoardText = (frameEl, textEl, role) => {
+      if (!frameEl || !textEl) return;
+      const rawTxt = (textEl.textContent || '').trim();
+      if (!rawTxt) return;
+      const len = rawTxt.length;
+      const words = rawTxt.split(/\s+/).filter(Boolean);
+      const longestWord = words.reduce((m, w) => Math.max(m, w.length), 0);
+
+      let fontSize;
+      if (role === 'title') {
+        if (len <= 14) fontSize = 'clamp(20px, 5.2vw, 34px)';
+        else if (len <= 26) fontSize = 'clamp(17px, 4.4vw, 28px)';
+        else if (len <= 42) fontSize = 'clamp(15px, 3.8vw, 23px)';
+        else fontSize = 'clamp(13px, 3.3vw, 19px)';
+      } else {
+        if (len <= 12) fontSize = 'clamp(20px, 5.2vw, 34px)';
+        else if (len <= 22) fontSize = 'clamp(17px, 4.3vw, 27px)';
+        else if (len <= 34) fontSize = 'clamp(14.5px, 3.7vw, 22px)';
+        else fontSize = 'clamp(12.5px, 3.2vw, 18px)';
+      }
+      if (longestWord > 14) {
+        fontSize = 'clamp(12.5px, 3.1vw, 18px)';
+      }
+
+      textEl.style.setProperty('font-size', fontSize, 'important');
+      textEl.style.setProperty('white-space', 'normal', 'important');
+      textEl.style.setProperty('overflow-wrap', 'break-word', 'important');
+      textEl.style.setProperty('word-break', 'break-word', 'important');
+      textEl.style.setProperty('text-overflow', 'clip', 'important');
+      textEl.style.setProperty('overflow', 'visible', 'important');
+      textEl.style.setProperty('max-width', '100%', 'important');
+      textEl.style.setProperty('width', '100%', 'important');
+
+      const viewport = frameEl.querySelector(':scope > .wypha-led3d-viewport') || textEl.closest('.wypha-led3d-viewport');
+      if (viewport) {
+        requestAnimationFrame(() => {
+          const naturalH = Math.max(46, textEl.scrollHeight + 18);
+          viewport.style.setProperty('min-height', naturalH + 'px', 'important');
+        });
+      }
+    };
+
+    const unwrapLedBoard = (frameEl, textEl) => {
+      if (!frameEl || !textEl) return;
+      frameEl.classList.remove('wypha-led3d-board', 'is-rainbow');
+      frameEl.removeAttribute('data-led-motion');
+      const vp = textEl.closest('.wypha-led3d-viewport');
+      if (vp && frameEl.contains(vp)) {
+        vp.before(textEl);
+        vp.remove();
+      }
+      textEl.classList.remove('wypha-led3d-text');
+      for (const prop of ['font-size', 'white-space', 'overflow-wrap', 'word-break', 'text-overflow', 'overflow']) {
+        textEl.style.removeProperty(prop);
+      }
+    };
+
+    const applyLedToPair = ({ frameEl, textEl, role }, active) => {
+      if (!frameEl || !textEl) return;
+      if (!active) {
+        unwrapLedBoard(frameEl, textEl);
+        return;
+      }
+      frameEl.classList.add('wypha-led3d-board');
+      frameEl.setAttribute('data-led-motion', state.motionMode || 'vertical_loop');
+      const th = V151_LED_THEMES[state.theme] || V151_LED_THEMES.cyber_cyan;
+      const ledColor = state.useCustomColor ? state.customColor : th.led;
+      const glowColor = state.useCustomColor ? state.customColor : th.glow;
+      const borderColor = state.useCustomColor ? state.customColor : th.border;
+      frameEl.style.setProperty('--led-color', ledColor);
+      frameEl.style.setProperty('--led-glow', glowColor);
+      frameEl.style.setProperty('--led-border', borderColor);
+      frameEl.style.setProperty('--led-bg', th.bg);
+      frameEl.style.setProperty('--led-sec', th.secondary);
+      frameEl.style.setProperty('--led-speed', (state.speed || 8) + 's');
+      frameEl.classList.toggle('is-rainbow', !state.useCustomColor && !!th.rainbow);
+
+      let vp = textEl.closest('.wypha-led3d-viewport');
+      if (!vp || !frameEl.contains(vp)) {
+        vp = document.createElement('div');
+        vp.className = 'wypha-led3d-viewport';
+        textEl.before(vp);
+        vp.appendChild(textEl);
+      }
+      textEl.classList.add('wypha-led3d-text');
+      fitLedBoardText(frameEl, textEl, role);
+    };
+
+    let controlsWrap = null;
+    const renderCustomerLedControls = () => {
+      const anyLedActive = state.enabled && (state.applyTitle || state.applyName);
+      if (!cfg.customerEditable && !anyLedActive) {
+        if (controlsWrap) controlsWrap.hidden = true;
+        return;
+      }
+      if (!controlsWrap) {
+        controlsWrap = document.getElementById('wyphaLed3dCustomerControls');
+        if (!controlsWrap) {
+          controlsWrap = document.createElement('div');
+          controlsWrap.id = 'wyphaLed3dCustomerControls';
+          controlsWrap.className = 'wypha-led3d-controls-wrap';
+          const hero = document.querySelector('header.hero, section.hero, .hero');
+          const nameWrap = document.querySelector('.name-frame-wrap, .couple-names, .connection');
+          if (nameWrap) nameWrap.after(controlsWrap);
+          else if (hero) hero.appendChild(controlsWrap);
+        }
+      }
+      if (!controlsWrap) return;
+
+      // Show button when LED mode is enabled OR if customer is in Edit Mode
+      const isUnlocked = window.__wyphaIsCustomerUnlocked ? window.__wyphaIsCustomerUnlocked() : true;
+      controlsWrap.hidden = !(anyLedActive || (cfg.customerEditable && isUnlocked));
+      if (controlsWrap.hidden) return;
+
+      const isOpen = controlsWrap.querySelector('.wypha-led3d-drawer') && !controlsWrap.querySelector('.wypha-led3d-drawer').hidden;
+      const swatchHtml = Object.entries(V151_LED_THEMES).map(([k, v]) => {
+        const isAct = !state.useCustomColor && state.theme === k && state.enabled;
+        return `<button type="button" class="wypha-led3d-swatch${isAct ? ' is-active' : ''}" data-led-theme="${k}" style="--sw-color:${v.led}"><i></i><span>${v.label}</span></button>`;
+      }).join('');
+
+      controlsWrap.innerHTML =
+        `<button type="button" class="wypha-led3d-chip-btn" data-led-toggle-drawer>` +
+          `<span>📟</span>` +
+          `<span>${t('Warna & Panel LED 3D', '3D LED Panel & Colors')}</span>` +
+          `<span style="opacity:.75">${isOpen ? '▴' : '▾'}</span>` +
+        `</button>` +
+        `<div class="wypha-led3d-drawer" ${isOpen ? '' : 'hidden'}>` +
+          `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px">` +
+            `<strong style="font:800 11px Syne,system-ui;color:#8ef5ff;letter-spacing:.06em">📟 ${t('PENGATURAN PANEL LED 3D (JUDUL & NAMA)', '3D LED PANEL SETTINGS (TITLE & NAME)')}</strong>` +
+            `<label style="display:inline-flex;align-items:center;gap:5px;font:700 10.5px system-ui;color:#a7f3d0;cursor:pointer">` +
+              `<input type="checkbox" data-led-enable ${state.enabled ? 'checked' : ''}>` +
+              `<span>${t('Aktifkan LED 3D', 'Enable 3D LED')}</span>` +
+            `</label>` +
+          `</div>` +
+          `<div class="wypha-led3d-swatches">${swatchHtml}</div>` +
+          `<div class="wypha-led3d-toolbar-row">` +
+            `<label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer">` +
+              `<span>🎨 ${t('Warna Bebas:', 'Custom Color:')}</span>` +
+              `<input type="color" data-led-custom-color value="${state.customColor}">` +
+            `</label>` +
+            `<label style="display:inline-flex;align-items:center;gap:4px">` +
+              `<span>↕ ${t('Gerak Teks:', 'Text Motion:')}</span>` +
+              `<select data-led-motion-sel>` +
+                `<option value="vertical_loop" ${state.motionMode === 'vertical_loop' ? 'selected' : ''}>${t('Bergerak Vertikal (Panel LED)', 'Vertical Scroll (LED Panel)')}</option>` +
+                `<option value="vertical_float" ${state.motionMode === 'vertical_float' ? 'selected' : ''}>${t('Ayun Vertikal Halus', 'Smooth Vertical Float')}</option>` +
+                `<option value="static" ${state.motionMode === 'static' ? 'selected' : ''}>${t('Diam (Statis)', 'Static')}</option>` +
+              `</select>` +
+            `</label>` +
+            `<label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer">` +
+              `<input type="checkbox" data-led-target-title ${state.applyTitle ? 'checked' : ''}>` +
+              `<span>${t('Judul', 'Title')}</span>` +
+            `</label>` +
+            `<label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer">` +
+              `<input type="checkbox" data-led-target-name ${state.applyName ? 'checked' : ''}>` +
+              `<span>${t('Nama', 'Name')}</span>` +
+            `</label>` +
+          `</div>` +
+        `</div>`;
+
+      const drawer = controlsWrap.querySelector('.wypha-led3d-drawer');
+      controlsWrap.querySelector('[data-led-toggle-drawer]').onclick = () => {
+        drawer.hidden = !drawer.hidden;
+        renderCustomerLedControls();
+      };
+      controlsWrap.querySelector('[data-led-enable]').onchange = e => {
+        state.enabled = e.target.checked;
+        saveState();
+        applyAllLedBoards();
+      };
+      controlsWrap.querySelectorAll('[data-led-theme]').forEach(btn => {
+        btn.onclick = () => {
+          state.enabled = true;
+          state.useCustomColor = false;
+          state.theme = btn.getAttribute('data-led-theme') || 'cyber_cyan';
+          saveState();
+          applyAllLedBoards();
+        };
+      });
+      controlsWrap.querySelector('[data-led-custom-color]').oninput = e => {
+        state.enabled = true;
+        state.useCustomColor = true;
+        state.customColor = e.target.value;
+        saveState();
+        applyAllLedBoards();
+      };
+      controlsWrap.querySelector('[data-led-motion-sel]').onchange = e => {
+        state.enabled = true;
+        state.motionMode = e.target.value;
+        saveState();
+        applyAllLedBoards();
+      };
+      controlsWrap.querySelector('[data-led-target-title]').onchange = e => {
+        state.applyTitle = e.target.checked;
+        saveState();
+        applyAllLedBoards();
+      };
+      controlsWrap.querySelector('[data-led-target-name]').onchange = e => {
+        state.applyName = e.target.checked;
+        saveState();
+        applyAllLedBoards();
+      };
+    };
+
+    const applyAllLedBoards = () => {
+      const titlePairs = getTitlePairs();
+      const namePairs = getNamePairs();
+      titlePairs.forEach(p => applyLedToPair(p, state.enabled && state.applyTitle));
+      namePairs.forEach(p => applyLedToPair(p, state.enabled && state.applyName));
+      renderCustomerLedControls();
+    };
+
+    applyAllLedBoards();
+    window.addEventListener('resize', () => {
+      if (!state.enabled) return;
+      getTitlePairs().forEach(p => { if (state.applyTitle) fitLedBoardText(p.frameEl, p.textEl, 'title'); });
+      getNamePairs().forEach(p => { if (state.applyName) fitLedBoardText(p.frameEl, p.textEl, 'name'); });
+    }, { passive: true });
+    document.addEventListener('wypha-pin-state-changed', renderCustomerLedControls);
+    document.addEventListener('wypha-language-change', renderCustomerLedControls);
+    document.addEventListener('wypha-master-vault-hydrated', async () => {
+      try {
+        const idbVal = await window.__wyphaMasterVault?.get?.(storageKey);
+        if (idbVal && typeof idbVal === 'object') {
+          state = { ...state, ...idbVal };
+          applyAllLedBoards();
+        }
+      } catch (e) {}
+    });
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+  else start();
+}
+
+function v151Output(s, C) {
+  const h = s?.studio126?.holo13 || {};
+  const rawLed = v151LedDefaults(h.ledPanel);
+  const frameTitleLed = s?.frames?.title === 'led-3d';
+  const frameNameLed = s?.frames?.name === 'led-3d' || s?.nameStyle === 'led-3d';
+  const ledCfg = {
+    ...rawLed,
+    enabled: rawLed.enabled || frameTitleLed || frameNameLed,
+    applyTitle: rawLed.enabled ? rawLed.applyTitle : (frameTitleLed || (frameNameLed && rawLed.applyTitle)),
+    applyName: rawLed.enabled ? rawLed.applyName : (frameNameLed || (frameTitleLed && rawLed.applyName))
+  };
+  const payload = {
+    projectId: C?.projectId || s?.productStudio?.id || 'wypha',
+    product: C?.product || s?.product || 'baby',
+    language: C?.language || 'id',
+    ledPanel: ledCfg
+  };
+  const shared = 'const V151_LED_THEMES=' + JSON.stringify(V151_LED_THEMES) + ';';
+  return (
+    '<style id="wypha-v151-led-style">' + V151_LED_CUSTOMER_CSS + '</style>' +
+    '<script id="wypha-v151-led-runtime">(()=>{' + shared + '(' + v151CustomerRuntime.toString() + ')(' +
+    JSON.stringify(payload).replace(/</g, '\\u003c') +
+    ');})();<\/script>'
+  );
+}
+
+function v151StudioControls() {
+  const h = (v126State || (v126State = v126Defaults())).holo13 || (v126State.holo13 = v13Settings());
+  const lp = (h.ledPanel = v151LedDefaults(h.ledPanel));
+
+  const updateLP = (patch, rerender = false) => {
+    v122RecordHistory();
+    v126State.holo13.ledPanel = v151LedDefaults({ ...v126State.holo13.ledPanel, ...patch });
+    v126Changed();
+    if (rerender) v151StudioControls();
+  };
+
+  const card9Body = v123Card(9)?.querySelector('.card-body');
+  if (card9Body) {
+    card9Body.querySelector('#v151LedStudioPanel')?.remove();
+    const panel = document.createElement('details');
+    panel.id = 'v151LedStudioPanel';
+    panel.className = 'v124-items-editor v13-studio-panel';
+    panel.open = true;
+    panel.innerHTML = '<summary>📟 V15.1 · Bingkai 3D Panel LED Bergerak Vertikal (Judul & Nama)</summary><div class="v13-studio-body"></div>';
+    const body = panel.querySelector('.v13-studio-body');
+
+    const note = document.createElement('p');
+    note.className = 'note';
+    note.innerHTML = 'Tampilkan <b>Bingkai 3D Panel LED Canggih</b> dengan tulisan Judul &amp; Nama bergerak secara vertikal, otomatis menyesuaikan nama/judul yang panjang agar tidak terpotong, serta dilengkapi pengatur warna LED interaktif di dalam microsite.';
+    body.appendChild(note);
+
+    body.append(
+      v126Check('Aktifkan Tampilan Bingkai 3D Panel LED pada Microsite', lp.enabled, v => updateLP({ enabled: v }), 'v151LedEnabled'),
+      v126Check('Terapkan Panel LED 3D pada Judul Utama Microsite', lp.applyTitle, v => updateLP({ applyTitle: v }), 'v151LedApplyTitle'),
+      v126Check('Terapkan Panel LED 3D pada Nama di Microsite', lp.applyName, v => updateLP({ applyName: v }), 'v151LedApplyName'),
+      v126Select('Mode Gerakan Vertikal Teks LED', [
+        ['vertical_loop', '↕ Bergerak Vertikal Canggih (Running Vertical LED Panel)'],
+        ['vertical_float', '⇅ Ayun Vertikal Halus (Floating 3D LED)'],
+        ['static', '❖ Diam / Statis di Tengah Panel LED']
+      ], lp.motionMode, v => updateLP({ motionMode: v }), 'v151LedMotionMode'),
+      v126Select('Preset Warna Panel LED Bawaan', Object.entries(V151_LED_THEMES).map(([k, val]) => [k, val.label]), lp.theme, v => updateLP({ theme: v, useCustomColor: false }, true), 'v151LedTheme'),
+      v126Check('Gunakan Warna LED Kustom Pilihan Sendiri', lp.useCustomColor, v => updateLP({ useCustomColor: v }), 'v151LedUseCustom')
+    );
+
+    const colWrap = document.createElement('label');
+    colWrap.className = 'v123-field';
+    colWrap.textContent = 'Warna Cahaya LED Kustom';
+    const colInp = document.createElement('input');
+    colInp.type = 'color';
+    colInp.value = lp.customColor;
+    colInp.oninput = () => updateLP({ customColor: colInp.value, useCustomColor: true });
+    colWrap.appendChild(colInp);
+    body.appendChild(colWrap);
+
+    body.append(
+      v1262Range('Kecepatan Gerak Vertikal LED (detik per siklus)', 'v151LedSpeed', lp.speed, 3, 20, ' dtk', v => updateLP({ speed: v })),
+      v126Check('Izinkan Pengaturan Warna & Gerak LED langsung di Microsite', lp.customerEditable, v => updateLP({ customerEditable: v }), 'v151LedCustEdit')
+    );
+
+    card9Body.prepend(panel);
+  }
+}
+
+init();v126Ready();v151StudioControls();
+document.getElementById('nameStyle')?.addEventListener('change', e => {
+  if (e.target.value === 'led-3d' && window.v126State?.holo13) {
+    v126State.holo13.ledPanel = v151LedDefaults({ ...v126State.holo13.ledPanel, enabled: true, applyName: true });
+    v151StudioControls();
+    v126Changed();
+  }
+});
+['titleFrameStyle', 'nameFrameStyle', 'frameBundle'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', () => {
+    const tf = document.getElementById('titleFrameStyle')?.value;
+    const nf = document.getElementById('nameFrameStyle')?.value;
+    if ((tf === 'led-3d' || nf === 'led-3d') && window.v126State?.holo13) {
+      v126State.holo13.ledPanel = v151LedDefaults({
+        ...v126State.holo13.ledPanel,
+        enabled: true,
+        applyTitle: tf === 'led-3d' ? true : v126State.holo13.ledPanel?.applyTitle,
+        applyName: nf === 'led-3d' ? true : v126State.holo13.ledPanel?.applyName
+      });
+      v151StudioControls();
+      v126Changed();
+    }
+  });
+});
 </script>
 </body>
 </html>

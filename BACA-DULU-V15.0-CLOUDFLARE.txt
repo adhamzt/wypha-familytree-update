@@ -1,4 +1,36 @@
 ================================================================================
+PEMBARUAN TAMBAHAN V15.1 (MODE EDIT ✏️, LITTLE LIFE PASSPORT NYAMAN, PANEL LED 3D
+VERTIKAL & VOICE NOTE / AUDIO DI MY FAN DIARY)
+================================================================================
+1. IKON PENSIL (✏️) PADA MODE EDIT DI MICROSITE:
+   - Tulisan "Customer" pada tombol dan jendela Mode Edit di microsite telah
+     dihapus dan diganti dengan ikon pensil `✏️` yang rapi dan nyaman dilihat.
+
+2. DESAIN ULANG LITTLE LIFE PASSPORT & PENGHAPUSAN ANGKA "01":
+   - Angka `01` pada bagian judul atas dan ekspor PNG Little Life Passport telah
+     dihapus.
+   - Tampilan Little Life Passport dirancang ulang dengan gaya Soft Futuristic
+     Pearl-Glass yang jauh lebih teduh, lembut, dan nyaman dipandang mata namun
+     tetap mempertahankan sentuhan futuristik elegan.
+
+3. BINGKAI 3D PANEL LED BERGERAK VERTIKAL (JUDUL & NAMA) + PENGATUR WARNA LED:
+   - Tersedia opsi tampilan **Panel LED 3D Bergerak Vertikal** untuk Judul Utama
+     dan Nama di microsite (dapat diatur dari Menu 4, Menu 9, maupun langsung oleh
+     pengguna di dalam microsite).
+   - Dilengkapi pemilih berbagai warna LED (Cyber Cyan, Neon Magenta, Matrix
+     Emerald, Royal Gold, Electric Violet, Crimson Laser, Sunset Amber, Diamond
+     White, Rainbow RGB, serta Warna Kustom Bebas) dan mode gerak vertikal.
+   - Papan LED otomatis menyesuaikan ukuran dan membungkus tulisan/nama yang
+     panjang agar tidak pernah terpotong.
+
+4. VOICE NOTE & UPLOAD AUDIO DARI HP DI MY FAN DIARY (PRODUK IDOL):
+   - Pada bagian **My Fan Diary**, pengguna kini dapat merekam Voice Note
+     langsung (`🎙 Rekam Voice Note`) maupun memilih file suara/audio dari HP
+     (`🎵 Audio dari HP`) untuk dilampirkan ke catatan harian diary dan diputar
+     kembali kapan saja (tersimpan permanen di memori HP & mendukung Backup).
+================================================================================
+
+================================================================================
 WYPHA MAGIC QR STUDIO · V15.0 (PEMBARUAN SILSILAH KELUARGA: PENGHAPUSAN TOTAL
 NAMA CONTOH LAMA, TOMBOL RESET DARI AWAL/INTI & SIMPAN FOTO KAMERA PENUH)
 ================================================================================
