@@ -1,6 +1,6 @@
 // Scope-aware app-shell cache. Never cache customer media or replace other HTML pages.
 const PREFIX = 'wypha-v13.3.0';
-const CACHE = PREFIX + '-portal-v14-8-0-lineage-20261104-' + encodeURIComponent(self.registration.scope);
+const CACHE = PREFIX + '-portal-v14-9-0-lineage-antiscroll-20261104-' + encodeURIComponent(self.registration.scope);
 const SHELL = ['index.html','manifest.webmanifest','icon-192.png','icon-512.png'].map(p=>new URL(p,self.registration.scope).href);
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE&&k.endsWith(encodeURIComponent(self.registration.scope))).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

@@ -1,0 +1,46 @@
+================================================================================
+WYPHA MAGIC QR STUDIO · V14.9 (PERBAIKAN SILSILAH ANTI-SCROLL KE ATAS +
+NAMA DEFAULT SILSILAH KELUARGA + PAKET RINGAN SIAP DEPLOY CLOUDFLARE)
+================================================================================
+
+RINGKASAN PEMBARUAN DI VERSI V14.9:
+
+1. PERBAIKAN LAYAR TIBA-TIBA SCROLL KE PALING ATAS SAAT INPUT / EDIT SILSILAH:
+   - Penyebab sebelumnya:
+     * Elemen dialog biodata (`.wft-profile-dialog`) menggunakan `position: relative`
+       sehingga browser menempatkan koordinat fokus dialog di puncak dokumen (`y = 0`)
+       dan menarik posisi gulir halaman (`window.scrollY`) ke atas saat modal dibuka.
+     * Saat menekan tombol "Simpan ke HP" atau menutup modal (`dialog.close()`),
+       elemen pemicu di dalam kanvas telah digambar ulang (`replaceChildren()`),
+       sehingga browser mengembalikan fokus ke `<body>` di bagian paling atas halaman.
+   - Solusi yang diterapkan:
+     * Mengubah `.wft-profile-dialog` dan `.v136-modal` menjadi `position: fixed !important;
+       inset: 0 !important; margin: auto !important;` dengan `overscroll-behavior: contain`.
+     * Menambahkan pengunci posisi gulir (`capturePageScroll`, `restorePageScroll`,
+       `openDialogLockScroll`, dan `closeDialogLockScroll`) serta `focus({ preventScroll: true })`
+       pada seluruh aksi Silsilah Keluarga (Edit Biodata, Simpan ke HP, Tutup ✕,
+       Tambah Orang Tua, Tambah Pasangan, Tambah Anak, Hubungkan, Putuskan, dan Hapus).
+     * Posisi layar kini terkunci 100% stabil di bagian Silsilah Keluarga tanpa pernah
+       terlempar ke atas lagi.
+
+2. PERUBAHAN SELURUH NAMA DEFAULT SILSILAH MENJADI HUBUNGAN KELUARGA (BUKAN NAMA ORANG):
+   - Seluruh nama anggota pada silsilah bawaan (`createStarterLineage`) kini menggunakan
+     sebutan silsilah keluarga (tanpa nama orang sama sekali):
+     * Generasi Inti (0G): `Saya`, `Pasangan`, `Kakak`, `Ipar`, `Adik`, `Sepupu 1`,
+       `Sepupu 2`, `Saudara Pasangan`, `Pasangan Ipar`.
+     * Generasi Orang Tua (+1G): `Ayah`, `Ibu`, `Paman`, `Bibi`, `Ayah Mertua`, `Ibu Mertua`.
+     * Generasi Kakek & Nenek (+2G): `Kakek (Ayah)`, `Nenek (Ayah)`, `Kakek (Ibu)`,
+       `Nenek (Ibu)`, `Kakek (Pasangan)`, `Nenek (Pasangan)`.
+     * Generasi Leluhur (+3G & +4G): `Kakek Buyut`, `Nenek Buyut`, `Canggah Pria`,
+       `Canggah Wanita`.
+     * Generasi Keturunan (-1G & -2G): `Anak Ke-1`, `Anak Ke-2`, `Anak Ke-3`, `Menantu`,
+       `Cucu`, `Keponakan 1`, `Keponakan 2`.
+   - Cabang `Paman`, `Bibi`, serta `Sepupu 1` & `Sepupu 2` kini juga langsung tampil
+     di kanvas utama berdampingan dengan `Ayah` & `Ibu`.
+   - Dilengkapi migrasi otomatis: jika browser masih menyimpan data contoh lama V14.8
+     yang memakai nama orang, sistem otomatis memperbaruinya ke nama silsilah baru.
+
+3. TETAP RINGAN & SIAP DEPLOY KE CLOUDFLARE PAGES (~2,03 MiB):
+   - Hanya berisi 5 file inti aplikasi (`index.html`, `manifest.webmanifest`,
+     `service-worker.js`, `icon-192.png`, `icon-512.png`) + panduan ini.
+================================================================================

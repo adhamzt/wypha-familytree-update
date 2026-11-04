@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>WYPHA Magic QR Studio — V14.8 • Futuristic Personal Lineage Family Tree + Customer PIN & Unlimited Phone Storage Edition</title>
+<title>WYPHA Magic QR Studio — V14.9 • Family Tree Anti-Scroll Jump & Kinship Default Roles (Cloudflare Ready)</title>
 <script>
 /* JSZip 3.10.1 — embedded */
 /*!
@@ -15328,10 +15328,15 @@ const V136_CUSTOMER_CSS = `
   color: #1e293b !important;
   padding: 20px 18px 18px;
   width: min(460px, calc(100vw - 20px));
-  max-height: 90dvh;
+  height: fit-content;
+  max-height: calc(100dvh - 24px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75);
-  position: relative;
+  position: fixed !important;
+  inset: 0 !important;
+  margin: auto !important;
+  z-index: 2147483645 !important;
 }
 .wft-profile-dialog[data-ft-theme="holo-dark"] {
   background: linear-gradient(165deg, #0b1930 0%, #131c38 100%);
@@ -15588,9 +15593,15 @@ const V136_CUSTOMER_CSS = `
   color: #f2faff !important;
   padding: 20px;
   width: min(480px, calc(100vw - 24px));
-  max-height: 90dvh;
+  height: fit-content;
+  max-height: calc(100dvh - 24px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8), 0 0 32px rgba(110, 243, 255, 0.25);
+  position: fixed !important;
+  inset: 0 !important;
+  margin: auto !important;
+  z-index: 2147483645 !important;
 }
 .v136-modal::backdrop {
   background: rgba(3, 8, 18, 0.72);
@@ -15789,53 +15800,62 @@ function v136CustomerRuntime(C) {
       const MONTHS_ID = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
       const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+      const OLD_SAMPLE_PERSON_NAMES = new Set([
+        'Bujuk Tambeh', 'Nyai Tambeh', 'Bujuk Mina', 'Siti Aminah',
+        'Salabung', 'Dinya', 'Saputra', 'Ammah', 'MUNAWI', 'NAHRA',
+        'Khoyun', 'Lamani', 'Ikhsan', 'Fathah', 'Tholib', 'Maziyah',
+        'Lek Bo', 'Pendik', 'Mul', 'Rina', 'Faris', 'Faiz', 'Wahyu',
+        'Nadia', 'Arka', 'Dul', 'Awi', 'Yongga', 'Dio'
+      ]);
+
       const createStarterLineage = () => {
-        const coreA = (C.personName && C.personName.trim() && C.personName !== 'Si Kecil') ? C.personName.trim() : 'Tholib';
-        const coreB = (C.secondName && C.secondName.trim()) ? C.secondName.trim() : 'Maziyah';
         const nodes = [
-          // Great-great-grandparents & Great-grandparents (4G & 3G above core)
-          { id: 'p-btambeh', name: 'Bujuk Tambeh', lastName: '', gender: 'M', photo: '', birthYear: '1910', parents: [], spouses: ['p-btambeh-w'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
-          { id: 'p-btambeh-w', name: 'Nyai Tambeh', lastName: '', gender: 'F', photo: '', birthYear: '1914', parents: [], spouses: ['p-btambeh'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
-          { id: 'p-bmina', name: 'Bujuk Mina', lastName: '', gender: 'M', photo: '', birthYear: '1932', parents: ['p-btambeh', 'p-btambeh-w'], spouses: ['p-bmina-w'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
-          { id: 'p-bmina-w', name: 'Siti Aminah', lastName: '', gender: 'F', photo: '', birthYear: '1936', parents: [], spouses: ['p-bmina'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
+          // 4G & 3G Ancestors (Canggah & Buyut)
+          { id: 'p-btambeh', name: 'Canggah Pria', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-btambeh-w'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
+          { id: 'p-btambeh-w', name: 'Canggah Wanita', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-btambeh'], divorcedSpouses: [], suffix: 'Leluhur 4G', note: '' },
+          { id: 'p-bmina', name: 'Kakek Buyut', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-btambeh', 'p-btambeh-w'], spouses: ['p-bmina-w'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
+          { id: 'p-bmina-w', name: 'Nenek Buyut', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-bmina'], divorcedSpouses: [], suffix: 'Buyut 3G', note: '' },
 
-          // Paternal grandparents & Maternal grandparents of Tholib (2G above Tholib)
-          { id: 'p-salabung', name: 'Salabung', lastName: '', gender: 'M', photo: '', birthYear: '1948', parents: [], spouses: ['p-dinya'], divorcedSpouses: ['p-dinya'], suffix: 'Kakek', note: '' },
-          { id: 'p-dinya', name: 'Dinya', lastName: '', gender: 'F', photo: '', birthYear: '1952', parents: [], spouses: ['p-salabung'], divorcedSpouses: ['p-salabung'], suffix: 'Nenek', note: '' },
-          { id: 'p-saputra', name: 'Saputra', lastName: '', gender: 'M', photo: '', birthYear: '1950', parents: ['p-bmina', 'p-bmina-w'], spouses: ['p-ammah1'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
-          { id: 'p-ammah1', name: 'Ammah', lastName: '', gender: 'F', photo: '', birthYear: '1954', parents: [], spouses: ['p-saputra'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          // 2G Ancestors: Paternal & Maternal Grandparents (Kakek & Nenek)
+          { id: 'p-salabung', name: 'Kakek (Ayah)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-bmina', 'p-bmina-w'], spouses: ['p-dinya'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'p-dinya', name: 'Nenek (Ayah)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-salabung'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          { id: 'p-saputra', name: 'Kakek (Ibu)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-ammah1'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'p-ammah1', name: 'Nenek (Ibu)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-saputra'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
 
-          // Parents of Tholib (1G above Tholib)
-          { id: 'p-munawi', name: 'MUNAWI', lastName: '', gender: 'M', photo: '', birthYear: '1970', parents: ['p-salabung', 'p-dinya'], spouses: ['p-nahra'], divorcedSpouses: [], suffix: 'Ayah', note: '' },
-          { id: 'p-nahra', name: 'NAHRA', lastName: '', gender: 'F', photo: '', birthYear: '1973', parents: ['p-saputra', 'p-ammah1'], spouses: ['p-munawi'], divorcedSpouses: [], suffix: 'Ibu', note: '' },
+          // 1G Above Core: Parents (Ayah & Ibu) + Uncle & Aunt (Paman & Bibi)
+          { id: 'p-munawi', name: 'Ayah', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-salabung', 'p-dinya'], spouses: ['p-nahra'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
+          { id: 'p-nahra', name: 'Ibu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-saputra', 'p-ammah1'], spouses: ['p-munawi'], divorcedSpouses: [], suffix: 'Orang Tua', note: '' },
+          { id: 'p-paman', name: 'Paman', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-salabung', 'p-dinya'], spouses: ['p-bibi'], divorcedSpouses: [], suffix: 'Saudara Ayah', note: '' },
+          { id: 'p-bibi', name: 'Bibi', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-paman'], divorcedSpouses: [], suffix: 'Pasangan Paman', note: '' },
 
-          // Grandparents & Parents of Maziyah (Maziyah's own personal lineage!)
-          { id: 'p-khoyun', name: 'Khoyun', lastName: '', gender: 'M', photo: '', birthYear: '1949', parents: [], spouses: ['p-lamani'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
-          { id: 'p-lamani', name: 'Lamani', lastName: '', gender: 'F', photo: '', birthYear: '1953', parents: [], spouses: ['p-khoyun'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
-          { id: 'p-ikhsan', name: 'Ikhsan', lastName: '', gender: 'M', photo: '', birthYear: '1971', parents: ['p-khoyun', 'p-lamani'], spouses: ['p-fathah'], divorcedSpouses: [], suffix: 'Ayah', note: '' },
-          { id: 'p-fathah', name: 'Fathah', lastName: '', gender: 'F', photo: '', birthYear: '1974', parents: [], spouses: ['p-ikhsan'], divorcedSpouses: [], suffix: 'Ibu', note: '' },
+          // Spouse's Parents & Grandparents (Mertua & Kakek/Nenek Pasangan)
+          { id: 'p-khoyun', name: 'Kakek (Pasangan)', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-lamani'], divorcedSpouses: [], suffix: 'Kakek', note: '' },
+          { id: 'p-lamani', name: 'Nenek (Pasangan)', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-khoyun'], divorcedSpouses: [], suffix: 'Nenek', note: '' },
+          { id: 'p-ikhsan', name: 'Ayah Mertua', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-khoyun', 'p-lamani'], spouses: ['p-fathah'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
+          { id: 'p-fathah', name: 'Ibu Mertua', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-ikhsan'], divorcedSpouses: [], suffix: 'Mertua', note: '' },
 
-          // Core couple (Tholib & Maziyah) + Siblings on both sides
-          { id: 'p-tholib', name: coreA, lastName: '', gender: 'M', photo: '', birthYear: '1992', parents: ['p-munawi', 'p-nahra'], spouses: ['p-maziyah'], divorcedSpouses: [], suffix: 'Inti Keluarga', note: C.birthDate || '' },
-          { id: 'p-maziyah', name: coreB, lastName: '', gender: 'F', photo: '', birthYear: '1994', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-tholib'], divorcedSpouses: [], suffix: 'Pasangan Inti', note: '' },
-          { id: 'p-lekbo', name: 'Lek Bo', lastName: '', gender: 'F', photo: '', birthYear: '1995', parents: ['p-munawi', 'p-nahra'], spouses: ['p-lekbo-h'], divorcedSpouses: [], suffix: 'Saudara', note: '' },
-          { id: 'p-lekbo-h', name: 'Pendik', lastName: '', gender: 'M', photo: '', birthYear: '1993', parents: [], spouses: ['p-lekbo'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
-          { id: 'p-mul', name: 'Mul', lastName: '', gender: 'M', photo: '', birthYear: '1996', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-mul-w'], divorcedSpouses: [], suffix: 'Saudara', note: '' },
-          { id: 'p-mul-w', name: 'Rina', lastName: '', gender: 'F', photo: '', birthYear: '1997', parents: [], spouses: ['p-mul'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
+          // Core Generation (0G): Saya, Pasangan, Kakak, Ipar, Adik, & Sepupu
+          { id: 'p-tholib', name: 'Saya', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: ['p-maziyah'], divorcedSpouses: [], suffix: 'Inti Keluarga', note: '' },
+          { id: 'p-maziyah', name: 'Pasangan', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-tholib'], divorcedSpouses: [], suffix: 'Suami / Istri', note: '' },
+          { id: 'p-lekbo', name: 'Kakak', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: ['p-lekbo-h'], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
+          { id: 'p-lekbo-h', name: 'Ipar', lastName: '', gender: 'M', photo: '', birthYear: '', parents: [], spouses: ['p-lekbo'], divorcedSpouses: [], suffix: 'Pasangan Kakak', note: '' },
+          { id: 'p-adik', name: 'Adik', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-munawi', 'p-nahra'], spouses: [], divorcedSpouses: [], suffix: 'Saudara Kandung', note: '' },
+          { id: 'p-sepupu-1', name: 'Sepupu 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-paman', 'p-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
+          { id: 'p-sepupu-2', name: 'Sepupu 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-paman', 'p-bibi'], spouses: [], divorcedSpouses: [], suffix: 'Anak Paman & Bibi', note: '' },
+          { id: 'p-mul', name: 'Saudara Pasangan', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-ikhsan', 'p-fathah'], spouses: ['p-mul-w'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
+          { id: 'p-mul-w', name: 'Pasangan Ipar', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-mul'], divorcedSpouses: [], suffix: 'Ipar', note: '' },
 
-          // Children & Grandchildren
-          { id: 'p-faris', name: 'Faris', lastName: '', gender: 'M', photo: '', birthYear: '2016', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak ke-1', note: '' },
-          { id: 'p-faiz', name: 'Faiz', lastName: '', gender: 'F', photo: '', birthYear: '2018', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak ke-2', note: '' },
-          { id: 'p-wahyu', name: 'Wahyu', lastName: '', gender: 'M', photo: '', birthYear: '2020', parents: ['p-tholib', 'p-maziyah'], spouses: ['p-wahyu-w'], divorcedSpouses: [], suffix: 'Anak ke-3', note: '' },
-          { id: 'p-wahyu-w', name: 'Nadia', lastName: '', gender: 'F', photo: '', birthYear: '2021', parents: [], spouses: ['p-wahyu'], divorcedSpouses: [], suffix: 'Menantu', note: '' },
-          { id: 'p-cucu1', name: 'Arka', lastName: '', gender: 'M', photo: '', birthYear: '2026', parents: ['p-wahyu', 'p-wahyu-w'], spouses: [], divorcedSpouses: [], suffix: 'Cucu', note: '' },
-          { id: 'p-dul', name: 'Dul', lastName: '', gender: 'M', photo: '', birthYear: '2019', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Keponakan', note: '' },
-          { id: 'p-awi', name: 'Awi', lastName: '', gender: 'M', photo: '', birthYear: '2021', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Keponakan', note: '' },
-          { id: 'p-yongga', name: 'Yongga', lastName: '', gender: 'M', photo: '', birthYear: '2020', parents: ['p-mul', 'p-mul-w'], spouses: [], divorcedSpouses: [], suffix: 'Keponakan', note: '' },
-          { id: 'p-dio', name: 'Dio', lastName: '', gender: 'M', photo: '', birthYear: '2023', parents: ['p-mul', 'p-mul-w'], spouses: [], divorcedSpouses: [], suffix: 'Keponakan', note: '' }
+          // Descendants (-1G & -2G): Anak, Menantu, Cucu, & Keponakan
+          { id: 'p-faris', name: 'Anak Ke-1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'p-faiz', name: 'Anak Ke-2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'p-wahyu', name: 'Anak Ke-3', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-tholib', 'p-maziyah'], spouses: ['p-wahyu-w'], divorcedSpouses: [], suffix: 'Anak Kandung', note: '' },
+          { id: 'p-wahyu-w', name: 'Menantu', lastName: '', gender: 'F', photo: '', birthYear: '', parents: [], spouses: ['p-wahyu'], divorcedSpouses: [], suffix: 'Pasangan Anak', note: '' },
+          { id: 'p-cucu1', name: 'Cucu', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-wahyu', 'p-wahyu-w'], spouses: [], divorcedSpouses: [], suffix: 'Cucu', note: '' },
+          { id: 'p-dul', name: 'Keponakan 1', lastName: '', gender: 'M', photo: '', birthYear: '', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' },
+          { id: 'p-awi', name: 'Keponakan 2', lastName: '', gender: 'F', photo: '', birthYear: '', parents: ['p-lekbo-h', 'p-lekbo'], spouses: [], divorcedSpouses: [], suffix: 'Anak Kakak', note: '' }
         ];
         return {
-          version: 2,
+          version: 3,
           focusId: 'p-tholib',
           upGenLimit: 'inf',
           downGenMode: 'inf',
@@ -15848,6 +15868,13 @@ function v136CustomerRuntime(C) {
       const normalizeTreeData = raw => {
         if (!raw || !Array.isArray(raw.nodes) || !raw.nodes.length) {
           return createStarterLineage();
+        }
+        const hasOldPersonalSample = raw.version !== 3 && raw.nodes.some(n => OLD_SAMPLE_PERSON_NAMES.has(String(n?.name || '').trim()));
+        const hasCustomPhotos = raw.nodes.some(n => String(n?.photo || '').trim().length > 0);
+        if (hasOldPersonalSample && !hasCustomPhotos) {
+          const fresh = createStarterLineage();
+          if (['holo-dark', 'cyber-light'].includes(raw.canvasTheme)) fresh.canvasTheme = raw.canvasTheme;
+          return fresh;
         }
         const isLegacyV1 = raw.version !== 2 && raw.nodes.some(n => n.gen !== undefined && !Array.isArray(n.parents));
         const nodes = raw.nodes.map((n, idx) => {
@@ -15912,7 +15939,7 @@ function v136CustomerRuntime(C) {
 
         const focusId = byId.has(raw.focusId) ? raw.focusId : (nodes.find(x => x.id === 'p-tholib' || x.id === 'g0-me')?.id || nodes[0].id);
         return {
-          version: 2,
+          version: 3,
           focusId,
           upGenLimit: ['inf', 4, 3, 2, '4', '3', '2'].includes(raw.upGenLimit) ? (raw.upGenLimit === 'inf' ? 'inf' : Number(raw.upGenLimit)) : 'inf',
           downGenMode: ['children', 'children_spouses', 'grandchildren', 'inf'].includes(raw.downGenMode) ? raw.downGenMode : 'inf',
@@ -16459,7 +16486,7 @@ function v136CustomerRuntime(C) {
           }
         };
 
-        const buildAncestorTreeShifted = (childId, childActualX, coupleTargetX, childY, genLevel, depthUp, visitedUp) => {
+        const buildAncestorTreeShifted = (childId, childActualX, coupleTargetX, childY, genLevel, depthUp, visitedUp, siblingXs = null) => {
           if (depthUp > maxUp) return;
           const child = findPerson(childId);
           if (!child || !Array.isArray(child.parents) || !child.parents.length) return;
@@ -16468,6 +16495,7 @@ function v136CustomerRuntime(C) {
 
           const y = ORIGIN_Y - genLevel * LEVEL_H;
           const midY = y + 62;
+          const allChildXs = Array.isArray(siblingXs) && siblingXs.length ? siblingXs : [childActualX];
 
           if (parents.length >= 2) {
             let pLeft = parents[0];
@@ -16489,7 +16517,15 @@ function v136CustomerRuntime(C) {
             const isDiv = (pLeft.divorcedSpouses || []).includes(pRight.id) || (pRight.divorcedSpouses || []).includes(pLeft.id);
             unions.push({ aId: pLeft.id, bId: pRight.id, x: ux, y, divorced: isDiv });
             lines.push({ d: `M ${lx + AVATAR_R} ${y} H ${rx - AVATAR_R}` });
-            lines.push({ d: `M ${ux} ${y + 11} V ${midY} H ${childActualX} V ${childY - AVATAR_R}` });
+            const minBarX = Math.min(ux, ...allChildXs);
+            const maxBarX = Math.max(ux, ...allChildXs);
+            lines.push({ d: `M ${ux} ${y + 11} V ${midY}` });
+            if (maxBarX > minBarX) {
+              lines.push({ d: `M ${minBarX} ${midY} H ${maxBarX}` });
+            }
+            for (const cx of allChildXs) {
+              lines.push({ d: `M ${cx} ${midY} V ${childY - AVATAR_R}` });
+            }
 
             const spread = Math.max(96, 175 - depthUp * 22);
             buildAncestorTreeShifted(pLeft.id, lx, lx - spread * 0.65, y, genLevel + 1, depthUp + 1, visitedUp);
@@ -16575,9 +16611,54 @@ function v136CustomerRuntime(C) {
               lines.push({ d: `M ${scx} ${midY} V ${childTopY}` });
             }
 
+            // Also render siblings of pLeft (e.g. Paman/Bibi) and their children (Sepupu) to the left, and siblings of pRight to the right
+            const getParentSiblings = (parNode) => {
+              if (!parNode || !Array.isArray(parNode.parents) || !parNode.parents.length) return [];
+              return treeData.nodes.filter(n =>
+                n.id !== pLeft.id &&
+                n.id !== pRight.id &&
+                !visitedDown.has(n.id) &&
+                !visitedUp.has(n.id) &&
+                Array.isArray(n.parents) &&
+                n.parents.some(pid => parNode.parents.includes(pid))
+              );
+            };
+            const leftAuntUncles = getParentSiblings(pLeft);
+            const rightAuntUncles = getParentSiblings(pRight);
+            const leftSiblingAnchors = [lx];
+            const rightSiblingAnchors = [rx];
+
+            let leftEdgeBound = Math.min(ORIGIN_X - totalRowW * 0.5, lx - NODE_W * 0.5);
+            for (const au of leftAuntUncles) {
+              const auUnit = buildDescendantUnit(au.id, 1, 0, visitedDown);
+              const auCx = leftEdgeBound - SIBLING_GAP * 1.5 - auUnit.width * 0.5;
+              auUnit.shift(auCx);
+              auUnit.applyToGlobal(0);
+              visitedUp.add(au.id);
+              renderedIds.add(au.id);
+              const auPos = positions.get(au.id);
+              if (auPos) leftSiblingAnchors.push(auPos.x);
+              leftEdgeBound = auCx - auUnit.width * 0.5;
+            }
+
+            let rightEdgeBound = Math.max(ORIGIN_X + totalRowW * 0.5, rx + NODE_W * 0.5);
+            for (const au of rightAuntUncles) {
+              const auUnit = buildDescendantUnit(au.id, 1, 0, visitedDown);
+              const auCx = rightEdgeBound + SIBLING_GAP * 1.5 + auUnit.width * 0.5;
+              auUnit.shift(auCx);
+              auUnit.applyToGlobal(0);
+              visitedUp.add(au.id);
+              renderedIds.add(au.id);
+              const auPos = positions.get(au.id);
+              if (auPos) rightSiblingAnchors.push(auPos.x);
+              rightEdgeBound = auCx + auUnit.width * 0.5;
+            }
+
             if (maxUp >= 2) {
-              buildAncestorTreeShifted(pLeft.id, lx, lx - 115, pY, 2, 2, visitedUp);
-              buildAncestorTreeShifted(pRight.id, rx, rx + 115, pY, 2, 2, visitedUp);
+              const leftAncTarget = (Math.min(...leftSiblingAnchors) + Math.max(...leftSiblingAnchors)) * 0.5 - 55;
+              const rightAncTarget = (Math.min(...rightSiblingAnchors) + Math.max(...rightSiblingAnchors)) * 0.5 + 55;
+              buildAncestorTreeShifted(pLeft.id, lx, leftAncTarget, pY, 2, 2, visitedUp, leftSiblingAnchors);
+              buildAncestorTreeShifted(pRight.id, rx, rightAncTarget, pY, 2, 2, visitedUp, rightSiblingAnchors);
             }
           } else {
             const pSingle = focusParents[0];
@@ -17148,7 +17229,7 @@ function v136CustomerRuntime(C) {
           const spGender = person.gender === 'F' ? 'M' : 'F';
           const autoSpouse = {
             id: makeId('p-sp'),
-            name: '',
+            name: spGender === 'F' ? t('Istri', 'Wife') : t('Suami', 'Husband'),
             lastName: '',
             gender: spGender,
             photo: '',
@@ -17169,7 +17250,7 @@ function v136CustomerRuntime(C) {
         }
         const child = {
           id: makeId('p-ch'),
-          name: t('Anak Baru', 'New Child'),
+          name: t('Anak', 'Child'),
           lastName: '',
           gender: 'M',
           photo: '',
@@ -17211,15 +17292,94 @@ function v136CustomerRuntime(C) {
       };
 
       // =======================================================================
+      // ANTI-SCROLL-JUMP LOCK FOR FAMILY TREE MODALS & MUTATIONS
+      // Prevents browser from scrolling to top when opening/editing/closing <dialog>
+      // =======================================================================
+      viewport.setAttribute('tabindex', '-1');
+      viewport.style.outline = 'none';
+      let savedPageScrollY = 0;
+      let savedPageScrollX = 0;
+      let scrollGuardUntil = 0;
+
+      const capturePageScroll = () => {
+        const y = window.scrollY ?? document.documentElement.scrollTop ?? document.body.scrollTop ?? 0;
+        const x = window.scrollX ?? document.documentElement.scrollLeft ?? document.body.scrollLeft ?? 0;
+        if (y > 0 || Date.now() >= scrollGuardUntil) {
+          savedPageScrollY = y;
+          savedPageScrollX = x;
+        }
+        scrollGuardUntil = Date.now() + 500;
+      };
+
+      const restorePageScroll = () => {
+        const curY = window.scrollY ?? document.documentElement.scrollTop ?? document.body.scrollTop ?? 0;
+        if (Math.abs(curY - savedPageScrollY) > 2) {
+          window.scrollTo(savedPageScrollX, savedPageScrollY);
+          document.documentElement.scrollTop = savedPageScrollY;
+          document.body.scrollTop = savedPageScrollY;
+        }
+      };
+
+      const openDialogLockScroll = (dlg, focusSelector = '') => {
+        capturePageScroll();
+        try {
+          if (!dlg.open) dlg.showModal();
+        } catch (e) {
+          dlg.setAttribute('open', '');
+        }
+        restorePageScroll();
+        if (focusSelector) {
+          const el = dlg.querySelector(focusSelector);
+          try { el?.focus?.({ preventScroll: true }); } catch (e) {}
+        }
+        requestAnimationFrame(restorePageScroll);
+        setTimeout(restorePageScroll, 30);
+      };
+
+      const closeDialogLockScroll = dlg => {
+        if (!dlg) return;
+        capturePageScroll();
+        try { document.activeElement?.blur?.(); } catch (e) {}
+        try { viewport.focus({ preventScroll: true }); } catch (e) {}
+        try {
+          if (dlg.open) dlg.close();
+          else dlg.removeAttribute('open');
+        } catch (e) {
+          dlg.removeAttribute('open');
+        }
+        restorePageScroll();
+        requestAnimationFrame(restorePageScroll);
+        setTimeout(restorePageScroll, 30);
+      };
+
+      window.addEventListener('scroll', () => {
+        if (Date.now() < scrollGuardUntil || profileDialog?.open || relDialog?.open) {
+          const curY = window.scrollY ?? document.documentElement.scrollTop ?? document.body.scrollTop ?? 0;
+          if (savedPageScrollY > 120 && curY < savedPageScrollY - 120) {
+            window.scrollTo(savedPageScrollX, savedPageScrollY);
+          }
+        }
+      }, { passive: true });
+
+      // =======================================================================
       // PERSON PROFILE EDIT MODAL (EXACT VIDEO FRAME 22 FIELDS + AUTO-SAVE)
       // =======================================================================
       let profileDialog = null;
       const openProfileModal = (person, readOnly = false) => {
         if (!person) return;
+        capturePageScroll();
         if (!profileDialog) {
           profileDialog = document.createElement('dialog');
           profileDialog.className = 'wft-profile-dialog';
           profileDialog.id = 'v136FamilyNodeModal';
+          profileDialog.addEventListener('close', () => {
+            restorePageScroll();
+            requestAnimationFrame(restorePageScroll);
+          });
+          profileDialog.addEventListener('cancel', e => {
+            e.preventDefault();
+            closeDialogLockScroll(profileDialog);
+          });
           document.body.appendChild(profileDialog);
         }
         profileDialog.dataset.ftTheme = treeData.canvasTheme || 'holo-dark';
@@ -17376,19 +17536,28 @@ function v136CustomerRuntime(C) {
           statusEl.textContent = t(`✓ Data ${fullName(person)} tersimpan di HP ini.`, `✓ ${fullName(person)} saved on this phone.`);
         };
 
+        profileDialog.querySelectorAll('input, select, textarea').forEach(inp => {
+          inp.addEventListener('focus', () => {
+            restorePageScroll();
+            requestAnimationFrame(restorePageScroll);
+          });
+        });
+
         profileDialog.querySelector('[data-wft-prof-close]').onclick = async () => {
+          capturePageScroll();
           await persistProfileChanges();
-          profileDialog.close();
+          closeDialogLockScroll(profileDialog);
         };
         const saveBtn = profileDialog.querySelector('[data-wft-prof-save]');
         if (saveBtn) {
           saveBtn.onclick = async () => {
+            capturePageScroll();
             await persistProfileChanges();
-            profileDialog.close();
+            closeDialogLockScroll(profileDialog);
           };
         }
 
-        try { profileDialog.showModal(); } catch (e) { profileDialog.setAttribute('open', ''); }
+        openDialogLockScroll(profileDialog, readOnly ? '[data-wft-prof-close]' : '#wftProfFirstName');
       };
 
       // =======================================================================
@@ -17399,6 +17568,14 @@ function v136CustomerRuntime(C) {
         if (!relDialog) {
           relDialog = document.createElement('dialog');
           relDialog.className = 'v136-modal';
+          relDialog.addEventListener('close', () => {
+            restorePageScroll();
+            requestAnimationFrame(restorePageScroll);
+          });
+          relDialog.addEventListener('cancel', e => {
+            e.preventDefault();
+            closeDialogLockScroll(relDialog);
+          });
           document.body.appendChild(relDialog);
         }
         return relDialog;
@@ -17428,7 +17605,7 @@ function v136CustomerRuntime(C) {
             '</div>' +
           '</div>';
 
-        dlg.querySelector('[data-conn-cancel]').onclick = () => dlg.close();
+        dlg.querySelector('[data-conn-cancel]').onclick = () => closeDialogLockScroll(dlg);
         dlg.querySelector('[data-conn-save]').onclick = async () => {
           const relType = dlg.querySelector('#wftConnType').value;
           const targetId = dlg.querySelector('#wftConnTarget').value;
@@ -17459,13 +17636,15 @@ function v136CustomerRuntime(C) {
               person.parents = [...(target.parents || [])];
             }
           }
+          capturePageScroll();
           await saveDualVault(ftKey, treeData);
-          dlg.close();
+          closeDialogLockScroll(dlg);
           renderTree();
           centerOnPerson(person.id);
+          restorePageScroll();
           statusEl.textContent = t('✓ Hubungan keluarga berhasil disambungkan!', '✓ Family relationship connected!');
         };
-        try { dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); }
+        openDialogLockScroll(dlg);
       };
 
       const openDisconnectModal = person => {
@@ -17504,7 +17683,7 @@ function v136CustomerRuntime(C) {
             '</div>' +
           '</div>';
 
-        dlg.querySelector('[data-disc-close]').onclick = () => dlg.close();
+        dlg.querySelector('[data-disc-close]').onclick = () => closeDialogLockScroll(dlg);
         dlg.querySelectorAll('[data-disc-idx]').forEach(btn => {
           btn.onclick = async () => {
             const it = items[Number(btn.getAttribute('data-disc-idx'))];
@@ -17533,13 +17712,15 @@ function v136CustomerRuntime(C) {
               const ch = findPerson(it.id);
               if (ch) ch.parents = (ch.parents || []).filter(id => id !== person.id);
             }
+            capturePageScroll();
             await saveDualVault(ftKey, treeData);
-            dlg.close();
+            closeDialogLockScroll(dlg);
             renderTree();
+            restorePageScroll();
             statusEl.textContent = t('✓ Hubungan berhasil diperbarui & disimpan di HP.', '✓ Relationship updated & saved on phone.');
           };
         });
-        try { dlg.showModal(); } catch (e) { dlg.setAttribute('open', ''); }
+        openDialogLockScroll(dlg);
       };
 
       // =======================================================================
@@ -17608,7 +17789,7 @@ function v136CustomerRuntime(C) {
         searchSheet.hidden = !searchSheet.hidden;
         if (!searchSheet.hidden) {
           renderSearchResults();
-          section.querySelector('#wftSearchInput').focus();
+          section.querySelector('#wftSearchInput').focus({ preventScroll: true });
         }
       };
       section.querySelector('[data-ft-close-search]').onclick = () => { searchSheet.hidden = true; };
@@ -17747,7 +17928,7 @@ function v136CustomerRuntime(C) {
 
       section.querySelector('[data-ft-start-single]').onclick = async () => {
         if (isVisitorLocked()) return;
-        const coreName = (C.personName && C.personName.trim() && C.personName !== 'Si Kecil') ? C.personName.trim() : 'Inti Keluarga';
+        const coreName = t('Saya', 'Me');
         treeData = {
           version: 2,
           focusId: 'p-root',
