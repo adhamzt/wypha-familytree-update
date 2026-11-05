@@ -19505,38 +19505,13 @@ function v137CustomerRuntime(C) {
     };
 
     const readStoreAll = async (dbName, version, storeName) => {
+      const effVersion = dbName === 'wyphaVirtualLibraryDB_v1' ? Math.max(2, version || 2) : version;
       return new Promise(resolve => {
+        let settled = false;
+        const done = val => { if (!settled) { settled = true; clearTimeout(timer); resolve(val); } };
+        const timer = setTimeout(() => done([]), 2500);
         try {
-          const req = indexedDB.open(dbName, version);
-          req.onsuccess = () => {
-            const db = req.result;
-            if (!db.objectStoreNames.contains(storeName)) {
-              db.close();
-              return resolve([]);
-            }
-            const tx = db.transaction(storeName, 'readonly');
-            const store = tx.objectStore(storeName);
-            const getReq = store.getAll();
-            getReq.onsuccess = () => {
-              db.close();
-              resolve(getReq.result || []);
-            };
-            getReq.onerror = () => {
-              db.close();
-              resolve([]);
-            };
-          };
-          req.onerror = () => resolve([]);
-        } catch (e) {
-          resolve([]);
-        }
-      });
-    };
-
-    const putStoreAll = async (dbName, version, storeName, records) => {
-      return new Promise(resolve => {
-        try {
-          const req = indexedDB.open(dbName, version);
+          const req = indexedDB.open(dbName, effVersion);
           req.onupgradeneeded = () => {
             const db = req.result;
             if (!db.objectStoreNames.contains(storeName)) {
@@ -19550,34 +19525,98 @@ function v137CustomerRuntime(C) {
           req.onsuccess = () => {
             const db = req.result;
             if (!db.objectStoreNames.contains(storeName)) {
-              db.close();
-              return resolve(false);
+              try { db.close(); } catch (e) {}
+              return done([]);
             }
-            const tx = db.transaction(storeName, 'readwrite');
-            const store = tx.objectStore(storeName);
-            const hasKeyPath = !!store.keyPath;
-            for (const r of records) {
-              try {
-                if (hasKeyPath) {
-                  store.put(r);
-                } else {
-                  const outKey = r?.id || ('wypha-fan-identity:v1:' + encodeURIComponent(projId) + ':' + encodeURIComponent(normPath));
-                  store.put(r, outKey);
-                }
-              } catch (e) {}
+            try {
+              const tx = db.transaction(storeName, 'readonly');
+              const store = tx.objectStore(storeName);
+              const getReq = store.getAll();
+              getReq.onsuccess = () => {
+                try { db.close(); } catch (e) {}
+                done(getReq.result || []);
+              };
+              getReq.onerror = () => {
+                try { db.close(); } catch (e) {}
+                done([]);
+              };
+              tx.onabort = () => {
+                try { db.close(); } catch (e) {}
+                done([]);
+              };
+            } catch (e) {
+              try { db.close(); } catch (e2) {}
+              done([]);
             }
-            tx.oncomplete = () => {
-              db.close();
-              resolve(true);
-            };
-            tx.onerror = () => {
-              db.close();
-              resolve(false);
-            };
           };
-          req.onerror = () => resolve(false);
+          req.onerror = () => done([]);
+          req.onblocked = () => done([]);
         } catch (e) {
-          resolve(false);
+          done([]);
+        }
+      });
+    };
+
+    const putStoreAll = async (dbName, version, storeName, records) => {
+      const effVersion = dbName === 'wyphaVirtualLibraryDB_v1' ? Math.max(2, version || 2) : version;
+      return new Promise(resolve => {
+        let settled = false;
+        const done = val => { if (!settled) { settled = true; clearTimeout(timer); resolve(val); } };
+        const timer = setTimeout(() => done(false), 2500);
+        try {
+          const req = indexedDB.open(dbName, effVersion);
+          req.onupgradeneeded = () => {
+            const db = req.result;
+            if (!db.objectStoreNames.contains(storeName)) {
+              if (dbName === 'wypha-fan-identity-v1' && storeName === 'cards') {
+                db.createObjectStore(storeName);
+              } else {
+                db.createObjectStore(storeName, { keyPath: 'id' });
+              }
+            }
+          };
+          req.onsuccess = () => {
+            const db = req.result;
+            if (!db.objectStoreNames.contains(storeName)) {
+              try { db.close(); } catch (e) {}
+              return done(false);
+            }
+            try {
+              const tx = db.transaction(storeName, 'readwrite');
+              const store = tx.objectStore(storeName);
+              const hasKeyPath = !!store.keyPath;
+              for (const r of records) {
+                try {
+                  const rowCopy = (r && typeof r === 'object' && r.bytes && r.blob) ? { ...r, blob: undefined } : r;
+                  if (hasKeyPath) {
+                    store.put(rowCopy);
+                  } else {
+                    const outKey = r?.id || ('wypha-fan-identity:v1:' + encodeURIComponent(projId) + ':' + encodeURIComponent(normPath));
+                    store.put(rowCopy, outKey);
+                  }
+                } catch (e) {}
+              }
+              tx.oncomplete = () => {
+                try { db.close(); } catch (e) {}
+                done(true);
+              };
+              tx.onerror = () => {
+                try { db.close(); } catch (e) {}
+                done(false);
+              };
+              tx.onabort = () => {
+                try { db.close(); } catch (e) {}
+                done(false);
+              };
+            } catch (e) {
+              try { db.close(); } catch (e2) {}
+              done(false);
+            }
+          };
+          req.onerror = () => done(false);
+          req.onblocked = () => done(false);
+        } catch (e) {
+          done(false);
         }
       });
     };
@@ -20097,10 +20136,11 @@ function v137CustomerRuntime(C) {
               });
             }
           }
-          if (pdfRows.length) await putStoreAll('wyphaVirtualLibraryDB_v1', 1, 'pdfs', pdfRows);
+          if (pdfRows.length) await putStoreAll('wyphaVirtualLibraryDB_v1', 2, 'pdfs', pdfRows);
           restoredPhotos += pdfRows.length;
         }
         restoredNotes = (data.state?.books || []).length;
+        try { window.__wyphaVirtualLibrary?.refresh?.(); } catch (e) {}
       } else if (data.schema === 'wypha-collector-stories/v1' && data.data) {
         const colKey = 'wypha-collector:v1:' + encodeURIComponent(projId) + ':' + encodeURIComponent(normPath);
         await writeKeyEverywhere(colKey, data.data);
@@ -25812,12 +25852,16 @@ function v142MergeBookLists(existingBooks, incomingBooks, incomingPdfMap = null)
   const result = JSON.parse(JSON.stringify(Array.isArray(existingBooks) ? existingBooks : []));
   if (!Array.isArray(incomingBooks) || !incomingBooks.length) return result;
   const norm = s => String(s || '').trim().toLowerCase();
+  const newTopBooks = [];
 
   incomingBooks.forEach((rawInc, idx) => {
     if (!rawInc || typeof rawInc !== 'object') return;
     const inc = JSON.parse(JSON.stringify(rawInc));
     const origId = String(inc.id || ('ebook-imp-' + Date.now() + '-' + idx));
     inc.id = origId;
+    if (!inc.pdfFileName && incomingPdfMap && incomingPdfMap[origId]?.name) {
+      inc.pdfFileName = incomingPdfMap[origId].name;
+    }
 
     // Check if an identical book (same title AND same PDF source) already exists in result
     const incTitle = norm(inc.titleId || inc.title || inc.titleEn);
@@ -25835,15 +25879,20 @@ function v142MergeBookLists(existingBooks, incomingBooks, incomingPdfMap = null)
     });
 
     if (exactMatch) {
-      // Do NOT overwrite or replace existing book! Only fill missing PDF or append new chapters if any
-      if (!exactMatch.pdfDataUrl && inc.pdfDataUrl) {
+      // Preserve existing book while updating missing/stale PDF & enriched metadata
+      if ((!exactMatch.pdfDataUrl || String(exactMatch.pdfDataUrl).startsWith('blob:')) && inc.pdfDataUrl) {
         exactMatch.pdfDataUrl = inc.pdfDataUrl;
-        exactMatch.pdfFileName = exactMatch.pdfFileName || inc.pdfFileName || '';
-        exactMatch.pdfSizeKb = exactMatch.pdfSizeKb || inc.pdfSizeKb || 0;
       }
-      if (!exactMatch.pdfUrl && inc.pdfUrl) {
-        exactMatch.pdfUrl = inc.pdfUrl;
+      if (!exactMatch.pdfFileName && inc.pdfFileName) exactMatch.pdfFileName = inc.pdfFileName;
+      if (!exactMatch.pdfSizeKb && inc.pdfSizeKb) exactMatch.pdfSizeKb = inc.pdfSizeKb;
+      if (!exactMatch.pdfUrl && inc.pdfUrl) exactMatch.pdfUrl = inc.pdfUrl;
+      if (Array.isArray(inc.sampleCards) && inc.sampleCards.length && (!Array.isArray(exactMatch.sampleCards) || inc.sampleCards.length >= exactMatch.sampleCards.length)) {
+        exactMatch.sampleCards = JSON.parse(JSON.stringify(inc.sampleCards));
       }
+      if (inc.descId && !exactMatch.descId) exactMatch.descId = inc.descId;
+      if (inc.descEn && !exactMatch.descEn) exactMatch.descEn = inc.descEn;
+      if (inc.badgeId && !exactMatch.badgeId) exactMatch.badgeId = inc.badgeId;
+      if (inc.badgeEn && !exactMatch.badgeEn) exactMatch.badgeEn = inc.badgeEn;
       if (incomingPdfMap && incomingPdfMap[origId] && exactMatch.id !== origId && !incomingPdfMap[exactMatch.id]) {
         incomingPdfMap[exactMatch.id] = incomingPdfMap[origId];
       }
@@ -25854,7 +25903,6 @@ function v142MergeBookLists(existingBooks, incomingBooks, incomingPdfMap = null)
           if (!chMatch) {
             exactMatch.chapters.push(JSON.parse(JSON.stringify(incCh)));
           } else {
-            // Preserve existing progress; only fill in blank fields if incoming has data
             if (!chMatch.done && incCh.done) {
               chMatch.done = true;
               chMatch.timestamp = chMatch.timestamp || incCh.timestamp || '';
@@ -25871,18 +25919,23 @@ function v142MergeBookLists(existingBooks, incomingBooks, incomingPdfMap = null)
     }
 
     // It is a new/distinct book! Ensure its ID does not collide with any existing book ID in result
-    if (result.some(eb => eb.id === inc.id)) {
+    if (result.some(eb => eb.id === inc.id) || newTopBooks.some(eb => eb.id === inc.id)) {
       const newId = origId + '-merged-' + Date.now() + '-' + idx;
       inc.id = newId;
       if (incomingPdfMap && incomingPdfMap[origId]) {
         incomingPdfMap[newId] = incomingPdfMap[origId];
       }
     }
-    result.push(inc);
+    if (!/^ebook-[1-5]$/.test(origId)) {
+      newTopBooks.push(inc);
+    } else {
+      result.push(inc);
+    }
   });
 
-  return result;
+  return [...newTopBooks, ...result];
 }
+window.v142MergeBookLists = v142MergeBookLists;
 
 function v142LibraryDefaults(v = {}) {
   v = v && typeof v === 'object' ? v : {};
@@ -27248,23 +27301,69 @@ function v142CustomerRuntime(C) {
     } catch (e) {}
     const t = (idText, enText) => (lang === 'en' ? enText : idText);
 
-    // IndexedDB Helper for storing large PDF Blobs locally on customer's phone
+    // Fast & safe chunked DataURL-to-Blob helper
+    const fastDataUrlToBlob = dataUrl => {
+      try {
+        if (typeof dataUrl !== 'string' || !dataUrl.startsWith('data:')) return null;
+        const comma = dataUrl.indexOf(',');
+        if (comma < 0) return null;
+        const head = dataUrl.slice(0, comma);
+        const mime = (head.match(/:(.*?);/) || [null, 'application/pdf'])[1] || 'application/pdf';
+        const raw = atob(dataUrl.slice(comma + 1).replace(/\s+/g, ''));
+        const chunks = [];
+        for (let offset = 0; offset < raw.length; offset += 65536) {
+          const slice = raw.slice(offset, offset + 65536);
+          const bytes = new Uint8Array(slice.length);
+          for (let i = 0; i < slice.length; i++) bytes[i] = slice.charCodeAt(i);
+          chunks.push(bytes);
+        }
+        return new Blob(chunks, { type: mime });
+      } catch (e) {
+        return null;
+      }
+    };
+
+    // IndexedDB Helper for storing large PDF Blobs locally on customer's phone (with version 2 upgrade & non-blocking timeouts)
     let dbPromise = null;
     const openPdfDb = () => {
       if (dbPromise) return dbPromise;
       dbPromise = new Promise(resolve => {
+        let settled = false;
+        const done = db => {
+          if (!settled) {
+            settled = true;
+            clearTimeout(timer);
+            if (!db) dbPromise = null;
+            resolve(db);
+          }
+        };
+        const timer = setTimeout(() => done(null), 2200);
         try {
-          const req = indexedDB.open('wyphaVirtualLibraryDB_v1', 1);
+          const req = indexedDB.open('wyphaVirtualLibraryDB_v1', 2);
           req.onupgradeneeded = () => {
             const db = req.result;
             if (!db.objectStoreNames.contains('pdfs')) {
               db.createObjectStore('pdfs', { keyPath: 'id' });
             }
           };
-          req.onsuccess = () => resolve(req.result);
-          req.onerror = () => resolve(null);
+          req.onsuccess = () => {
+            const db = req.result;
+            if (db) {
+              db.onversionchange = () => {
+                try { db.close(); } catch (e) {}
+                dbPromise = null;
+              };
+              if (!db.objectStoreNames.contains('pdfs')) {
+                try { db.close(); } catch (e) {}
+                return done(null);
+              }
+            }
+            done(db);
+          };
+          req.onerror = () => done(null);
+          req.onblocked = () => done(null);
         } catch (e) {
-          resolve(null);
+          done(null);
         }
       });
       return dbPromise;
@@ -27274,8 +27373,6 @@ function v142CustomerRuntime(C) {
     const pdfDataCache = new Map();
 
     const savePdfBlob = async (bookId, fileOrBlob, fileName = 'ebook.pdf') => {
-      const db = await openPdfDb();
-      const recId = `wypha-virtual-library-v142:${projId}:pdf:${bookId}`;
       let safeBlob = fileOrBlob;
       let bytesBuffer = null;
       try {
@@ -27288,15 +27385,21 @@ function v142CustomerRuntime(C) {
       const url = URL.createObjectURL(safeBlob);
       pdfBlobUrls.set(bookId, url);
       pdfDataCache.set(bookId, { blob: safeBlob, name: fileName });
-      if (!db) return true;
+      const db = await openPdfDb();
+      if (!db || !db.objectStoreNames.contains('pdfs')) return true;
+      const recId = `wypha-virtual-library-v142:${projId}:pdf:${bookId}`;
       return new Promise(resolve => {
+        let settled = false;
+        const done = val => { if (!settled) { settled = true; clearTimeout(timer); resolve(val); } };
+        const timer = setTimeout(() => done(false), 2500);
         try {
           const tx = db.transaction('pdfs', 'readwrite');
-          tx.objectStore('pdfs').put({ id: recId, bookId, name: fileName, mime: safeBlob.type || 'application/pdf', bytes: bytesBuffer, blob: safeBlob, updatedAt: Date.now() });
-          tx.oncomplete = () => resolve(true);
-          tx.onerror = () => resolve(false);
+          tx.objectStore('pdfs').put({ id: recId, bookId, name: fileName, mime: safeBlob.type || 'application/pdf', bytes: bytesBuffer, updatedAt: Date.now() });
+          tx.oncomplete = () => done(true);
+          tx.onerror = () => done(false);
+          tx.onabort = () => done(false);
         } catch (e) {
-          resolve(false);
+          done(false);
         }
       });
     };
@@ -27308,15 +27411,21 @@ function v142CustomerRuntime(C) {
       }
       pdfDataCache.delete(bookId);
       const db = await openPdfDb();
-      if (!db) return;
+      if (!db || !db.objectStoreNames.contains('pdfs')) return;
       return new Promise(resolve => {
+        let settled = false;
+        const done = val => { if (!settled) { settled = true; clearTimeout(timer); resolve(val); } };
+        const timer = setTimeout(() => done(false), 2000);
         try {
           const tx = db.transaction('pdfs', 'readwrite');
-          tx.objectStore('pdfs').delete(`${storageKey}:pdf:${bookId}`);
-          tx.oncomplete = () => resolve(true);
-          tx.onerror = () => resolve(false);
+          const store = tx.objectStore('pdfs');
+          store.delete(`wypha-virtual-library-v142:${projId}:pdf:${bookId}`);
+          store.delete(`${storageKey}:pdf:${bookId}`);
+          tx.oncomplete = () => done(true);
+          tx.onerror = () => done(false);
+          tx.onabort = () => done(false);
         } catch (e) {
-          resolve(false);
+          done(false);
         }
       });
     };
@@ -27333,11 +27442,7 @@ function v142CustomerRuntime(C) {
         let blobObj = null;
         try {
           if (rawSrc.startsWith('data:')) {
-            const comma = rawSrc.indexOf(',');
-            const bin = atob(rawSrc.slice(comma + 1));
-            const arr = new Uint8Array(bin.length);
-            for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-            blobObj = new Blob([arr], { type: 'application/pdf' });
+            blobObj = fastDataUrlToBlob(rawSrc);
           } else if (rawSrc.startsWith('blob:') || rawSrc.startsWith('./assets/') || rawSrc.startsWith('assets/')) {
             const resp = await fetch(rawSrc);
             if (resp.ok) blobObj = new Blob([await resp.arrayBuffer()], { type: 'application/pdf' });
@@ -27353,8 +27458,11 @@ function v142CustomerRuntime(C) {
 
     const loadAllPdfBlobs = async () => {
       const db = await openPdfDb();
-      if (db) {
+      if (db && db.objectStoreNames.contains('pdfs')) {
         await new Promise(resolve => {
+          let settled = false;
+          const done = () => { if (!settled) { settled = true; clearTimeout(timer); resolve(); } };
+          const timer = setTimeout(done, 2200);
           try {
             const tx = db.transaction('pdfs', 'readonly');
             const req = tx.objectStore('pdfs').getAll();
@@ -27364,14 +27472,7 @@ function v142CustomerRuntime(C) {
                 if (r && r.bookId && (r.bytes || r.blob || r.dataUrl)) {
                   let b = r.bytes ? new Blob([r.bytes], { type: r.mime || 'application/pdf' }) : r.blob;
                   if (!b && typeof r.dataUrl === 'string' && r.dataUrl.startsWith('data:')) {
-                    try {
-                      const parts = r.dataUrl.split(',');
-                      const mime = (parts[0].match(/:(.*?);/) || [null, 'application/pdf'])[1];
-                      const bin = atob(parts[1]);
-                      const arr = new Uint8Array(bin.length);
-                      for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-                      b = new Blob([arr], { type: mime });
-                    } catch (e) {}
+                    b = fastDataUrlToBlob(r.dataUrl);
                   }
                   if (b) {
                     pdfDataCache.set(r.bookId, { blob: b, name: r.name || 'ebook.pdf' });
@@ -27379,11 +27480,12 @@ function v142CustomerRuntime(C) {
                   }
                 }
               }
-              resolve();
+              done();
             };
-            req.onerror = () => resolve();
+            req.onerror = () => done();
+            tx.onabort = () => done();
           } catch (e) {
-            resolve();
+            done();
           }
         });
       }
@@ -27433,7 +27535,7 @@ function v142CustomerRuntime(C) {
         ...state,
         books: (state.books || []).map(b => {
           const copy = { ...b };
-          if (copy.pdfDataUrl && copy.pdfDataUrl.length > 4096) delete copy.pdfDataUrl;
+          if (copy.pdfDataUrl && (copy.pdfDataUrl.length > 4096 || String(copy.pdfDataUrl).startsWith('blob:'))) delete copy.pdfDataUrl;
           return copy;
         })
       };
@@ -27898,9 +28000,54 @@ function v142CustomerRuntime(C) {
       if (statusEl) statusEl.textContent = t('✓ Backup Perpustakaan Virtual berhasil diunduh ke HP!', '✓ Virtual Library backup downloaded to your phone!');
     };
 
+    const convertV2EnvelopeToBook = parsed => {
+      const c = (parsed && typeof parsed.content === 'object') ? parsed.content : parsed;
+      if (!c || !Array.isArray(c.pages) || !c.pages.length) return null;
+      const pages = c.pages;
+      const contentPages = pages.length > 1 ? pages.slice(1) : pages;
+      const sampleCards = contentPages.map((p, idx) => ({
+        h: String(p.heading || `Bab ${idx + 1}`),
+        b: [p.arabicDisplay, p.body, p.activity ? `🎯 Aktivitas: ${p.activity}` : ''].filter(Boolean).join('\n\n')
+      }));
+      const chapters = contentPages.map((p, idx) => ({
+        id: `ch-${idx + 1}`,
+        title: String(p.heading || `Bab ${idx + 1}`),
+        done: idx === 0,
+        timestamp: idx === 0 ? new Date().toISOString().slice(0, 16) : '',
+        score: idx === 0 ? 95 : null,
+        badge: idx === 0 ? '🌟 Sangat Rajin' : '',
+        note: idx === 0 ? 'Mulai membaca dan berlatih bersama orang tua.' : ''
+      }));
+      return {
+        id: String(parsed.projectId || c.id || ('ebook-v2-' + Date.now())),
+        icon: String(c.icon || '📘'),
+        color: String(c.color || '#00d2ff'),
+        badgeId: String(c.badgeId || 'E-BOOK WYPHA'),
+        badgeEn: String(c.badgeEn || c.badgeId || 'WYPHA E-BOOK'),
+        titleId: String(c.titleId || 'E-Book Belajar'),
+        titleEn: String(c.titleEn || c.titleId || 'Learning E-Book'),
+        descId: String(c.descId || ''),
+        descEn: String(c.descEn || c.descId || ''),
+        pdfUrl: String(c.pdfUrl || ''),
+        sampleCards,
+        chapters
+      };
+    };
+
     const importLibraryBackup = async (file, statusEl) => {
       if (!file) return;
-      if (statusEl) statusEl.textContent = t('⏳ Menggabungkan (merge) data e-book & PDF ke perpustakaan...', '⏳ Merging e-book & PDF data into library...');
+      const setStatus = (msg, isGood = false) => {
+        const liveEl = sec?.querySelector?.('#v142BackupStatus') || statusEl;
+        if (liveEl) {
+          liveEl.textContent = msg;
+          liveEl.style.color = isGood ? '#72ffca' : '#ffd460';
+        }
+        if (statusEl && statusEl !== liveEl) {
+          statusEl.textContent = msg;
+        }
+      };
+      setStatus(t('⏳ Menggabungkan (merge) data e-book & PDF ke perpustakaan...', '⏳ Merging e-book & PDF data into library...'));
+      await new Promise(r => setTimeout(r, 16));
       try {
         const text = await file.text();
         const parsed = JSON.parse(text);
@@ -27912,7 +28059,9 @@ function v142CustomerRuntime(C) {
           state.books = v142MergeBookLists(prevBooksSnapshot, state.books);
           saveState();
           renderLibrary();
-          if (statusEl) statusEl.textContent = t('✓ Data backup berhasil digabungkan (merge) tanpa menghapus e-book sebelumnya!', '✓ Backup data merged without replacing previous e-books!');
+          const dEl = sec.querySelector('.v142-library-drawer');
+          if (dEl) dEl.open = true;
+          setStatus(t('✓ Data backup berhasil digabungkan (merge) tanpa menghapus e-book sebelumnya!', '✓ Backup data merged without replacing previous e-books!'), true);
           return;
         }
 
@@ -27921,54 +28070,66 @@ function v142CustomerRuntime(C) {
         else if (Array.isArray(parsed.books)) incomingBooks = parsed.books;
         else if (Array.isArray(parsed)) incomingBooks = parsed;
         else if (Array.isArray(parsed.studio126?.holo13?.virtualLibrary?.books)) incomingBooks = parsed.studio126.holo13.virtualLibrary.books;
+        else if (Array.isArray(parsed.content?.pages) || Array.isArray(parsed.pages)) {
+          const v2Book = convertV2EnvelopeToBook(parsed);
+          if (v2Book) incomingBooks = [v2Book];
+        }
 
         if (!Array.isArray(incomingBooks) || !incomingBooks.length) {
           throw new Error(t('Format file JSON perpustakaan tidak sesuai.', 'Invalid library JSON file format.'));
         }
 
         const pdfMap = (parsed.pdfs && typeof parsed.pdfs === 'object') ? { ...parsed.pdfs } : {};
+        if (Array.isArray(parsed.indexedDB?.virtualLibraryPdfs)) {
+          for (const r of parsed.indexedDB.virtualLibraryPdfs) {
+            if (r && r.bookId && typeof r.dataUrl === 'string') {
+              pdfMap[r.bookId] = { dataUrl: r.dataUrl, name: r.name || (r.bookId + '.pdf') };
+            }
+          }
+        }
+        for (const b of incomingBooks) {
+          if (b && b.id && pdfMap[b.id]?.name && !b.pdfFileName) {
+            b.pdfFileName = pdfMap[b.id].name;
+          }
+        }
+
         const beforeCount = (state.books || []).length;
         state.books = v142MergeBookLists(state.books || [], incomingBooks, pdfMap);
-        if (!state.childName && parsed.state?.childName) state.childName = parsed.state.childName;
+        if (parsed.state?.childName && (!state.childName || state.childName === 'Anak Hebat')) state.childName = parsed.state.childName;
         if (!state.parentNoteGlobal && parsed.state?.parentNoteGlobal) state.parentNoteGlobal = parsed.state.parentNoteGlobal;
-        saveState();
 
         for (const [bookId, info] of Object.entries(pdfMap)) {
           if (info && typeof info.dataUrl === 'string' && info.dataUrl.startsWith('data:')) {
-            const parts = info.dataUrl.split(',');
-            const mime = (parts[0].match(/:(.*?);/) || [null, 'application/pdf'])[1];
-            const bin = atob(parts[1]);
-            const arr = new Uint8Array(bin.length);
-            for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-            const blob = new Blob([arr], { type: mime });
-            await savePdfBlob(bookId, blob, info.name || 'ebook.pdf');
+            const blob = fastDataUrlToBlob(info.dataUrl);
+            if (blob) {
+              await savePdfBlob(bookId, blob, info.name || 'ebook.pdf');
+            }
           }
         }
         for (const b of state.books) {
           if (b && b.pdfDataUrl && b.pdfDataUrl.startsWith('data:') && !pdfDataCache.has(b.id)) {
-            try {
-              const parts = b.pdfDataUrl.split(',');
-              const mime = (parts[0].match(/:(.*?);/) || [null, 'application/pdf'])[1];
-              const bin = atob(parts[1]);
-              const arr = new Uint8Array(bin.length);
-              for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-              const blob = new Blob([arr], { type: mime });
+            const blob = fastDataUrlToBlob(b.pdfDataUrl);
+            if (blob) {
               await savePdfBlob(b.id, blob, b.pdfFileName || 'ebook.pdf');
-            } catch (e) {}
+            }
           }
         }
 
         await hydrateStudioEmbeddedPdfs();
+        saveState();
         renderLibrary();
+        const dEl = sec.querySelector('.v142-library-drawer');
+        if (dEl) dEl.open = true;
         const addedCount = Math.max(0, state.books.length - beforeCount);
-        if (statusEl) {
-          statusEl.textContent = t(
+        setStatus(
+          t(
             `✓ Berhasil menggabungkan (merge) file JSON! E-Book lama tetap tersimpan aman (+${addedCount} E-Book baru, Total: ${state.books.length} E-Book).`,
             `✓ Successfully merged JSON! Existing e-books kept safe (+${addedCount} new, Total: ${state.books.length} E-Books).`
-          );
-        }
+          ),
+          true
+        );
       } catch (err) {
-        if (statusEl) statusEl.textContent = '⚠ ' + (err.message || 'Gagal impor backup.');
+        setStatus('⚠ ' + (err.message || 'Gagal impor backup.'), false);
       }
     };
 
@@ -27989,12 +28150,12 @@ function v142CustomerRuntime(C) {
         };
         s.onerror = () => resolve(null);
         document.head.appendChild(s);
-        setTimeout(() => resolve(window.pdfjsLib || null), 4500);
+        setTimeout(() => resolve(window.pdfjsLib || null), 3500);
       });
       return pdfJsPromise;
     };
 
-    // Helper: Pure-JS Offline PDF Binary Inspector & Decompressor (DecompressionStream('deflate') + JPEG + Text Stream Parser)
+    // Helper: Pure-JS Offline PDF Binary Inspector & Decompressor (Zero-Backtracking O(N) Stream & JPEG Parser)
     const parsePdfBinaryOffline = async (blobOrBuffer, fallbackTitle = 'E-Book PDF') => {
       try {
         const buf = blobOrBuffer instanceof ArrayBuffer ? blobOrBuffer : await blobOrBuffer.arrayBuffer();
@@ -28003,9 +28164,9 @@ function v142CustomerRuntime(C) {
         const pageMatches = rawLatin.match(/\/Type\s*\/Page\b(?!s)/g);
         const pageCount = Math.max(1, pageMatches ? pageMatches.length : 1);
 
-        // Extract embedded JPEG images (0xFF 0xD8 0xFF ... 0xFF 0xD9) if present inside PDF streams
+        // Extract embedded JPEG images (0xFF 0xD8 0xFF ... 0xFF 0xD9) inside PDF streams
         const jpegUrls = [];
-        for (let i = 0; i < bytes.length - 4 && jpegUrls.length < 12; i++) {
+        for (let i = 0; i < bytes.length - 4 && jpegUrls.length < 40; i++) {
           if (bytes[i] === 0xFF && bytes[i + 1] === 0xD8 && bytes[i + 2] === 0xFF) {
             let end = i + 4;
             while (end < bytes.length - 1) {
@@ -28019,13 +28180,13 @@ function v142CustomerRuntime(C) {
               try {
                 const imgBlob = new Blob([bytes.subarray(i, end)], { type: 'image/jpeg' });
                 jpegUrls.push(URL.createObjectURL(imgBlob));
-                i = end;
+                i = end - 1;
               } catch (e) {}
             }
           }
         }
 
-        // Decompress FlateDecode & raw streams to extract readable text blocks
+        // Decompress FlateDecode & raw text streams using strictly linear O(N) non-backtracking regexes
         const decodePdfLiteral = str =>
           str
             .replace(/\\(\d{1,3})/g, (_, oct) => String.fromCharCode(parseInt(oct, 8)))
@@ -28038,15 +28199,15 @@ function v142CustomerRuntime(C) {
 
         const extractTextFromStream = content => {
           const chunks = [];
-          const btRegex = /BT([\s\S]*?)ET/g;
+          const btRegex = /BT([\s\S]{1,24000}?)ET/g;
           let m;
           while ((m = btRegex.exec(content)) !== null) {
             const block = m[1];
-            const tjMatches = block.matchAll(/\((?:\\.|[^\\)])*\)\s*Tj|\[((?:\\.|[^\]])*)\]\s*TJ/g);
+            const tjMatches = block.matchAll(/\((?:\\[\s\S]|[^\\()])*\)\s*Tj|\[(?:\\[\s\S]|[^\\\]])*\]\s*TJ/g);
             let line = '';
             for (const tm of tjMatches) {
               const seg = tm[0];
-              const lits = seg.matchAll(/\(((?:\\.|[^\\)])*)\)/g);
+              const lits = seg.matchAll(/\(((?:\\[\s\S]|[^\\()])*)\)/g);
               for (const lit of lits) {
                 line += decodePdfLiteral(lit[1]);
               }
@@ -28059,17 +28220,21 @@ function v142CustomerRuntime(C) {
         };
 
         const extractedTexts = [];
-        const streamRegex = /stream\r?\n/g;
+        const streamRegex = /(?:^|[^a-zA-Z])stream\r?\n/g;
         let sm;
         let streamIdx = 0;
-        while ((sm = streamRegex.exec(rawLatin)) !== null && streamIdx < 40) {
+        while ((sm = streamRegex.exec(rawLatin)) !== null && streamIdx < 60) {
           streamIdx++;
+          const kwIdx = sm.index + (sm[0].startsWith('stream') ? 0 : 1);
           const startOffset = sm.index + sm[0].length;
           const endOffset = rawLatin.indexOf('endstream', startOffset);
-          if (endOffset < 0 || endOffset - startOffset > 1500000) continue;
-          const headerSlice = rawLatin.slice(Math.max(0, sm.index - 220), sm.index);
-          if (/\/Subtype\s*\/Image|\/FontFile/i.test(headerSlice)) continue;
+          if (endOffset < 0) break;
+          streamRegex.lastIndex = endOffset + 9;
+          if (endOffset - startOffset > 250000) continue;
+          const headerSlice = rawLatin.slice(Math.max(0, kwIdx - 320), kwIdx);
+          if (/\/Subtype\s*\/Image|\/Filter\s*\/DCTDecode|\/FontFile/i.test(headerSlice)) continue;
           const subBytes = bytes.subarray(startOffset, endOffset);
+          if (subBytes.length >= 2 && subBytes[0] === 0xFF && subBytes[1] === 0xD8) continue;
           let streamText = '';
           if (/\/FlateDecode/i.test(headerSlice) && typeof DecompressionStream !== 'undefined') {
             for (const fmt of ['deflate', 'deflate-raw']) {
@@ -28094,7 +28259,7 @@ function v142CustomerRuntime(C) {
 
         const pages = [];
         const total = Math.max(pageCount, extractedTexts.length, jpegUrls.length, 1);
-        for (let p = 0; p < Math.min(total, 30); p++) {
+        for (let p = 0; p < Math.min(total, 40); p++) {
           pages.push({
             pageNumber: p + 1,
             text: extractedTexts[p] || '',
@@ -28192,6 +28357,7 @@ function v142CustomerRuntime(C) {
       if (!readerModal) {
         readerModal = document.createElement('dialog');
         readerModal.id = 'v142ReaderModal';
+        readerModal.setAttribute('data-v126-own-ui', '1');
         document.body.appendChild(readerModal);
       }
       readerModal.classList.remove('v142-pdf-fullscreen-mode');
@@ -28396,7 +28562,7 @@ function v142CustomerRuntime(C) {
           ctx.fillRect(46, y, 588, 3);
           y += 32;
 
-          // If an embedded JPEG was extracted for this page, draw it!
+          // If an embedded JPEG was extracted for this page, draw full-page illustrated e-book renders at 100% full bleed!
           if (pInfo?.imageUrl) {
             try {
               const im = new Image();
@@ -28406,6 +28572,11 @@ function v142CustomerRuntime(C) {
                 im.src = pInfo.imageUrl;
               });
               if (im.naturalWidth) {
+                if (im.naturalWidth >= 500 && im.naturalHeight >= 650 && Math.abs((im.naturalWidth / im.naturalHeight) - (680 / 920)) < 0.15) {
+                  ctx.drawImage(im, 0, 0, 680, 920);
+                  ctx.restore();
+                  return;
+                }
                 const maxW = 560, maxH = 340;
                 const ratio = Math.min(maxW / im.naturalWidth, maxH / im.naturalHeight);
                 const dw = im.naturalWidth * ratio, dh = im.naturalHeight * ratio;
@@ -28507,8 +28678,9 @@ function v142CustomerRuntime(C) {
         }
         await renderPdfPages();
 
-        // 2. Also attempt Mozilla PDF.js high-DPI rasterization if available/online
-        if (rawBlob) {
+        // 2. Also attempt Mozilla PDF.js high-DPI rasterization if PDF does not already have full-page embedded JPEGs
+        const hasFullPageJpegs = offlineParsed?.hasImages && offlineParsed.pages.filter(p => p.imageUrl).length >= offlineParsed.pageCount;
+        if (rawBlob && !hasFullPageJpegs) {
           const pdfjs = await ensurePdfJs();
           if (pdfjs) {
             try {
@@ -28633,6 +28805,7 @@ function v142CustomerRuntime(C) {
     // Mount Main Section (#wyphaVirtualLibrarySection)
     const sec = document.createElement('section');
     sec.id = 'wyphaVirtualLibrarySection';
+    sec.setAttribute('data-v126-own-ui', '1');
 
     const cloudVault = document.getElementById('wyphaUniversalCloudVault');
     const storeSec = document.getElementById('wyphaDigitalStoreSection');
@@ -29263,7 +29436,7 @@ function v142CustomerRuntime(C) {
 }
 
 function v142Output(s, C) {
-  const shared = 'const V142_DEFAULT_BOOKS=' + JSON.stringify(V142_DEFAULT_BOOKS).replace(/</g, '\\u003c') + ';const v142MergeBookLists=' + v142MergeBookLists.toString() + ';';
+  const shared = 'const V142_DEFAULT_BOOKS=' + JSON.stringify(V142_DEFAULT_BOOKS).replace(/</g, '\\u003c') + ';const v142MergeBookLists=' + v142MergeBookLists.toString() + ';window.v142MergeBookLists=v142MergeBookLists;';
   return (
     '<style id="wypha-v142-library-style">' + V142_CUSTOMER_CSS + '</style>' +
     '<script id="wypha-v142-library-runtime">(()=>{' + shared + '(' + v142CustomerRuntime.toString() + ')(' +
@@ -29274,19 +29447,44 @@ function v142Output(s, C) {
 
 async function v142SavePdfToStudioIdb(bookId, fileOrBlob, fileName) {
   try {
-    const req = indexedDB.open('wyphaVirtualLibraryDB_v1', 1);
-    req.onupgradeneeded = () => {
-      const db = req.result;
-      if (!db.objectStoreNames.contains('pdfs')) db.createObjectStore('pdfs', { keyPath: 'id' });
-    };
-    const db = await new Promise(res => { req.onsuccess = () => res(req.result); req.onerror = () => res(null); });
-    if (!db) return;
+    const db = await new Promise(res => {
+      let settled = false;
+      const done = val => { if (!settled) { settled = true; clearTimeout(t); res(val); } };
+      const t = setTimeout(() => done(null), 2200);
+      try {
+        const req = indexedDB.open('wyphaVirtualLibraryDB_v1', 2);
+        req.onupgradeneeded = () => {
+          const d = req.result;
+          if (!d.objectStoreNames.contains('pdfs')) d.createObjectStore('pdfs', { keyPath: 'id' });
+        };
+        req.onsuccess = () => done(req.result);
+        req.onerror = () => done(null);
+        req.onblocked = () => done(null);
+      } catch (e) {
+        done(null);
+      }
+    });
+    if (!db || !db.objectStoreNames.contains('pdfs')) {
+      try { db?.close?.(); } catch (e) {}
+      return;
+    }
     const projId = String(v124Studio?.id || rareStudio?.customerGallery?.id || v124Active || 'baby');
     const recId = `wypha-virtual-library-v142:${projId}:pdf:${bookId}`;
     const bytes = await fileOrBlob.arrayBuffer();
-    const safeBlob = new Blob([bytes], { type: 'application/pdf' });
-    const tx = db.transaction('pdfs', 'readwrite');
-    tx.objectStore('pdfs').put({ id: recId, bookId, name: fileName || 'ebook.pdf', mime: 'application/pdf', bytes, blob: safeBlob, updatedAt: Date.now() });
+    await new Promise(res => {
+      let settled = false;
+      const done = () => { if (!settled) { settled = true; clearTimeout(t); try { db.close(); } catch (e) {} res(); } };
+      const t = setTimeout(done, 2500);
+      try {
+        const tx = db.transaction('pdfs', 'readwrite');
+        tx.objectStore('pdfs').put({ id: recId, bookId, name: fileName || 'ebook.pdf', mime: 'application/pdf', bytes, updatedAt: Date.now() });
+        tx.oncomplete = done;
+        tx.onerror = done;
+        tx.onabort = done;
+      } catch (e) {
+        done();
+      }
+    });
   } catch (e) {}
 }
 
@@ -29307,7 +29505,7 @@ function v142SyncStudioLibraryToPreviewStorage(vl, forceReplace = false) {
     const combined = forceReplace ? (vl.books || []) : v142MergeBookLists(existingBooks, vl.books || []);
     const lightBooks = combined.map(b => {
       const copy = { ...b };
-      if (copy.pdfDataUrl && copy.pdfDataUrl.length > 4096) delete copy.pdfDataUrl;
+      if (copy.pdfDataUrl && (copy.pdfDataUrl.length > 4096 || String(copy.pdfDataUrl).startsWith('blob:'))) delete copy.pdfDataUrl;
       return copy;
     });
     const statePayload = {
@@ -29345,7 +29543,10 @@ function v142RenderOwner() {
     v142SyncStudioLibraryToPreviewStorage(v126State.holo13.virtualLibrary, forceReplace);
     v1261LastPreviewKey = '';
     v126Changed();
-    if (rerender) v142RenderOwner();
+    if (rerender) {
+      v142RenderOwner();
+      setTimeout(() => { try { v126GenerateNow(); } catch (e) {} }, 50);
+    }
   };
 
   const info = document.createElement('p');
@@ -29553,12 +29754,11 @@ function v142RenderOwner() {
         }
         if (b && b.pdfDataUrl && b.pdfDataUrl.startsWith('data:')) {
           try {
-            const parts = b.pdfDataUrl.split(',');
-            const bin = atob(parts[1] || '');
-            b.pdfSizeKb = b.pdfSizeKb || Math.max(1, Math.round(bin.length / 1024));
-            const arr = new Uint8Array(bin.length);
-            for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-            await v142SavePdfToStudioIdb(b.id, new Blob([arr], { type: 'application/pdf' }), b.pdfFileName || (b.id + '.pdf'));
+            const blob = typeof v126Blob === 'function' ? v126Blob(b.pdfDataUrl) : null;
+            if (blob) {
+              b.pdfSizeKb = b.pdfSizeKb || Math.max(1, Math.round(blob.size / 1024));
+              await v142SavePdfToStudioIdb(b.id, blob, b.pdfFileName || (b.id + '.pdf'));
+            }
           } catch (e) {}
         }
       }
