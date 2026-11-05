@@ -1,0 +1,166 @@
+================================================================================
+PEMBARUAN UTAMA V15.3 (SAKLAR ON/OFF BINGKAI 3D PANEL LED KEMBALI KE DEFAULT,
+IMPORT .JSON PERPUSTAKAAN VIRTUAL SISTEM MERGE / GABUNG TANPA MENGGANTI E-BOOK
+LAMA, & JUDUL "wypha perpustakaan virtual 3D dan e-Raport Belajar")
+================================================================================
+1. PENGATURAN ON / OFF BINGKAI 3D PANEL LED (OTOMATIS KEMBALI KE AWAL / DEFAULT):
+   - Di dalam Studio ("📟 V15.3 · Bingkai 3D Panel LED Bergerak Vertikal") maupun
+     di dalam Microsite kini tersedia tombol saklar tegas [🟢 ON (Aktifkan)] dan
+     [⚪ OFF (Nonaktifkan & Reset Default)].
+   - Saat dinonaktifkan (OFF) atau tanda centang dilepas, seluruh tampilan Bingkai
+     3D Panel LED pada Judul, Nama, maupun Collector Pass di microsite otomatis
+     dilepas 100%, memori cache LED dibersihkan, dan tampilan bingkai/teks kembali
+     ke pengaturan awal/sebelumnya/default.
+
+2. IMPORT .JSON PERPUSTAKAAN VIRTUAL SISTEM MERGE (MENGGABUNGKAN TANPA MENGGANTI):
+   - Baik saat melakukan Import .JSON dari dalam Microsite ("⬆ Import & Gabung E-Book (.json)")
+     maupun dari pengaturan Studio ("📂 Import & Gabung (Merge) .JSON di Studio"),
+     sistem kini menggunakan metode Non-Destructive Additive Merge.
+   - Seluruh E-Book, catatan perkembangan, nilai, dan file PDF yang sudah ada/tersimpan
+     sebelumnya di microsite tetap dipertahankan 100% tanpa terganti, dan E-Book dari
+     file .JSON yang diimpor langsung ditambahkan/digabungkan ke dalam perpustakaan.
+
+3. PERUBAHAN JUDUL FITUR PERPUSTAKAAN VIRTUAL:
+   - Judul fitur kini telah diubah menjadi:
+     "wypha perpustakaan virtual 3D dan e-Raport Belajar"
+
+4. TAMPILAN VERSI TERBARU (V15.3):
+   - Seluruh tampilan versi di aplikasi telah diperbarui ke versi terbaru V15.3.
+================================================================================
+
+================================================================================
+PEMBARUAN UTAMA V15.2 (PERPUSTAKAAN VIRTUAL STUDIO IMPORT JSON & UPLOAD PDF
+LANGSUNG, TAMPILAN BACA NYAMAN EYE-CARE, PANEL LIPAT NUANSA WARNA / VIBE
+DI DALAM MICROSITE & TAMPILAN VERSI TERBARU V15.2)
+================================================================================
+1. PENGATURAN PERPUSTAKAAN VIRTUAL DI STUDIO BISA IMPORT .JSON & UPLOAD PDF LANGSUNG:
+   - Di dalam panel Studio ("📚 V15.2 · Perpustakaan Virtual 3D, Upload PDF / Import JSON"):
+     * Tersedia tombol [📥 ＋ Masukkan File PDF Langsung dari Studio (Bisa Banyak PDF)]
+       untuk memasukkan 1 atau banyak file PDF langsung dari komputer/HP saat di Studio.
+     * Pada setiap slot E-Book di Studio juga tersedia tombol [📄 Masukkan / Ganti File PDF]
+       dan [✕ Lepas PDF] sehingga setiap buku bisa langsung dipasangi file PDF dari Studio.
+     * Tersedia tombol [📂 Import .JSON Perpustakaan di Studio] dan [⬇ Export .JSON Perpustakaan]
+       untuk mengimpor maupun mencadangkan data Perpustakaan Virtual beserta file PDF-nya.
+     * Seluruh file PDF yang dimasukkan dari Studio otomatis tertanam ke dalam proyek &
+       microsite customer (tersimpan di IndexedDB & Asset Pool).
+
+2. TAMPILAN PERPUSTAKAAN VIRTUAL LEBIH NYAMAN DIBACA (EYE-CARE READING COMFORT):
+   - Dilengkapi bar [👁️ Mode Baca Nyaman] dengan 5 pilihan tema ramah mata:
+     * ☀️ Kertas Hangat (Warm Paper / Sepia lembut anti-silau — Default)
+     * 🌤️ Siang Bersih (Clean Daylight kontras tajam)
+     * 🌿 Hijau Sejuk (Soft Sage rileks di mata)
+     * 🌙 Malam Teduh (Soft Night Slate gelap nyaman)
+     * ✨ Ikuti Vibe (Menyesuaikan nuansa warna microsite)
+   - Dilengkapi pengatur [🔠 Ukuran Huruf: A Standar | A+ Nyaman | A++ Besar] baik di
+     daftar perpustakaan maupun di dalam Ruang Baca E-Book / PDF.
+
+3. PANEL LIPAT PENGATUR NUANSA WARNA / VIBE DI DALAM MICROSITE (30+ PILIHAN VIBE):
+   - Customer kini dapat mengatur Nuansa Warna / Vibe seluruh isi microsite melalui
+     panel yang bisa dilipat (collapsible drawer) sehingga tampilan microsite tetap rapi.
+   - Tersedia lebih dari 30 pilihan nuansa warna siap pakai:
+     * Pink & Sakura: 💖 Pink Rose, 🌸 Sakura Blossom, 🌷 Pink Pastel Cerah,
+       🍬 Bubblegum Pink, 🍓 Berry Magenta.
+     * Orange & Sunset: 🍊 Orange Tangerine, 🧡 Orange Sorbet Cerah, 🌅 Sunset Horizon,
+       🌇 Golden Dusk Sunset, 🍑 Peach Coral Cerah, 🌻 Sunflower Honey.
+     * Navy & Biru: ⚓ Navy Sapphire, 🌌 Midnight Navy Gold, 🌊 Ocean Turquoise,
+       🔷 Royal Cobalt Blue, ❄️ Arctic Ice Blue.
+     * Cloudy & Pastel Cerah: ☁️ Cloudy Sky Cerah, 🌫️ Cloudy Pearl Mist,
+       🌥️ Cloudy Twilight, 🍭 Cotton Candy Cerah, 💎 Ice Silver Cerah, 🪻 Lilac Dream.
+     * Alam & Matcha: 🌿 Emerald Forest, 🍵 Matcha Sage Cerah, 🍃 Mint Aurora.
+     * Gold & Mewah: 👑 Imperial Gold, ☕ Champagne Cream, 🍫 Mocha Caramel,
+       🍷 Crimson Ruby, 🔮 Royal Lavender, 🍇 Velvet Plum, 🪙 Platinum Silver, ⚡ Cyber Holo.
+   - Dilengkapi juga pemilih [🎨 Warna Kustom Bebas] + mode Pastel Terang / Gelap Elegan.
+   - Saat dipilih, seluruh latar, kartu, bingkai, paspor, kalender, diary, hingga tombol
+     di dalam microsite berubah serasi mengikuti nuansa warna tersebut.
+
+4. PENYERAGAMAN TAMPILAN VERSI APLIKASI KE VERSI TERBARU (V15.2):
+   - Seluruh tampilan versi pada header utama Studio, Quickbar atas, lencana panel,
+     Rare Studio, manifest PWA, dan informasi sistem kini menampilkan versi terbaru V15.2.
+================================================================================
+
+================================================================================
+PEMBARUAN TAMBAHAN V15.1 (MODE EDIT ✏️, LITTLE LIFE PASSPORT NYAMAN, PANEL LED 3D
+VERTIKAL & VOICE NOTE / AUDIO DI MY FAN DIARY)
+================================================================================
+1. IKON PENSIL (✏️) PADA MODE EDIT DI MICROSITE:
+   - Tulisan "Customer" pada tombol dan jendela Mode Edit di microsite telah
+     dihapus dan diganti dengan ikon pensil `✏️` yang rapi dan nyaman dilihat.
+
+2. DESAIN ULANG LITTLE LIFE PASSPORT & PENGHAPUSAN ANGKA "01":
+   - Angka `01` pada bagian judul atas dan ekspor PNG Little Life Passport telah
+     dihapus.
+   - Tampilan Little Life Passport dirancang ulang dengan gaya Soft Futuristic
+     Pearl-Glass yang jauh lebih teduh, lembut, dan nyaman dipandang mata namun
+     tetap mempertahankan sentuhan futuristik elegan.
+
+3. BINGKAI 3D PANEL LED BERGERAK VERTIKAL (JUDUL & NAMA) + PENGATUR WARNA LED:
+   - Tersedia opsi tampilan **Panel LED 3D Bergerak Vertikal** untuk Judul Utama
+     dan Nama di microsite (dapat diatur dari Menu 4, Menu 9, maupun langsung oleh
+     pengguna di dalam microsite).
+   - Dilengkapi pemilih berbagai warna LED (Cyber Cyan, Neon Magenta, Matrix
+     Emerald, Royal Gold, Electric Violet, Crimson Laser, Sunset Amber, Diamond
+     White, Rainbow RGB, serta Warna Kustom Bebas) dan mode gerak vertikal.
+   - Papan LED otomatis menyesuaikan ukuran dan membungkus tulisan/nama yang
+     panjang agar tidak pernah terpotong.
+
+4. VOICE NOTE & UPLOAD AUDIO DARI HP DI MY FAN DIARY (PRODUK IDOL):
+   - Pada bagian **My Fan Diary**, pengguna kini dapat merekam Voice Note
+     langsung (`🎙 Rekam Voice Note`) maupun memilih file suara/audio dari HP
+     (`🎵 Audio dari HP`) untuk dilampirkan ke catatan harian diary dan diputar
+     kembali kapan saja (tersimpan permanen di memori HP & mendukung Backup).
+================================================================================
+
+================================================================================
+WYPHA MAGIC QR STUDIO · V15.0 (PEMBARUAN SILSILAH KELUARGA: PENGHAPUSAN TOTAL
+NAMA CONTOH LAMA, TOMBOL RESET DARI AWAL/INTI & SIMPAN FOTO KAMERA PENUH)
+================================================================================
+
+RINGKASAN PEMBARUAN UTAMA DI VERSI V15.0:
+
+1. PENGHAPUSAN TOTAL 29 NAMA CONTOH LAMA & ID LAMA DARI KODE DAN STORAGE:
+   - Seluruh nama contoh lama (Bujuk Tambeh, Nyai Tambeh, Bujuk Mina, Siti Aminah,
+     Salabung, Dinya, Saputra, Ammah, MUNAWI, NAHRA, Khoyun, Lamani, Ikhsan,
+     Fathah, Tholib, Maziyah, Lek Bo, Pendik, Mul, Rina, Faris, Faiz, Wahyu,
+     Nadia, Arka, Dul, Awi, Yongga, Dio) telah dihapus 100% dari kode sumber
+     beserta ID lamanya.
+   - Seluruh node default kini murni menggunakan sebutan hubungan keluarga:
+     * Inti & Saudara (0G): `Saya`, `Pasangan`, `Kakak`, `Ipar`, `Adik`,
+       `Sepupu 1`, `Sepupu 2`, `Saudara Pasangan`, `Pasangan Ipar`.
+     * Orang Tua, Paman & Bibi (+1G): `Ayah`, `Ibu`, `Paman`, `Bibi`,
+       `Ayah Mertua`, `Ibu Mertua`.
+     * Kakek & Nenek (+2G): `Kakek (Ayah)`, `Nenek (Ayah)`, `Kakek (Ibu)`,
+       `Nenek (Ibu)`, `Kakek (Pasangan)`, `Nenek (Pasangan)`.
+     * Leluhur (+3G & +4G): `Kakek Buyut`, `Nenek Buyut`, `Canggah Pria`,
+       `Canggah Wanita`.
+     * Keturunan (-1G & -2G): `Anak Ke-1`, `Anak Ke-2`, `Anak Ke-3`, `Menantu`,
+       `Cucu`, `Keponakan 1`, `Keponakan 2`.
+   - Jika browser HP/PC sebelumnya masih menyimpan data contoh lama di memori
+     lokal (meskipun sudah pernah diberi foto), sistem otomatis mengubah seluruh
+     nama contoh lama tersebut ke nama hubungan keluarga baru sambil tetap
+     mempertahankan foto yang sudah dimasukkan.
+
+2. TOMBOL RESET LANGSUNG DI BAR ATAS SILSILAH ("🔄 Reset / Mulai dari Awal"):
+   - Di bagian atas kanvas Silsilah Keluarga (sebelah tombol "☸ Menu Aksi"),
+     kini tersedia tombol langsung `🔄 Reset / Mulai dari Awal`.
+   - Saat ditekan, muncul jendela pilihan (tanpa membuat layar scroll ke atas):
+     * [✨ Mulai dari Awal / 1 Orang Inti (Saya)] — Menghapus seluruh cabang
+       contoh dan menyisakan 1 lingkaran Inti (`Saya`) di tengah kanvas agar
+       customer dapat membangun silsilah keluarganya sendiri dari nol.
+     * [🌳 Reset ke Bagan Default Lengkap] — Memuat ulang contoh bagan lengkap
+       dengan nama hubungan keluarga (`Ayah`, `Ibu`, `Paman`, `Kakek`, `Sepupu`, dll.).
+
+3. TOMBOL KAMERA MENYIMPAN & MERENDER SELURUH FOTO ANGGOTA SILSILAH:
+   - Tombol Kamera Snapshot PNG (ikon 📷 di kanan atas kanvas Silsilah):
+     * Sebelumnya, saat menekan tombol kamera untuk menyimpan gambar silsilah
+       (`.png`), kanvas hanya menggambar lingkaran warna dan inisial huruf tanpa
+       merender foto anggota.
+     * Kini tombol kamera memuat dan menggambar seluruh foto (`photo`) yang
+       sudah dimasukkan ke dalam lingkaran masing-masing anggota keluarga
+       (lengkap dengan potongan lingkaran proporsional `cover`, cincin fokus
+       emas, lencana ikatan pernikahan `⚭`, nama lengkap, serta keterangan peran).
+   - Tombol Kamera Upload Foto di Dalam Jendela Edit Biodata:
+     * Begitu foto dipilih melalui tombol kamera pada biodata anggota, foto
+       tersebut langsung tersimpan otomatis ke dalam Silsilah Keluarga,
+       memori permanen HP (`IndexedDB` + `localStorage`), dan proyek Studio
+       tanpa harus takut hilang jika jendela ditutup.
+================================================================================
