@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "WYPHA Magic QR Studio V15.4 — wypha perpustakaan virtual 3D dan e-Raport Belajar, Merge JSON & LED 3D ON/OFF",
-  "short_name": "WYPHA V15.4",
+  "name": "WYPHA Magic QR Studio V15.5 — wypha perpustakaan virtual 3D dan e-Raport Belajar, Merge JSON & LED 3D ON/OFF",
+  "short_name": "WYPHA V15.5",
   "description": "Kartu fan neon pribadi: dua foto, biodata, durasi hidup, note untuk idol dan ekspor PNG dengan panel paket ON/OFF.",
   "start_url": "./index.html",
   "scope": "./",
